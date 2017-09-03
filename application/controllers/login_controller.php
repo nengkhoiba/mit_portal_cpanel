@@ -22,13 +22,13 @@ class Login_controller extends CI_Controller {
 			$password=$_POST['password'];
 			
 			$sql="SELECT el.UEID AS UEID,ed.name AS empName,ecr.role_id AS role_id,r.name AS role   FROM emp_login el
-LEFT JOIN emp_details ed ON ed.UEID=el.UEID
-LEFT JOIN emp_col_relation ecr ON ecr.UEID=el.UEID
-LEFT JOIN role r ON r.id=ecr.role_id
-WHERE
-el.user='$username'
-AND el.password='$password'
-AND ed.isActive=1 ";
+				LEFT JOIN emp_details ed ON ed.UEID=el.UEID
+				LEFT JOIN emp_col_relation ecr ON ecr.UEID=el.UEID
+				LEFT JOIN role r ON r.id=ecr.role_id
+				WHERE
+				el.user='$username'
+				AND el.password='$password'
+				AND ed.isActive=1 ";
 			$query=$this->db->query($sql);
 			
 			if($query->num_rows>0){
@@ -44,19 +44,22 @@ AND ed.isActive=1 ";
 				$this->session->set_userdata('User', $empName);
 				$this->session->set_userdata('Role', $role);
 				$this->session->set_userdata('RoleID', $role_id);
-				redirect('nav_controller');
+				redirect('landing');
 			}else{
 				$this->session->set_userdata('status', "Incorrect username or password!");
 				redirect('home');
 			}
 			
 			
-			
 		}
 		
 		
-	
-		
-		
+	}
+	public function logout(){
+		$this->session->set_userdata('UEID', null);
+		$this->session->set_userdata('User', null);
+		$this->session->set_userdata('Role', null);
+		$this->session->set_userdata('RoleID', null);
+		redirect('home');
 	}
 }

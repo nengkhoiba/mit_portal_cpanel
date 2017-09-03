@@ -40,7 +40,26 @@
 
 $route['default_controller'] = "home";
 $route['404_override'] = '';
+//rohitkanta
+$route['landing'] = 'nav_controller';
+$route['logout'] = 'login_controller/logout';
+//rohitkanta
+//thoisana
+$route['employee/registration'] = 'nav_controller/emp_reg';
+$route['utility/department'] = 'nav_controller/master_department';
+$route['utility/designation'] = 'nav_controller/master_designation';
+$route['utility/user'] = 'nav_controller/master_user';
+$route['utility/role'] = 'nav_controller/master_role';
+//thoisana
 
+//borison
+$route['utility/semester'] = 'nav_controller/master_semester';
+$route['utility/trade'] = 'nav_controller/master_trade';
+$route['utility/course'] = 'nav_controller/master_course';
+$route['utility/session'] = 'nav_controller/master_session';
+$route['utility/exam'] = 'nav_controller/master_examtype';
+$route['student/registration'] = 'nav_controller/student_reg';
+//borison
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
