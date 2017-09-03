@@ -7,14 +7,12 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Utility
-        <small>Trade</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Trade</li>
-      </ol>
+          <h1>
+          <ol class="breadcrumb">
+             <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
+            <li class="active">Trade</li>
+          </ol>
+          </h1>      
     </section>
 
     <section class="content">
