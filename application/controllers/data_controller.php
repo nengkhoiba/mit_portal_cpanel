@@ -688,7 +688,6 @@ class Data_controller extends CI_Controller {
 	//END DESIGNATION MASTER
 	
 	
-	
 	//START OF USER-MASTER
 	public function update_master_user(){
 		$this->load->helper(array('form', 'url'));
