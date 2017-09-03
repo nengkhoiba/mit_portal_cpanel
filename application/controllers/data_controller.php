@@ -710,6 +710,9 @@ class Data_controller extends CI_Controller {
 			$user=$_POST['txtUsername'];
 			$pass=$_POST['txtPassword'];
 			$cpass=$_POST['txtConfirmPassword'];
+			$dept_id=trim($_POST['optDept']);
+			$deg_id=trim($_POST['optDesig']);
+			$role_id=trim($_POST['optRole']);
 			if($pass == $cpass){
 				
 				
@@ -732,6 +735,10 @@ class Data_controller extends CI_Controller {
 					if($query){
 						$this->session->set_userdata('status', "Succesfully saved!");
 					}
+					
+					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
+					$query3 =$this->db->query($sql3);
+					
 				}
 				
 				redirect('nav_controller/master_user');
