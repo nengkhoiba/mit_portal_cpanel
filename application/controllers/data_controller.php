@@ -105,9 +105,7 @@ class Data_controller extends CI_Controller {
 		
 	}
 
-	public function loadDT_examType(){
-	    $this->load->view('data_fragment/examTypeData.php');
-	}
+	
 	
 	
 	public function loadDT_semester(){
@@ -204,52 +202,7 @@ class Data_controller extends CI_Controller {
 	    }
 	}
 	
-	public function update_master_department(){
-	    $this->load->helper(array('form', 'url'));
-	    
-	    $this->load->library('form_validation');
-	    
-	    $this->form_validation->set_rules('txtDepartment', 'Department Name', 'required');
-	    
-	    
-	    if ($this->form_validation->run() == FALSE)
-	    {
-	        $this->load->view('utility/department_master');
-	    }
-	    else
-	    {
-	        $flag=$_POST['postType'];
-	        $department=$_POST['txtDepartment'];
-	        $isActive=$_POST['ddlActive'];
-	        if($flag!=""){
-	            $sql = "UPDATE `department` SET
-						name='$department',
-						isActive='$isActive'
-						WHERE id='$flag'
-				";
-	            $query = $this->db->query ($sql);
-	            if($query){
-	                $this->session->set_userdata('status', "Succesfully Updated!");
-	            }
-	        }else{
-	            
-	            $sql = "INSERT INTO `department`(`name`, `isActive`) VALUES
-						('$department','$isActive')
-				";
-	            $query = $this->db->query ($sql);
-	            if($query){
-	                $this->session->set_userdata('status', "Succesfully saved!");
-	            }
-	        }
-	        
-	        redirect('nav_controller/master_department');
-	    }
-	    
-	}
-	public function loadDT_department(){
-	    $this->load->view('data_fragment/departmentData.php');
-	}
-	
+
 	public function update_master_semester(){
 	    $this->load->helper(array('form', 'url'));
 	    
