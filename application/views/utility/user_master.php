@@ -93,7 +93,7 @@
 		              </div>
 		              </div>
 		              <div class="row">
-		              <div class="col-sm-6">
+		              <div class="col-sm-4">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
@@ -106,8 +106,35 @@
 		              </div>
 	     			</div>
 		              
-	     			</div>
 	     			
+	     	     <div class="col-sm-4 ">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Designation
+		                  </div>
+		                  
+						   <?php $this->load->view('global/drop_down_designation')?>
+		               </div>
+	              </div>
+     			</div>
+     			<div class="col-sm-4 ">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Department
+		                  </div>
+		                  
+						   <?php $this->load->view('global/drop_down_department') ?>
+		                 
+		               </div>
+	              
+	              </div>
+     			</div>
+	     			
+	     			</div>
 	     			
 	     			
      			</div>
