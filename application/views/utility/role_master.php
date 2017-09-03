@@ -9,11 +9,11 @@
     <section class="content-header">
       <h1>
         Utility
-        <small>Department Maaster</small>
+        <small>Role Maaster</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Department Master</li>
+        <li class="active">Role Master</li>
       </ol>
     </section>
 
@@ -33,17 +33,17 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-			<?php echo form_open('data_controller/update_master_department');?>
+			<?php echo form_open('data_controller/update_master_role');?>
      			<div class="row">
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Department Name
+			                   Role Name
 			                  </div>
 			                  <input id="postType" type="hidden" name="postType">
-			                  <input id="txtDepartmentName" name="txtDepartmentName" type="text" class="form-control" >
+			                  <input id="txtRoleName" name="txtRoleName" type="text" class="form-control" >
 			                </div>
 		              
 		              </div>
@@ -103,12 +103,12 @@
   $(document).ready (function(){
 	  search();
   });
-
+  
   
   function search()
   {
 
-  	var url = "<?php echo site_url('data_controller/loadDT_department?q=');?>"+document.getElementById('txtDepartmentName').value+"&j="+document.getElementById('ddlActive').value;
+  	var url = "<?php echo site_url('data_controller/loadDT_role?q=');?>"+document.getElementById('txtRoleName').value+"&j="+document.getElementById('ddlActive').value;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
@@ -131,14 +131,14 @@
   	}
 	function edit(id,name)
 	{
-		document.getElementById('txtDepartmentName').value=name;
+		document.getElementById('txtRoleName').value=name;
 		document.getElementById('postType').value=id;
 		
 	}
 	function remove(id){
 
 		if(confirm("Confirm Delete?")){
-	  	var url = "<?php echo site_url('data_controller/deleteDT_department?id=');?>"+id;
+	  	var url = "<?php echo site_url('data_controller/deleteDT_role?id=');?>"+id;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -146,8 +146,8 @@
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
 
-	  					search();
-	  					
+		  				search();	
+	  				
 	  				}else{
 	  					alert("Error");
 	  				}

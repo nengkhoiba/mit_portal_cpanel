@@ -9,11 +9,11 @@
     <section class="content-header">
       <h1>
         Utility
-        <small>Department Maaster</small>
+        <small>Designation Maaster</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Department Master</li>
+        <li class="active">Designation Master</li>
       </ol>
     </section>
 
@@ -33,17 +33,17 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-			<?php echo form_open('data_controller/update_master_department');?>
+			<?php echo form_open('data_controller/update_master_designation');?>
      			<div class="row">
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Department Name
+			                   Designation Name
 			                  </div>
 			                  <input id="postType" type="hidden" name="postType">
-			                  <input id="txtDepartmentName" name="txtDepartmentName" type="text" class="form-control" >
+			                  <input id="txtDesignationName" name="txtDesignationName" type="text" class="form-control" >
 			                </div>
 		              
 		              </div>
@@ -74,7 +74,7 @@
 	            	
 		                <div class="input-group">
 		                	<input class="btn btn-default" type="submit" value="SAVE">
-		                		 <label class="btn btn-default" onclick="search()">Search</label>
+		                		 <lable class="btn btn-default" onclick="search()">Search</lable>
 		                 	<input class="btn btn-default" type="reset" value="Reset">
 		                </div>
 	              
@@ -82,6 +82,7 @@
      			</div>
      		</div>
      		<div class="row container-fluid">
+     		
      			<div id="data_container">
      			
      			</div>
@@ -103,12 +104,12 @@
   $(document).ready (function(){
 	  search();
   });
-
+  
   
   function search()
   {
 
-  	var url = "<?php echo site_url('data_controller/loadDT_department?q=');?>"+document.getElementById('txtDepartmentName').value+"&j="+document.getElementById('ddlActive').value;
+  	var url = "<?php echo site_url('data_controller/loadDT_designation?q=');?>"+document.getElementById('txtDesignationName').value+"&j="+document.getElementById('ddlActive').value;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
@@ -131,14 +132,14 @@
   	}
 	function edit(id,name)
 	{
-		document.getElementById('txtDepartmentName').value=name;
+		document.getElementById('txtDesignationName').value=name;
 		document.getElementById('postType').value=id;
 		
 	}
 	function remove(id){
 
 		if(confirm("Confirm Delete?")){
-	  	var url = "<?php echo site_url('data_controller/deleteDT_department?id=');?>"+id;
+	  	var url = "<?php echo site_url('data_controller/deleteDT_designation?id=');?>"+id;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {

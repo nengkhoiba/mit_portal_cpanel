@@ -9,17 +9,17 @@
     <section class="content-header">
       <h1>
         Utility
-        <small>Department Maaster</small>
+        <small>User Maaster</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Department Master</li>
+        <li class="active">User Master</li>
       </ol>
     </section>
 
     <section class="content">
-     	<div class="row">    
-     		<div class="col-sm-12">
+     	<div class="row">
+     	 <div class="col-sm-12">
      		<?php 
      		if($this->session->userdata('status')!=null){
      		
@@ -33,36 +33,83 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-			<?php echo form_open('data_controller/update_master_department');?>
+			<?php echo form_open('data_controller/update_master_user');?>
      			<div class="row">
+     			<div class="col-sm-6">
+		     			<div class="form-group">
+		            	
+			                <div class="input-group">
+			                  <div class="input-group-addon">
+			                    Name
+			                  </div>
+			                   <?php $this->load->view('global/drop_down_employee')?>
+			                </div>
+		              
+		              </div>
+	     			</div>
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                   Department Name
+			                   Username
 			                  </div>
 			                  <input id="postType" type="hidden" name="postType">
-			                  <input id="txtDepartmentName" name="txtDepartmentName" type="text" class="form-control" >
+			                  <input id="txtUsername" name="txtUsername" type="text"  value="<?php echo set_value('txtUsername');?>" class="form-control" >
+			                  <?php echo form_error('txtUsername'); ?>
+			                  
 			                </div>
 		              
 		              </div>
 	     			</div>
+	     			</div>
+	     			<div class="row">
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Active
+			                   Password
 			                  </div>
-			                  <select id="ddlActive" name="ddlActive" class="form-control">
-			                  	<option value="1">Yes</option>
-			                  	<option value="0">No</option>
-			                  </select>
+			                  <input id="txtPassword" name="txtPassword" value="<?php echo set_value('txtPassword');?>" type="text" class="form-control" >
+			                  <?php echo form_error('txtPassword'); ?>
+			                  
+			                </div>
+		              
+		              </div>
+		              </div>
+		              
+		              <div class="col-sm-6">
+		     			<div class="form-group">
+		            	
+			                <div class="input-group">
+			                  <div class="input-group-addon">
+			                   Confirm Password
+			                  </div>
+			                  <input id="txtConfirmPassword" name="txtConfirmPassword" type="text" class="form-control" >
+			                </div>
+		              
+		              </div>
+		              </div>
+		              </div>
+		              <div class="row">
+		              <div class="col-sm-6">
+		     			<div class="form-group">
+		            	
+			                <div class="input-group">
+			                  <div class="input-group-addon">
+			                    Role
+			                  </div>
+			                   <?php $this->load->view('global/drop_down_role')?>
 			                </div>
 		              
 		              </div>
 	     			</div>
+		              
+	     			</div>
+	     			
+	     			
+	     			
      			</div>
      		<div class="row">
      			<div class="col-sm-9">
@@ -74,7 +121,7 @@
 	            	
 		                <div class="input-group">
 		                	<input class="btn btn-default" type="submit" value="SAVE">
-		                		 <label class="btn btn-default" onclick="search()">Search</label>
+		                		 <lable class="btn btn-default" onclick="search()">Search</lable>
 		                 	<input class="btn btn-default" type="reset" value="Reset">
 		                </div>
 	              
@@ -82,6 +129,7 @@
      			</div>
      		</div>
      		<div class="row container-fluid">
+     		
      			<div id="data_container">
      			
      			</div>
@@ -103,19 +151,18 @@
   $(document).ready (function(){
 	  search();
   });
-
+  
   
   function search()
   {
 
-  	var url = "<?php echo site_url('data_controller/loadDT_department?q=');?>"+document.getElementById('txtDepartmentName').value+"&j="+document.getElementById('ddlActive').value;
+  	var url = "<?php echo site_url('data_controller/loadDT_user?q=');?>"+document.getElementById('txtUsername').value+"&j="+document.getElementById('txtPassword').value+"&k="+document.getElementById('ddlFirst');
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
   			xmlHttp.onreadystatechange=function() {
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
-  					
   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
   					$('#table').DataTable();
   				}else{
@@ -129,16 +176,18 @@
   	catch(error) {}
   	}
   	}
-	function edit(id,name)
+	function edit(id,name,pass)
 	{
-		document.getElementById('txtDepartmentName').value=name;
 		document.getElementById('postType').value=id;
-		
+		document.getElementById('txtUsername').value=name;
+		document.getElementById('ddlEmployee').value=id;
+		document.getElementById('txtPassword').value=pass;
+		document.getElementById('txtConfirmPassword').value=pass;
 	}
 	function remove(id){
 
 		if(confirm("Confirm Delete?")){
-	  	var url = "<?php echo site_url('data_controller/deleteDT_department?id=');?>"+id;
+	  	var url = "<?php echo site_url('data_controller/deleteDT_user?id=');?>"+id;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
