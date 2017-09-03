@@ -2,7 +2,7 @@
 
 class Data_controller extends CI_Controller {
 
-
+//borison
 	public function student_reg(){  
 		
 		$this->load->helper(array('form', 'url'));
@@ -107,7 +107,6 @@ class Data_controller extends CI_Controller {
 
 	
 	
-	
 	public function loadDT_semester(){
 	    $this->load->view('data_fragment/semesterData.php');
 	}
@@ -121,6 +120,7 @@ class Data_controller extends CI_Controller {
 	public function loadDT_session(){
 	    $this->load->view('data_fragment/sessionData.php');
 	}
+
 	
 	
 	public function removeDT_examType()
@@ -136,6 +136,7 @@ class Data_controller extends CI_Controller {
 	       $this->session->set_userdata('status', "Failed!");
 	   }
 	}
+	//borison
 	public function removeDT_department()
 	{
 	    $temp=$_GET['id'];
