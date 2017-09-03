@@ -39,9 +39,9 @@
 		                    Title
 		                  </div>
 		                  <select name="txtTitle" class="form-control form-control-lg" value="<?php echo set_value('txtTitle')?>">
-  								<option>Mr.</option>
-  								<option>Miss.</option>
-  								<option>Ms.</option>
+  								<option value="Mr">Mr.</option>
+  								<option value="Miss">Miss.</option>
+  								<option value="Ms">Ms.</option>
 								</select>
 		                </div>
 		                <?php echo form_error('txtTitle');?>
@@ -297,7 +297,7 @@
 		                    Photo Url
 		                  </div>
 		                  	<label class="custom-file">
- 					 <input type="file" id="file" class="custom-file-input">
+ 					 <input type="file" id="file" class="form-control">
  					 <span class="custom-file-control"></span>
 					</label>
 		                </div>
@@ -318,11 +318,18 @@
      			</div>
      				<div class="col-sm-3">
 	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                 	<input class="btn btn-default" type="submit" value="Save">
-		                 	<input class="btn btn-default" type="reset" value="reset">
-		                </div>
+	            	<div class="btn-group btn-group-justified" role="group">
+						  <div class="btn-group" role="group">
+						    <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						  <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="reset" value="Reset">
+						  
+						 
+						  </div>
+						 
+						</div>
+		          
 	              
 	              </div>
      			</div>
