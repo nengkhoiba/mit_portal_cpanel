@@ -105,7 +105,7 @@
   
   function search()
   {
-	  var url = "<?php echo site_url('data_controller/loadDT_examType?q=');?>"+document.getElementById('txtExamtypeName').value+"&j="+document.getElementById('ddlActive').value;
+	 var url = "<?php echo site_url('data_controller/loadDT_examType?q=');?>"+document.getElementById('txtExamtypeName').value+"&j="+document.getElementById('ddlActive').value;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {
