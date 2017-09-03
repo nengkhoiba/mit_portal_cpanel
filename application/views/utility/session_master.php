@@ -9,11 +9,11 @@
     <section class="content-header">
       <h1>
         Utility
-        <small>Exam type master</small>
+        <small>Session master</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Exam type master</li>
+        <li class="active">Session master</li>
       </ol>
     </section>
 
@@ -33,19 +33,19 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-			<?php echo form_open('data_controller/update_master_examtype');?>
+			<?php echo form_open('data_controller/update_master_session');?>
      			<div class="row">
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Exam type Name
+			                    Session Name
 			                  </div>
 			                  <input id="postType" type="hidden" name="postType">
-			                  <input id="txtExamtypeName" name="txtExamtypeName" type="text" class="form-control" value="<?php echo set_value('txtExamtypeName')?>">
+			                  <input id="txtSession" name="txtSession" type="text" class="form-control" value="<?php echo set_value('txtSession')?>">
 			                </div>
-			                 <?php echo form_error('txtExamtypeName');?>
+			                <?php echo form_error('txtSession');?>
 		              
 		              </div>
 	     			</div>
@@ -107,7 +107,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_examType?q=');?>"+document.getElementById('txtExamtypeName').value+"&j="+document.getElementById('ddlActive').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_session?q=');?>"+document.getElementById('txtSession').value+"&j="+document.getElementById('ddlActive').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -130,13 +130,13 @@
 	  	}
 		function edit(id,name)
 		{
-			document.getElementById('txtExamtypeName').value=name;
+			document.getElementById('txtSession').value=name;
 			document.getElementById('postType').value=id;
 			
 		}
 		function remove(id){
 			if (confirm('Are you sure you want to delete?')) {
-				var url = "<?php echo site_url('data_controller/removeDT_examType?id=');?>"+id;
+				var url = "<?php echo site_url('data_controller/removeDT_session?id=');?>"+id;
 			  	var xmlHttp = GetXmlHttpObject();
 			  	if (xmlHttp != null) {
 			  		try {

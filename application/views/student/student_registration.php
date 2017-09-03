@@ -8,13 +8,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        Mit Portal
+        <small>Student Registration</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
     </section>
 
     <section class="content">
@@ -33,19 +29,35 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-<?php echo validation_errors(); ?>
-     		<form action="<?php echo base_url();?>data_controller/student_reg" method="post" accept-charset="utf-8" data-parsley-validate>     	
-     			<div class="row">
+
+     		<form action="<?php echo base_url();?>data_controller/student_reg" method="post" accept-charset="utf-8">
+     		<div class="row">
      			<div class="col-sm-4">
 	     			<div class="form-group">
-	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Name
+		                    Title
 		                  </div>
-		                  <input required name="txtName" type="text" class="form-control" >
+		                  <select name="txtTitle" class="form-control form-control-lg" value="<?php echo set_value('txtTitle')?>">
+  								<option>Mr.</option>
+  								<option>Miss.</option>
+  								<option>Ms.</option>
+								</select>
 		                </div>
+		                <?php echo form_error('txtTitle');?>
 	              
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    First Name
+		                  </div>
+		                  
+		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo set_value('txtFirstName')?>">
+		                </div>
+	              <?php echo form_error('txtFirstName');?>
 	              </div>
      			</div>
      			<div class="col-sm-4">
@@ -53,65 +65,247 @@
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Address
+		                    Middle Name
 		                  </div>
-		                  <input name="txtAddress" type="text" class="form-control" >
+		                  <input  name="txtMiddleName" type="text" class="form-control" value="<?php echo set_value('txtMiddleName')?>">
 		                </div>
 	              
 	              </div>
-     			</div>
-     			<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    Email
-		                  </div>
-		                  <input data-parsley-type="email" name="txtPhone" class="form-control">
-		                </div>
-	              
-	              </div>
-     			</div>
-     			</div>
-     				<div class="row">
-     			<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    Father
-		                  </div>
-		                  <input required name="txtFather" type="text" class="form-control" >
-		                </div>
-	              
-	              </div>
-     			</div>
-     			<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    Mother
-		                  </div>
-		                  <input name="txtMother" type="text" class="form-control" >
-		                </div>
-	              
-	              </div>
-     			</div>
-     			<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    Session
-		                  </div>
-		                  <input name="txtSession" type="text" class="form-control" >
-		                </div>
-	              
-	              </div>
-     			</div>
      			</div>
      			
+     			</div>
+     			     		
+     		     			<div class="row">
+     			
+     			
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Last Name
+		                  </div>
+		                  
+		                  <input  name="txtlastName" type="text" class="form-control" value="<?php echo set_value('txtlastName')?>">
+		                </div>
+	              <?php echo form_error('txtlastName');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Mother's name
+		                  </div>
+		                  
+		                  <input  name="txtMother" type="text" class="form-control" value="<?php echo set_value('txtMother')?>">
+		                </div>
+	              <?php echo form_error('txtMother');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Father's name
+		                  </div>
+		                  <input  name="txtFather" type="text" class="form-control" value="<?php echo set_value('txtFather')?>">
+		                </div>
+	              <?php echo form_error('txtFather');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                   Permanent Address
+		                  </div>
+		                  <input  name="txtPermanentAddress" type="text" class="form-control" value="<?php echo set_value('txtPermanentAddress')?>">
+		                </div>
+	              <?php echo form_error('txtPermanentAddress');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Address for Communication
+		                  </div>
+		                  <input  name="txtCAdress" type="text" class="form-control" value="<?php echo set_value('txtCAdress')?>">
+		                </div>
+	              <?php echo form_error('txtCAdress');?>
+	              </div>
+     			</div>
+     			
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Residence Phone No
+		                  </div>
+		                  
+		                  <input  name="txtPhone" type="text" class="form-control" value="<?php echo set_value('txtPhone')?>">
+		                </div>
+	              <?php echo form_error('txtPhone');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Mobile No
+		                  </div>
+		                   
+		                  <input  name="txtMobile" type="text" class="form-control"  value="<?php echo set_value('txtMobile')?>">
+		                </div>
+	              <?php echo form_error('txtMobile');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Gender
+		                  </div>
+		                  <select  name="txtGender" class="form-control form-control-lg" >
+  								<option>Male</option>
+  								<option>Female</option>
+  								<option>Others</option>
+								</select>
+		                </div>
+	              
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Date of Birth
+		                  </div>
+		           
+		                  <input  class="form-control" type="date" name="dateDOB" value="<?php echo set_value('dateDOB')?>">
+		                        
+		                </div>
+	              			 <?php echo form_error('dateDOB');?>
+	              </div>
+     			</div>
+     			
+     			</div>
+     			
+     				<div class="row">
+     				
+     			
+     			
+     			
+     			
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Religion
+		                  </div>
+		                  <input  name="txtReligion" type="text" class="form-control" value="<?php echo set_value('txtReligion')?>">
+		                </div>
+	              <?php echo form_error('txtReligion');?>
+	              </div>
+     			</div>
+     			
+     			
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Nationality
+		                  </div>
+		                  <input  name="txtNationality" type="text" class="form-control" value="<?php echo set_value('txtNationality')?>">
+		                </div>
+	              <?php echo form_error('txtNationality');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Category
+		                  </div>
+		                  <input  name="txtCategory" type="text" class="form-control" value="<?php echo set_value('txtCategory')?>">
+		                </div>
+	              <?php echo form_error('txtCategory');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Reserve Category
+		                  </div>
+		                  <select name="choiceRcategory" class="form-control form-control-lg" >
+  								<option>No</option>
+  								<option>Yes</option>
+								</select>
+		                </div>
+	              
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Physically Handicapped
+		                  </div>
+		                  	   <select name="PhyHandicap" class="form-control form-control-lg">
+  								<option>No</option>
+  								<option>Yes</option>
+								</select>
+		                </div>
+	              
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Economically Backward 
+		                  </div>
+		                  <select name="EcoBackward" class="form-control form-control-lg">
+  								<option>No</option>
+  								<option>Yes</option>
+								</select>
+		                </div>
+	              
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Photo Url
+		                  </div>
+		                  	<label class="custom-file">
+ 					 <input type="file" id="file" class="custom-file-input">
+ 					 <span class="custom-file-control"></span>
+					</label>
+		                </div>
+	              
+	              </div>
+     			</div>
+     			</div>
+     		
      			<div class="row">
      				<div class="col-sm-4">
 	     			<div class="form-group">
@@ -122,8 +316,9 @@
 	              
 	              </div>
      			</div>
-     			</div>
-              <?php echo form_close();?>
+     			</div>    			
+     			
+              </form>    			   			
      		</div>
      	</div>
     </section>

@@ -4,14 +4,30 @@ class Nav_controller extends CI_Controller {
 
 
 	public function student_reg(){
-		$this->load->view('student/student_registration.php');
+		$this->load->view('student/student_registration');
 	}
 
 	public function emp_reg(){
-		$this->load->view('employee/emp_reg.php');
+		$this->load->view('employee/emp_reg');
 	}
+	
 	public function master_examtype(){
-		$this->load->view('utility/exam_type_master');
+	    $this->load->view('utility/exam_type_master');
+	}
+	public function master_department(){
+	    $this->load->view('utility/department_master');
+	}
+	public function master_semester(){
+	    $this->load->view('utility/semester_master');
+	}
+	public function master_trade(){
+	    $this->load->view('utility/trade_master');
+	}
+	public function master_course(){
+	    $this->load->view('utility/course_master');
+	}
+	public function master_session(){
+	    $this->load->view('utility/session_master');
 	}
 	
 }
