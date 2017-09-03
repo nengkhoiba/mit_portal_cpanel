@@ -9,7 +9,7 @@
     <section class="content-header">
       	<h1>
           <ol class="breadcrumb">
-             <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
+             <li><a href="<?php echo base_url()?>utility/exam"><i class="fa fa-gear"></i> Utility</a></li>
             <li class="active">Exam</li>
           </ol>
           </h1>  

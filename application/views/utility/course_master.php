@@ -7,7 +7,7 @@
     <section class="content-header">
       	<h1>
           <ol class="breadcrumb">
-             <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
+             <li><a href="<?php echo base_url()?>utility/course"><i class="fa fa-gear"></i> Utility</a></li>
             <li class="active">Course</li>
           </ol>
           </h1>  
