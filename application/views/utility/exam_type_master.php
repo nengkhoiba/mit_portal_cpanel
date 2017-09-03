@@ -1,7 +1,7 @@
 
       <?php $this->load->view('global/header.php');?>
       <?php $this->load->view('global/side_menu.php');?>
- kdakdjakljlk
+
   <!-- Content Wrapper. Contains page content-->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
