@@ -2,7 +2,11 @@
 
 class Nav_controller extends CI_Controller {
 
-
+	
+	public function index(){
+		$this->load->view('employee/landing');
+	}
+	
 	public function student_reg(){
 		$this->load->view('student/student_registration');
 	}
