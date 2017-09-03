@@ -9,11 +9,11 @@
     <section class="content-header">
       <h1>
         Utility
-        <small>Session master</small>
+        <small>Session</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Session master</li>
+        <li class="active">Session</li>
       </ol>
     </section>
 
@@ -72,12 +72,17 @@
      		
      			<div class="col-sm-3">
 	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                	<input class="btn btn-default" type="submit" value="SAVE">
-		                		 <label class="btn btn-default" onclick="search()">Search</label>
-		                 	<input class="btn btn-default" type="reset" value="Reset">
-		                </div>
+	     			<div class="btn-group btn-group-justified" role="group">
+						  <div class="btn-group" role="group">
+						    <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						  <div class="btn-group" role="group">
+						 <label class="btn btn-default" onclick="search()">Search</label>
+						   </div>
+						  <div class="btn-group" role="group">
+						  <input class="btn btn-default" type="reset" value="Reset">
+						   </div>						 
+					</div>
 	              
 	              </div>
      			</div>

@@ -2,7 +2,7 @@
 
 class Data_controller extends CI_Controller {
 
-//borison
+//athen
 	public function student_reg(){  
 		
 		$this->load->helper(array('form', 'url'));
@@ -136,7 +136,7 @@ class Data_controller extends CI_Controller {
 	       $this->session->set_userdata('status', "Failed!");
 	   }
 	}
-	//borison
+	//athen
 	public function removeDT_department()
 	{
 	    $temp=$_GET['id'];
@@ -150,6 +150,7 @@ class Data_controller extends CI_Controller {
 	        $this->session->set_userdata('status', "Failed!");
 	    }
 	}
+	//athen
 	public function removeDT_semester()
 	{
 	    $temp=$_GET['id'];
@@ -378,68 +379,7 @@ class Data_controller extends CI_Controller {
 	    }
 	    
 	}
-	
-	
-	
-	
-	// START  master exam type
-	
-	public function update_master_examtype(){
-		$this->load->helper(array('form', 'url'));
-		
-		$this->load->library('form_validation');
-		
-		$this->form_validation->set_rules('txtExamtypeName', 'Exam type Name', 'required');
-		
-		
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('utility/exam_type_master');
-		}
-		else
-		{
-			$flag=$_POST['postType'];
-			
-			$examType=$_POST['txtExamtypeName'];
-			$isActive=$_POST['ddlActive'];
-			if($flag!=""){
-				$sql = "UPDATE exam_type SET
-				name='$examType',
-				isActive='$isActive'
-				WHERE id='$flag'
-				";
-				$query = $this->db->query ($sql);
-				if($query){
-					$this->session->set_userdata('status', "Succesfully Updated!");
-				}
-			}else{
-				
-				$sql = "INSERT INTO `exam_type`(`name`, `isActive`) VALUES
-				('$examType','$isActive')
-				";
-				$query = $this->db->query ($sql);
-				if($query){
-					$this->session->set_userdata('status', "Succesfully saved!");
-				}
-			}
-			
-			redirect('nav_controller/master_examtype');
-		}
-		
-	}
-	public function loadDT_examType(){
-		$this->load->view('data_fragment/examTypeData.php');
-	}
-	
-	//END
-	
-	
-	/*
-	 * 
-	 *Thoisana's Code Start 
-	 * 
-	 * 
-	 */
+	//Athen
 	
 	
 	public  function emp_reg(){
@@ -527,7 +467,58 @@ class Data_controller extends CI_Controller {
 		
 	}
 	
-
+	
+	
+	// START  master exam type
+	
+	public function update_master_examtype(){
+		$this->load->helper(array('form', 'url'));
+		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('txtExamtypeName', 'Exam type Name', 'required');
+		
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('utility/exam_type_master');
+		}
+		else
+		{
+			$flag=$_POST['postType'];
+			
+			$examType=$_POST['txtExamtypeName'];
+			$isActive=$_POST['ddlActive'];
+			if($flag!=""){
+				$sql = "UPDATE exam_type SET
+				name='$examType',
+				isActive='$isActive'
+				WHERE id='$flag'
+				";
+				$query = $this->db->query ($sql);
+				if($query){
+					$this->session->set_userdata('status', "Succesfully Updated!");
+				}
+			}else{
+				
+				$sql = "INSERT INTO `exam_type`(`name`, `isActive`) VALUES
+				('$examType','$isActive')
+				";
+				$query = $this->db->query ($sql);
+				if($query){
+					$this->session->set_userdata('status', "Succesfully saved!");
+				}
+			}
+			
+			redirect('nav_controller/master_examtype');
+		}
+		
+	}
+	public function loadDT_examType(){
+		$this->load->view('data_fragment/examTypeData.php');
+	}
+	
+	//END
 	
 	//START ROLE  MASTER
 	
@@ -773,12 +764,7 @@ class Data_controller extends CI_Controller {
 	}
 	
 	//END USERMASTER
-	/*
-	 * 
-	 * Thoisana's code end 
-	 * 
-	 * 
-	 */
+	
 	
 	
 	

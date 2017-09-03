@@ -324,11 +324,8 @@
 						  </div>
 						  <div class="btn-group" role="group">
 						   <input class="btn btn-default" type="reset" value="Reset">
-						  
-						 
-						  </div>
-						 
-						</div>
+						   </div>						 
+					</div>
 		          
 	              
 	              </div>
