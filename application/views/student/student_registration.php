@@ -307,11 +307,21 @@
      			</div>
      		
      			<div class="row">
-     				<div class="col-sm-4">
+     			<div class="col-sm-9">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                 	
+		                </div>
+	              
+	              </div>
+     			</div>
+     				<div class="col-sm-3">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
 		                 	<input class="btn btn-default" type="submit" value="Save">
+		                 	<input class="btn btn-default" type="reset" value="reset">
 		                </div>
 	              
 	              </div>
