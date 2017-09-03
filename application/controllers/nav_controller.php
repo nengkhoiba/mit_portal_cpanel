@@ -30,10 +30,6 @@ class Nav_controller extends CI_Controller {
 	    $this->load->view('utility/session_master');
 	}
 	
-	public function master_examtype(){
-		$this->load->view('utility/exam_type_master');
-	}
-	
 	public function master_role(){
 		$this->load->view('utility/role_master');
 	}
