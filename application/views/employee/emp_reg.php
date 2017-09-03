@@ -25,7 +25,7 @@
      		
      			$msg=$this->session->userdata('status');
      			?>
-     			<div class="alert alert-warning alert-dismissible" role="alert">
+     			<div class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
@@ -33,7 +33,10 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-     		<?php echo form_open('data_controller/student_reg')?>
+     	
+     		<form action="<?php echo base_url(); ?>data_controller/emp_reg"    method="post" accept-charset="utf-8">  
+     			 
+     			
      			<div class="row">
      			<div class="col-sm-4">
 	     			<div class="form-group">
@@ -42,7 +45,7 @@
 		                  <div class="input-group-addon">
 		                    Name
 		                  </div>
-		                  <input name="txtName" type="text" class="form-control" >
+		                  <input required name="txtName" type="text" class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -54,7 +57,7 @@
 		                  <div class="input-group-addon">
 		                    Address
 		                  </div>
-		                  <input name="txtAddress" type="text" class="form-control" >
+		                  <input name="txtAddress"  type="text" class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -64,9 +67,9 @@
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Phone
+		                    Mobile
 		                  </div>
-		                  <input name="txtPhone" type="text" class="form-control">
+		                  <input type="text" name="txtMobile"  class="form-control">
 		                </div>
 	              
 	              </div>
@@ -78,9 +81,9 @@
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Father
+		                    Qualification
 		                  </div>
-		                  <input name="txtFather" type="text" class="form-control" >
+		                  <input  name="txtQualification" type="text" class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -90,26 +93,56 @@
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Mother
+		                    Email
 		                  </div>
-		                  <input name="txtMother" type="text" class="form-control" >
+		                  <input name="txteMail" type="email"  class="form-control" >
 		                </div>
 	              
 	              </div>
      			</div>
-     			<div class="col-sm-4">
+     			<div class="col-sm-4 ">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Session
+		                    Gender
 		                  </div>
-		                  <input name="txtSession" type="text" class="form-control" >
-		                </div>
+		                  
+						    <select  class="form-control form-control-lg " name="optGender">
+						      <option value=null >-Select-</option>
+						      <option value="Male" >Male</option>
+						      <option value="Female">Female</option>
+						      <option value="Others">Others</option>
+						    </select>
+		                 
+		               </div>
 	              
 	              </div>
      			</div>
      			</div>
+     			
+     				<div class="row">
+     			
+     			
+     		<!--  	<div class="col-sm-4 ">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     Role
+		                  </div>
+		                  
+						   <?php //$this->load->view('global/drop_down_role') ?>
+		                 
+		               </div>
+	              
+	              </div>
+     			</div>
+     			</div>
+     			-->
+     			
+     			
+     			
      			
      			<div class="row">
      				<div class="col-sm-4">
