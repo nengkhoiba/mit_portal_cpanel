@@ -1,9 +1,8 @@
 
       <?php $this->load->view('global/header.php');?>
       <?php $this->load->view('global/side_menu.php');?>
- 
-
-  <!-- Content Wrapper. Contains page content -->
+ kdakdjakljlk
+  <!-- Content Wrapper. Contains page content-->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
