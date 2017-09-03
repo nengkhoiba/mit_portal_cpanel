@@ -14,10 +14,6 @@ class Nav_controller extends CI_Controller {
 	public function emp_reg(){
 		$this->load->view('employee/emp_reg');
 	}
-	
-	public function master_examtype(){
-	    $this->load->view('utility/exam_type_master');
-	}
 	public function master_department(){
 	    $this->load->view('utility/department_master');
 	}
@@ -32,10 +28,6 @@ class Nav_controller extends CI_Controller {
 	}
 	public function master_session(){
 	    $this->load->view('utility/session_master');
-	}
-	
-	public function master_examtype(){
-		$this->load->view('utility/exam_type_master');
 	}
 	
 	public function master_role(){
