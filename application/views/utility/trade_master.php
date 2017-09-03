@@ -95,7 +95,7 @@
 	              </div>
      			</div>
      		</div>
-     		<div class="row">
+     		<div class="row container-fluid">
      			<div id="data_container">
      			
      			</div>
