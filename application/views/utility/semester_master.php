@@ -7,12 +7,12 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      	<h1>
+      	<h6>
           <ol class="breadcrumb">
              <li><a href="<?php echo base_url()?>utility/semester"><i class="fa fa-gear"></i> Utility</a></li>
             <li class="active">Semester</li>
           </ol>
-          </h1>  
+          </h6>  
     </section>
 
     <section class="content">
