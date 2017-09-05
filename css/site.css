@@ -9,7 +9,10 @@
 .form-control {
   
     height: 28px !important;
- 
+     border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
     font-size: 12px !important;
 }
 .input-group-addon {
@@ -23,4 +26,9 @@
 table.dataTable {
  
     font-size: 13px !important;
+}
+.input-group .input-group-addon {
+
+    border-color: #3c8dbc !important;
+    min-width: 130px;
 }
