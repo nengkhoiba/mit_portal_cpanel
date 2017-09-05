@@ -800,7 +800,12 @@ class Data_controller extends CI_Controller {
 	
 	//END USERMASTER
 	
+	//PAGE MASTER
+	public function loadDT_page(){
+		$this->load->view('data_fragment/pageData.php');
+	}
 	
+	//END PAGE MASTER
 	
 	
 	
