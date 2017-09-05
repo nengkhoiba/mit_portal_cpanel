@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 03, 2017 at 05:00 PM
+-- Generation Time: Sep 05, 2017 at 01:02 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `site_map`
 --
 
+DROP TABLE IF EXISTS `site_map`;
 CREATE TABLE IF NOT EXISTS `site_map` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
