@@ -30,6 +30,11 @@ class Nav_controller extends CI_Controller {
 	public function student_reg(){
 		$this->load->view('student/student_registration');
 	}
+	
+	public function student_list(){
+	    $this->load->view('student/student_list');
+	}
+	
 	public function master_semester(){
 	    $this->load->view('utility/semester_master');
 	}

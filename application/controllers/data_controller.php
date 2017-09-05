@@ -177,6 +177,19 @@ class Data_controller extends CI_Controller {
 	        $this->session->set_userdata('status', "Failed!");
 	    }
 	}
+	public function removeDT_student()
+	{
+	    $temp=$_GET['id'];
+	    $sql="DELETE FROM `student_details` WHERE USID='$temp'";
+	    $query=$this->db->query($sql);
+	    if($query)
+	    {
+	        $this->session->set_userdata('status', "Succesfully Deleted!");
+	    }
+	    else {
+	        $this->session->set_userdata('status', "Failed!");
+	    }
+	}
 	public function removeDT_course()
 	{
 	    $temp=$_GET['id'];
@@ -378,6 +391,15 @@ class Data_controller extends CI_Controller {
 	        redirect('nav_controller/master_session');
 	    }
 	    
+	}
+	public function loadDT_student(){
+	    $this->load->view('data_fragment/studentData.php');
+	}
+	
+	public function deleteDT_student(){
+	    $id=$_GET['id'];
+	    $sql="DELETE FROM `emp_login` WHERE UEID='$id'";
+	    $query = $this->db->query($sql);
 	}
 	//Athen
 	
