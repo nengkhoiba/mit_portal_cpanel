@@ -404,6 +404,8 @@ class Data_controller extends CI_Controller {
 	//Athen
 	
 	
+
+	
 	public  function emp_reg(){
 		
 		
@@ -418,15 +420,14 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('txtQualification', 'Qualification', 'required');
 		$this->form_validation->set_rules('txteMail', 'eMail', 'required');
 		$this->form_validation->set_rules('optGender', 'Gender', 'required');
-		$this->form_validation->set_rules('optDept','Dept_ID','required');
-		$this->form_validation->set_rules('optDesig','Desig_ID','required');
-		$this->form_validation->set_rules('optRole','Role_ID','required');
+		
 		
 		
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->session->set_userdata('status', "Unsuccessful");
+			//$this->session->set_userdata('status', "Unsuccessful");
+			$this->session->set_userdata('lanba', "Unsuccessful");
 			redirect('nav_controller/emp_reg');
 		}
 		else
@@ -437,9 +438,8 @@ class Data_controller extends CI_Controller {
 			$qulf = trim($_POST['txtQualification']);
 			$email = trim($_POST['txteMail']);
 			$gender = trim($_POST['optGender']);
-			$dept_id=trim($_POST['optDept']);
-			$deg_id=trim($_POST['optDesig']);
-			$role_id=trim($_POST['optRole']);
+			
+			
 			
 			$name = mysql_real_escape_string($name);
 			$add = mysql_real_escape_string($add);
@@ -447,9 +447,7 @@ class Data_controller extends CI_Controller {
 			$qulf = mysql_real_escape_string($qulf);
 			$email = mysql_real_escape_string($email);
 			$gender = mysql_real_escape_string($gender);
-			$dept_id= mysql_real_escape_string($dept_id);
-			$deg_id= mysql_real_escape_string($deg_id);
-			$role_id= mysql_real_escape_string($role_id);
+			
 			
 			$sql = "INSERT INTO emp_details(name,address,mobile,qualification,email,gender,isActive)
 			VALUE ('$name','$add','$mobile','$qulf','$email','$gender','1')  ";
@@ -471,14 +469,14 @@ class Data_controller extends CI_Controller {
 				$sql2=" INSERT INTO emp_login (`UEID`, `user`, `password`, `isFirst`) VALUES ($ueid,'$loginName','','1')";
 				$query2 = $this->db->query($sql2);
 				
-				$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
-				$query3 =$this->db->query($sql3);
+				/*	$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
+				 $query3 =$this->db->query($sql3);*/
 				
 				$this->session->set_userdata('status', "Success");
 				redirect('nav_controller/emp_reg');
 			}
 			else{
-				$this->session->set_userdata('status', "Unsuccessful");
+				$this->session->set_userdata('lanba', "Unsuccessful");
 				redirect('nav_controller/emp_reg');
 			}
 			
@@ -488,8 +486,6 @@ class Data_controller extends CI_Controller {
 		
 		
 	}
-	
-	
 	
 	// START  master exam type
 	
@@ -720,8 +716,8 @@ class Data_controller extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('txtUsername', ' Username', 'required');
-		$this->form_validation->set_rules('txtPassword', ' Password', 'required');
-		$this->form_validation->set_rules('txtConfirmPassword', ' Password', 'required');
+		$this->form_validation->set_rules('txtPassword', ' Password', 'required|matches[txtConfirmPassword]');
+		$this->form_validation->set_rules('txtConfirmPassword', ' Confirmation Password', 'required');
 		
 		
 		if ($this->form_validation->run() == FALSE)
@@ -748,11 +744,26 @@ class Data_controller extends CI_Controller {
 					WHERE id='$UEID'
 					";
 					$query = $this->db->query ($sql);
-					if($query){
+					/*if($query){
+						$this->session->set_userdata('status', "Succesfully Updated!");
+					}*/
+					$sql2 = "UPDATE emp_col_relation SET
+					dept_id='$dept_id',
+					deg_id='$deg_id',
+					role_id='$role_id',
+					WHERE UEID='$UEID'
+					";
+					$query2 = $this->db->query ($sql);
+					if($query2 && $query){
 						$this->session->set_userdata('status', "Succesfully Updated!");
 					}
 				}else{
-					
+					$sql1 = "SELECT * from emp_login
+					WHERE UEID='$UEID'
+					";
+					$query1 = $this->db->query ($sql1);
+					$duplicate=$query1->num_rows();
+					if($duplicate==0){
 					$sql = "INSERT INTO `emp_login`(`UEID`,`user`,`password`, `isFirst`) VALUES
 					('$UEID','$user','$pass','1')
 					";
@@ -763,7 +774,9 @@ class Data_controller extends CI_Controller {
 					
 					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
 					$query3 =$this->db->query($sql3);
-					
+					}else{
+						$this->session->set_userdata('status', "User already created!");
+					}
 				}
 				
 				redirect('nav_controller/master_user');
