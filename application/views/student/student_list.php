@@ -190,7 +190,7 @@
 	  	}
 		function edit(id)
 		{
-			window.open("<?php echo base_url();?>student/registration");
+			window.open("<?php echo base_url();?>student/registration?id="+id);
 		}
 		function remove(id){
 			if (confirm('Are you sure you want to delete?')) {
