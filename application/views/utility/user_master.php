@@ -169,9 +169,9 @@
 						  <div class="btn-group" role="group">
 						    <input class="btn btn-default" type="submit" value="Save">
 						  </div>
-						  <div class="btn-group" role="group">
-						   <input class="btn btn-default" type="search" onclick="search()" value="Search">
-						  </div>
+						    <div class="btn-group" role="group">
+						 <label class="btn btn-default" onclick="search()">Search</label>
+						   </div>
 						 <div class="btn-group" role="group">
 						   <input class="btn btn-default" type="reset" value="Reset">
 						  </div>
