@@ -6,6 +6,9 @@ class Nav_controller extends CI_Controller {
 	public function index(){
 		$this->load->view('employee/landing');
 	}
+	public function change_password(){
+		$this->load->view('main/change_password');
+	}
 	//rohitkanta
 	
 	//thoisana

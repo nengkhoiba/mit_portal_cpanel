@@ -15,9 +15,6 @@ class Login_controller extends CI_Controller {
 		}
 		else{
 			
-			/* $username = trim($_POST['username']);
-			$password = trim($_POST['password']); */
-			
 			$username=$_POST['username'];
 			$password=$_POST['password'];
 			
@@ -62,4 +59,11 @@ class Login_controller extends CI_Controller {
 		$this->session->set_userdata('RoleID', null);
 		redirect('home');
 	}
+
+public function change_password(){
+	
+	
+}
+
+
 }

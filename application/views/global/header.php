@@ -14,11 +14,11 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="<?php echo base_url();?>landing" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>M</b>IT</span>
+      <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>MIT </b>Portal</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -82,7 +82,8 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                
+                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
                 <p>
                   Alexander Pierce - Web Developer
                   <small>Member since Nov. 2012</small>
@@ -90,16 +91,27 @@
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-             
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <div class="pull-left"> 
+                  <a href="<form action=" class="btn btn-default btn-flat">Change Password</a>
                 </div>
+                 <?php echo form_open('login_controller/logout');?> 
                 <div class="pull-right">
-                  <a href="<?php echo base_url();?>logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

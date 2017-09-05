@@ -10,10 +10,6 @@
 </head>
 <body>
 
-
-
-	
-
 <section id="login">
     <div class="container">
     	<div class="row">
