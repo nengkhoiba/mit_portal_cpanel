@@ -37,7 +37,7 @@
      		<form action="<?php echo base_url(); ?>data_controller/emp_reg"    method="post" accept-charset="utf-8">  
      			 
      			
-     			<div class="row">
+     			<div class="row ">
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -75,7 +75,7 @@
 	              </div>
      			</div>
      			</div>
-     				<div class="row">
+     				<div class="row ">
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -144,13 +144,17 @@
      			
      			
      			
-     			<div class="row">
-     				<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                 	<input class="btn btn-default" type="submit" value="Save">
-		                </div>
+     			<div class="row container-fluid ">
+	     			<div class="col-sm-9">
+	     			</div>
+     				<div class="col-sm-3">
+	     			<div class="btn-group btn-group-justified" role="group">
+		                <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						    <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="reset" value="Reset">
+						  </div>
 	              
 	              </div>
      			</div>

@@ -34,7 +34,7 @@
      		}
      		?>
 			<?php echo form_open('data_controller/update_master_department');?>
-     			<div class="row">
+     			<div class="row container-fluid">
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
@@ -64,23 +64,24 @@
 		              </div>
 	     			</div>
      			</div>
-     		<div class="row">
-     			<div class="col-sm-9">
-	     		
-     			</div>
-     		
-     			<div class="col-sm-3">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                	<input class="btn btn-default" type="submit" value="SAVE">
-		                		 <label class="btn btn-default" onclick="search()">Search</label>
-		                 	<input class="btn btn-default" type="reset" value="Reset">
-		                </div>
+     			<div class="row container-fluid ">
+	     			<div class="col-sm-9">
+	     			</div>
+     				<div class="col-sm-3">
+	     			<div class="btn-group btn-group-justified" role="group">
+		                <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						    <div class="btn-group" role="group">
+						   <input class="btn btn-default" onclick="serch()" type="search" value="Search">
+						  </div>
+						  <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="reset" value="Reset">
+						  </div>
 	              
 	              </div>
      			</div>
-     		</div>
+     			</div>
      		<div class="row container-fluid">
      			<div id="data_container">
      			
