@@ -6,15 +6,13 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Utility
-        <small>User Maaster</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">User Master</li>
-      </ol>
+   <section class="content-header">
+      	<h6>
+          <ol class="breadcrumb">
+             <li><a href="<?php echo base_url()?>utility/semester"><i class="fa fa-gear"></i> User</a></li>
+            <li class="active">Master</li>
+          </ol>
+          </h6>  
     </section>
 
     <section class="content">
@@ -71,7 +69,7 @@
 			                  <div class="input-group-addon">
 			                   Password
 			                  </div>
-			                  <input id="txtPassword" name="txtPassword" value="<?php echo set_value('txtPassword');?>" type="text" class="form-control" >
+			                  <input id="txtPassword" name="txtPassword" value="<?php echo set_value('txtPassword');?>" type="password" class="form-control" >
 			                  <?php echo form_error('txtPassword'); ?>
 			                  
 			                </div>
@@ -86,7 +84,7 @@
 			                  <div class="input-group-addon">
 			                   Confirm Password
 			                  </div>
-			                  <input id="txtConfirmPassword" name="txtConfirmPassword" type="text" class="form-control" >
+			                  <input id="txtConfirmPassword" name="txtConfirmPassword" type="password" class="form-control" >
 			                </div>
 		              
 		              </div>
@@ -138,7 +136,7 @@
 	     			
 	     			
      			</div>
-     		<div class="row">
+     	<!--  	<div class="row">
      			<div class="col-sm-9">
 	     		
      			</div>
@@ -154,22 +152,45 @@
 	              
 	              </div>
      			</div>
-     		</div>
+     		</div>-->
+     		<div class="row container-fluid" >
+     			<div class="col-sm-9">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                 	
+		                </div>
+	              
+	              </div>
+     			</div>
+     				<div class="col-sm-3">
+	     			<div class="form-group">
+	            	<div class="btn-group btn-group-justified" role="group">
+						  <div class="btn-group" role="group">
+						    <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						  <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="search" onclick="search()" value="Search">
+						  </div>
+						 <div class="btn-group" role="group">
+						   <input class="btn btn-default" type="reset" value="Reset">
+						  </div>
+						</div>
+	              </div>
+     			</div>
+     			</div>    			
      		<div class="row container-fluid">
-     		
      			<div id="data_container">
      			
      			</div>
      		</div>
-     			
-     			
               <?php echo form_close();?>
              
      		</div>
      	</div>
     </section>
   
-  </div>
+
 
  
   <?php $this->load->view('global/footer.php');?>
