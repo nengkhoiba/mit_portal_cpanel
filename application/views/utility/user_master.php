@@ -135,7 +135,7 @@
 	     			</div>
 	     			
 	     			
-     			</div>
+     			
      	<!--  	<div class="row">
      			<div class="col-sm-9">
 	     		
@@ -185,7 +185,7 @@
      			</div>
      		</div>
               <?php echo form_close();?>
-             
+             </div>
      		</div>
      	</div>
     </section>
@@ -212,7 +212,12 @@
   			if(xmlHttp.readyState == 4) {
   				if(xmlHttp.responseText != null){
   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-  					$('#table').DataTable();
+  					$('#table').DataTable({
+  				        dom: 'Bfrtip',
+  				        buttons: [
+  				            'csv', 'pdf', 'print'
+  				        ]
+  				    });
   				}else{
   					alert("Error");
   				}

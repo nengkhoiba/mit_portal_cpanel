@@ -694,8 +694,8 @@ class Data_controller extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('txtUsername', ' Username', 'required');
-		$this->form_validation->set_rules('txtPassword', ' Password', 'required');
-		$this->form_validation->set_rules('txtConfirmPassword', ' Password', 'required');
+		$this->form_validation->set_rules('txtPassword', ' Password', 'required|matches[txtConfirmPassword]');
+		$this->form_validation->set_rules('txtConfirmPassword', ' Confirmation Password', 'required');
 		
 		
 		if ($this->form_validation->run() == FALSE)
@@ -722,7 +722,17 @@ class Data_controller extends CI_Controller {
 					WHERE id='$UEID'
 					";
 					$query = $this->db->query ($sql);
-					if($query){
+					/*if($query){
+						$this->session->set_userdata('status', "Succesfully Updated!");
+					}*/
+					$sql2 = "UPDATE emp_col_relation SET
+					dept_id='$dept_id',
+					deg_id='$deg_id',
+					role_id='$role_id',
+					WHERE UEID='$UEID'
+					";
+					$query2 = $this->db->query ($sql);
+					if($query2 && $query){
 						$this->session->set_userdata('status', "Succesfully Updated!");
 					}
 				}else{
