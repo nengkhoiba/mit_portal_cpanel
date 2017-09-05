@@ -60,6 +60,6 @@ $route['utility/session'] = 'nav_controller/master_session';
 $route['utility/exam'] = 'nav_controller/master_examtype';
 $route['student/registration'] = 'nav_controller/student_reg';
 //borison
-
+$route['utility/page'] = 'nav_controller/master_page';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

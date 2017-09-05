@@ -47,6 +47,11 @@ class Nav_controller extends CI_Controller {
 	}
 	//borison
 	
+	//neng
+	public function master_page(){
+		$this->load->view('utility/page_master');
+	}
+	//neng
 	
 	
 	
