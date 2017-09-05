@@ -726,7 +726,12 @@ class Data_controller extends CI_Controller {
 						$this->session->set_userdata('status', "Succesfully Updated!");
 					}
 				}else{
-					
+					$sql1 = "SELECT * from emp_login
+					WHERE UEID='$UEID'
+					";
+					$query1 = $this->db->query ($sql1);
+					$duplicate=$query1->num_rows();
+					if($duplicate==0){
 					$sql = "INSERT INTO `emp_login`(`UEID`,`user`,`password`, `isFirst`) VALUES
 					('$UEID','$user','$pass','1')
 					";
@@ -737,7 +742,9 @@ class Data_controller extends CI_Controller {
 					
 					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
 					$query3 =$this->db->query($sql3);
-					
+					}else{
+						$this->session->set_userdata('status', "User already created!");
+					}
 				}
 				
 				redirect('nav_controller/master_user');
