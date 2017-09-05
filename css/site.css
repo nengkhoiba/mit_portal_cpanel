@@ -1,6 +1,6 @@
 #data_container{    padding: 10px;
     border: 1px solid #aaa;
-   
+   overflow:auto;
     }
    .input-group .input-group-addon {
   
@@ -32,4 +32,7 @@ table.dataTable {
 
     border-color: #3c8dbc !important;
     min-width: 130px;
+}
+.studentList_table{
+	width:300% !important ;
 }

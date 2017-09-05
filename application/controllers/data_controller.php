@@ -177,6 +177,19 @@ class Data_controller extends CI_Controller {
 	        $this->session->set_userdata('status', "Failed!");
 	    }
 	}
+	public function removeDT_student()
+	{
+	    $temp=$_GET['id'];
+	    $sql="DELETE FROM `student_details` WHERE USID='$temp'";
+	    $query=$this->db->query($sql);
+	    if($query)
+	    {
+	        $this->session->set_userdata('status', "Succesfully Deleted!");
+	    }
+	    else {
+	        $this->session->set_userdata('status', "Failed!");
+	    }
+	}
 	public function removeDT_course()
 	{
 	    $temp=$_GET['id'];
@@ -378,6 +391,15 @@ class Data_controller extends CI_Controller {
 	        redirect('nav_controller/master_session');
 	    }
 	    
+	}
+	public function loadDT_student(){
+	    $this->load->view('data_fragment/studentData.php');
+	}
+	
+	public function deleteDT_student(){
+	    $id=$_GET['id'];
+	    $sql="DELETE FROM `emp_login` WHERE UEID='$id'";
+	    $query = $this->db->query($sql);
 	}
 	//Athen
 	
@@ -694,8 +716,8 @@ class Data_controller extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('txtUsername', ' Username', 'required');
-		$this->form_validation->set_rules('txtPassword', ' Password', 'required');
-		$this->form_validation->set_rules('txtConfirmPassword', ' Password', 'required');
+		$this->form_validation->set_rules('txtPassword', ' Password', 'required|matches[txtConfirmPassword]');
+		$this->form_validation->set_rules('txtConfirmPassword', ' Confirmation Password', 'required');
 		
 		
 		if ($this->form_validation->run() == FALSE)
@@ -722,7 +744,17 @@ class Data_controller extends CI_Controller {
 					WHERE id='$UEID'
 					";
 					$query = $this->db->query ($sql);
-					if($query){
+					/*if($query){
+						$this->session->set_userdata('status', "Succesfully Updated!");
+					}*/
+					$sql2 = "UPDATE emp_col_relation SET
+					dept_id='$dept_id',
+					deg_id='$deg_id',
+					role_id='$role_id',
+					WHERE UEID='$UEID'
+					";
+					$query2 = $this->db->query ($sql);
+					if($query2 && $query){
 						$this->session->set_userdata('status', "Succesfully Updated!");
 					}
 				}else{
