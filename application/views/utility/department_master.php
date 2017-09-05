@@ -64,24 +64,28 @@
 		              </div>
 	     			</div>
      			</div>
-     			<div class="row container-fluid ">
-	     			<div class="col-sm-9">
-	     			</div>
-     				<div class="col-sm-3">
+     			<div class="row">
+     			<div class="col-sm-9">
+	     		
+     			</div>
+     		
+     			<div class="col-sm-3">
+	     			<div class="form-group">
 	     			<div class="btn-group btn-group-justified" role="group">
-		                <div class="btn-group" role="group">
-						   <input class="btn btn-default" type="submit" value="Save">
-						  </div>
-						    <div class="btn-group" role="group">
-						   <input class="btn btn-default" onclick="serch()" type="search" value="Search">
+						  <div class="btn-group" role="group">
+						    <input class="btn btn-default" type="submit" value="Save">
 						  </div>
 						  <div class="btn-group" role="group">
-						   <input class="btn btn-default" type="reset" value="Reset">
-						  </div>
+						 <label class="btn btn-default" onclick="search()">Search</label>
+						   </div>
+						  <div class="btn-group" role="group">
+						  <input class="btn btn-default" type="reset" value="Reset">
+						   </div>						 
+					</div>
 	              
 	              </div>
      			</div>
-     			</div>
+     		</div>
      		<div class="row container-fluid">
      			<div id="data_container">
      			
