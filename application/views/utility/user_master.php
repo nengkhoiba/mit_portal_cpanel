@@ -134,25 +134,7 @@
 	     			
 	     			</div>
 	     			
-	     			
-     			
-     	<!--  	<div class="row">
-     			<div class="col-sm-9">
-	     		
-     			</div>
-     		
-     			<div class="col-sm-3">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                	<input class="btn btn-default" type="submit" value="SAVE">
-		                		 <lable class="btn btn-default" onclick="search()">Search</lable>
-		                 	<input class="btn btn-default" type="reset" value="Reset">
-		                </div>
-	              
-	              </div>
-     			</div>
-     		</div>-->
+
      		<div class="row container-fluid" >
      			<div class="col-sm-9">
 	     			<div class="form-group">
@@ -234,6 +216,8 @@
 		document.getElementById('postType').value=id;
 		document.getElementById('txtUsername').value=name;
 		document.getElementById('ddlEmployee').value=id;
+		document.getElementById('optDesig').value=id;
+		document.getElementById('optDept').value=id;
 		document.getElementById('txtPassword').value=pass;
 		document.getElementById('txtConfirmPassword').value=pass;
 	}

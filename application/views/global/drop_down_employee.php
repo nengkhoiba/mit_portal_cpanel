@@ -1,5 +1,5 @@
 
- <select  class="form-control form-control-lg " name="ddlEmployee">
+ <select  class="form-control form-control-lg " id="ddlEmployee" name="ddlEmployee">
  <option value='0'>- Select - </option>
  
  <?php $sql="SELECT `UEID`, `name`  FROM `emp_details` WHERE `isActive`=1" ;

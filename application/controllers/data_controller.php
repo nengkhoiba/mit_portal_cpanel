@@ -726,7 +726,7 @@ class Data_controller extends CI_Controller {
 		}
 		else
 		{
-			
+			$flag=$_POST['postType'];
 			$UEID=$_POST['ddlEmployee'];
 			$user=$_POST['txtUsername'];
 			$pass=$_POST['txtPassword'];
@@ -740,8 +740,8 @@ class Data_controller extends CI_Controller {
 				if($flag!=""){
 					$sql = "UPDATE emp_login SET
 					user='$user',
-					password='$pass',
-					WHERE id='$UEID'
+					password='$pass'
+					WHERE UEID='$UEID'
 					";
 					$query = $this->db->query ($sql);
 					/*if($query){
@@ -750,7 +750,8 @@ class Data_controller extends CI_Controller {
 					$sql2 = "UPDATE emp_col_relation SET
 					dept_id='$dept_id',
 					deg_id='$deg_id',
-					role_id='$role_id',
+					role_id='$role_id'
+					
 					WHERE UEID='$UEID'
 					";
 					$query2 = $this->db->query ($sql);
