@@ -6,3 +6,21 @@
     background: #3c8dbc !important;
     color: #fff !important;
 }
+.form-control {
+  
+    height: 28px !important;
+ 
+    font-size: 12px !important;
+}
+.input-group-addon {
+  
+    font-size: 12px !important;
+    font-weight: 200 !important;
+}
+.table-bordered {
+    border: 1px solid #aaa !important;
+}
+table.dataTable {
+ 
+    font-size: 13px !important;
+}
