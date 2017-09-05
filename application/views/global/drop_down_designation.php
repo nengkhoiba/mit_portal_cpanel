@@ -1,4 +1,4 @@
-<select  class="form-control form-control-lg " name="optDesig">
+<select  class="form-control form-control-lg " id="optDesig" name="optDesig">
  <option value='0'>- Select - </option>
  <?php $sql="SELECT `id`, `name`  FROM `designation` WHERE `isActive`=1" ;
 

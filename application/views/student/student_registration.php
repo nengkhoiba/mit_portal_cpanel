@@ -7,10 +7,12 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Mit Portal
-        <small>Student Registration</small>
-      </h1>
+          <h6>
+          <ol class="breadcrumb">
+             <li><a href="<?php echo base_url()?>student/registration"><i class="fa fa-gear"></i> Student</a></li>
+            <li class="active">Registration</li>
+          </ol>
+          </h6>      
     </section>
 
     <section class="content">
@@ -324,11 +326,8 @@
 						  </div>
 						  <div class="btn-group" role="group">
 						   <input class="btn btn-default" type="reset" value="Reset">
-						  
-						 
-						  </div>
-						 
-						</div>
+						   </div>						 
+					</div>
 		          
 	              
 	              </div>

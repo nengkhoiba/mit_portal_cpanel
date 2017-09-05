@@ -7,14 +7,12 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Utility
-        <small>Designation Maaster</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-gear"></i> Utility</a></li>
-        <li class="active">Designation Master</li>
-      </ol>
+      	<h6>
+          <ol class="breadcrumb">
+             <li><a href="<?php echo base_url()?>utility/semester"><i class="fa fa-gear"></i> Utility</a></li>
+            <li class="active">Designation</li>
+          </ol>
+          </h6>  
     </section>
 
     <section class="content">
@@ -34,7 +32,7 @@
      		}
      		?>
 			<?php echo form_open('data_controller/update_master_designation');?>
-     			<div class="row">
+     			<div class="row ">
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
@@ -71,12 +69,17 @@
      		
      			<div class="col-sm-3">
 	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                	<input class="btn btn-default" type="submit" value="SAVE">
-		                		 <lable class="btn btn-default" onclick="search()">Search</lable>
-		                 	<input class="btn btn-default" type="reset" value="Reset">
-		                </div>
+	     			<div class="btn-group btn-group-justified" role="group">
+						  <div class="btn-group" role="group">
+						    <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						  <div class="btn-group" role="group">
+						 <label class="btn btn-default" onclick="search()">Search</label>
+						   </div>
+						  <div class="btn-group" role="group">
+						  <input class="btn btn-default" type="reset" value="Reset">
+						   </div>						 
+					</div>
 	              
 	              </div>
      			</div>
@@ -118,7 +121,12 @@
   				if(xmlHttp.responseText != null){
   					
   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-  					$('#table').DataTable();
+  					$('#table').DataTable({
+  				        dom: 'Bfrtip',
+  				        buttons: [
+  				            'csv', 'pdf', 'print'
+  				        ]
+  				    });
   				}else{
   					alert("Error");
   				}

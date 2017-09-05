@@ -7,10 +7,10 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-       		 <h6>
+      	<h6>
           <ol class="breadcrumb">
-             <li><a href="<?php echo base_url()?>utility/session"><i class="fa fa-gear"></i> Utility</a></li>
-            <li class="active">Session</li>
+             <li><a href="<?php echo base_url()?>utility/page"><i class="fa fa-gear"></i> Utility</a></li>
+            <li class="active">Page</li>
           </ol>
           </h6>  
     </section>
@@ -23,7 +23,7 @@
      		
      			$msg=$this->session->userdata('status');
      			?>
-     			<div class="alert alert-warning alert-dismissible" role="alert">
+     			<div class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
@@ -31,32 +31,27 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-			<?php echo form_open('data_controller/update_master_session');?>
-     			<div class="row">
+			<?php echo form_open('data_controller/update_master_role');?>
+     			<div class="row ">
 	     			<div class="col-sm-6">
-		     			<div class="form-group">
-		            	
-			                <div class="input-group">
+		     			 <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Session Name
+			                    Role
 			                  </div>
-			                  <input id="postType" type="hidden" name="postType">
-			                  <input id="txtSession" name="txtSession" type="text" class="form-control" value="<?php echo set_value('txtSession')?>">
+			                   <?php $this->load->view('global/drop_down_role')?>
 			                </div>
-			                <?php echo form_error('txtSession');?>
-		              
-		              </div>
 	     			</div>
 	     			<div class="col-sm-6">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Active
+			                    Page mode
 			                  </div>
-			                  <select id="ddlActive" name="ddlActive" class="form-control">
-			                  	<option value="1">Yes</option>
-			                  	<option value="0">No</option>
+			                  <select id="ddlpage" name="ddlpage" class="form-control">
+			                  	<option value="3">All</option>
+			                  	<option value="1">Active</option>
+			                  	<option value="0">Inactive</option>
 			                  </select>
 			                </div>
 		              
@@ -71,9 +66,7 @@
      			<div class="col-sm-3">
 	     			<div class="form-group">
 	     			<div class="btn-group btn-group-justified" role="group">
-						  <div class="btn-group" role="group">
-						    <input class="btn btn-default" type="submit" value="Save">
-						  </div>
+						
 						  <div class="btn-group" role="group">
 						 <label class="btn btn-default" onclick="search()">Search</label>
 						   </div>
@@ -85,16 +78,15 @@
 	              </div>
      			</div>
      		</div>
-     		<div class="row">
+     		<div class="row container-fluid">
      			<div id="data_container">
      			
      			</div>
      		</div>
      			
-     		             		
+     			
               <?php echo form_close();?>
              
-		   
      		</div>
      	</div>
     </section>
@@ -103,23 +95,49 @@
 
  
   <?php $this->load->view('global/footer.php');?>
-  <script type="text/javascript">
-  $(document).ready(function() {
-	  	search();
-	  });
-	  
-	  function search()
-	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_session?q=');?>"+document.getElementById('txtSession').value+"&j="+document.getElementById('ddlActive').value;
+  <script >
+
+  $(document).ready (function(){
+	  search();
+  });
+  
+  
+  function search()
+  {
+
+  	var url = "<?php echo site_url('data_controller/loadDT_page?q=');?>"+document.getElementById('ddlRole').value+"&j="+document.getElementById('ddlpage').value;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+  					
+  					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
+  					
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+  	}
+
+	function enable(sitemapId,roleID){
+	  	var url = "<?php echo site_url('data_controller/deleteDT_role?id=');?>"+sitemapId;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
 	  			xmlHttp.onreadystatechange=function() {
 	  			if(xmlHttp.readyState == 4) {
 	  				if(xmlHttp.responseText != null){
-	  					
-	  					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-	  					$('#table').DataTable();
+
+		  				search();	
+	  				
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -131,33 +149,28 @@
 	  	catch(error) {}
 	  	}
 	  	}
-		function edit(id,name)
-		{
-			document.getElementById('txtSession').value=name;
-			document.getElementById('postType').value=id;
-			
-		}
-		function remove(id){
-			if (confirm('Are you sure you want to delete?')) {
-				var url = "<?php echo site_url('data_controller/removeDT_session?id=');?>"+id;
-			  	var xmlHttp = GetXmlHttpObject();
-			  	if (xmlHttp != null) {
-			  		try {
-			  			xmlHttp.onreadystatechange=function() {
-			  			if(xmlHttp.readyState == 4) {
-			  				if(xmlHttp.responseText != null){
-			  					search();
-			  				}else{
-			  					alert("Error");
-			  				}
-			  			}
-			  		}
-			  		xmlHttp.open("GET", url, true);
-			  		xmlHttp.send(null);
-			  	}
-			  	catch(error) {}
-			  	}
-			} 
-		  
-			}
+	function disable(sitemapId,roleID){
+
+	  	var url = "<?php echo site_url('data_controller/deleteDT_role?id=');?>"+sitemapId;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+
+		  				search();	
+	  				
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+		
+	}
   </script>

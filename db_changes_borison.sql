@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 03, 2017 at 11:44 AM
+-- Generation Time: Sep 05, 2017 at 01:02 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -23,125 +23,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course`
+-- Table structure for table `site_map`
 --
 
-DROP TABLE IF EXISTS `course`;
-CREATE TABLE IF NOT EXISTS `course` (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `site_map`;
+CREATE TABLE IF NOT EXISTS `site_map` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
-  `abv` varchar(10) NOT NULL,
+  `css` varchar(20) NOT NULL,
+  `url` varchar(50) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `course`
+-- Dumping data for table `site_map`
 --
 
-INSERT INTO `course` (`id`, `name`, `abv`, `isActive`) VALUES
-(1, 'Bachelor of engineering', 'B.E', 1),
-(2, 'Master of Technology', 'M.Tech', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `exam_type`
---
-
-DROP TABLE IF EXISTS `exam_type`;
-CREATE TABLE IF NOT EXISTS `exam_type` (
-  `id` int(1) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `isActive` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `exam_type`
---
-
-INSERT INTO `exam_type` (`id`, `name`, `isActive`) VALUES
-(1, 'Regular', 1),
-(2, 'Back 1', 1),
-(3, 'Back 2', 1),
-(4, 'Back 3', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `semester`
---
-
-DROP TABLE IF EXISTS `semester`;
-CREATE TABLE IF NOT EXISTS `semester` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `isActive` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
---
--- Dumping data for table `semester`
---
-
-INSERT INTO `semester` (`id`, `name`, `isActive`) VALUES
-(1, '1st Semester', 1),
-(2, '2nd Semester', 1),
-(3, '3rd Semester', 1),
-(4, '4th Semester', 1),
-(5, '5th Semester', 1),
-(6, '6th Semester', 1),
-(7, '7th Semester', 1),
-(8, '8th Semester', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `session`
---
-
-DROP TABLE IF EXISTS `session`;
-CREATE TABLE IF NOT EXISTS `session` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `isActive` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `session`
---
-
-INSERT INTO `session` (`id`, `name`, `isActive`) VALUES
-(1, '2014-15', 1),
-(2, '2015-16', 1),
-(3, '2016-17', 1),
-(4, '2017-18', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trade`
---
-
-DROP TABLE IF EXISTS `trade`;
-CREATE TABLE IF NOT EXISTS `trade` (
-  `id` int(2) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `abv` varchar(10) NOT NULL,
-  `isActive` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `trade`
---
-
-INSERT INTO `trade` (`id`, `name`, `abv`, `isActive`) VALUES
-(1, 'Computer Science and Engineeri', 'CSE', 1),
-(2, 'Civil Engineering', 'CE', 1),
-(3, 'Electronics and Comuunication ', 'ECE', 1);
+INSERT INTO `site_map` (`id`, `name`, `css`, `url`, `isActive`) VALUES
+(1, 'Student Registration', 'fa fa-user', 'student/registration', 1),
+(2, 'Employee Registration', 'fa fa-group', 'employee/registration', 1),
+(3, 'Department Master', 'fa fa-briefcase', 'utility/department', 1),
+(4, 'Designation Master', 'fa fa-user', 'utility/designation', 1),
+(5, 'User Master', 'fa fa-user', 'utility/user', 1),
+(6, 'Role Master', 'fa fa-user', 'utility/role', 1),
+(7, 'Semester Master', 'fa fa-list-ol', 'utility/semester', 1),
+(8, 'Trade Master', 'fa fa-sitemap', 'utility/trade', 1),
+(9, 'Course Master', 'fa fa-mortar-board', 'utility/course', 1),
+(10, 'Exam Master', 'fa fa-pencil-square', 'utility/exam', 1),
+(11, 'Session Master', 'fa fa-calendar', 'utility/session', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

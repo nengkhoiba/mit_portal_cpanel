@@ -1,8 +1,8 @@
  <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.2.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2017 <a href="<?php echo base_url(); ?>">Mit Portal</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -16,5 +16,11 @@
 	  <script src="<?php echo base_url();?>js/jquery.dataTables.min.js"></script>
 	   <script src="<?php echo base_url();?>js/dataTables.bootstrap.min.js"></script>
 	    <script src="<?php echo base_url();?>js/service.js"></script>
+	    <script src="<?php echo base_url();?>js/dataTables.buttons.min.js"></script>
+	    <script src="<?php echo base_url();?>js/pdfmake.min.js"></script>
+	    <script src="<?php echo base_url();?>js/buttons.flash.min.js"></script>
+	    <script src="<?php echo base_url();?>js/vfs_fonts.js"></script>
+	    <script src="<?php echo base_url();?>js/buttons.html5.min.js"></script>
+	    <script src="<?php echo base_url();?>js/buttons.print.min.js"></script>
 	    
 </html>
