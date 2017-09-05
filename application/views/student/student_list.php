@@ -190,24 +190,7 @@
 	  	}
 		function edit(id)
 		{
-			var url = "<?php echo site_url('data_controller/student/registration?id=');?>"+id;
-		  	var xmlHttp = GetXmlHttpObject();
-		  	if (xmlHttp != null) {
-		  		try {
-		  			xmlHttp.onreadystatechange=function() {
-		  			if(xmlHttp.readyState == 4) {
-		  				if(xmlHttp.responseText != null){
-		  				}else{
-		  					alert("Error");
-		  				}
-		  			}
-		  		}
-		  		xmlHttp.open("GET", url, true);
-		  		xmlHttp.send(null);
-		  	}
-		  	catch(error) {}
-		  	}		
-			
+			window.open("<?php echo base_url();?>student/registration");
 		}
 		function remove(id){
 			if (confirm('Are you sure you want to delete?')) {
