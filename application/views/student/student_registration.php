@@ -32,7 +32,7 @@
      		}
      		?>
 
-     		<form action="<?php echo base_url();?>data_controller/student_reg" method="post" accept-charset="utf-8">
+     		<?php echo form_open('data_controller/student_reg');?>
      		<div class="row">
      			<div class="col-sm-4">
 	     			<div class="form-group">
@@ -203,12 +203,7 @@
      			</div>
      			
      				<div class="row">
-     				
-     			
-     			
-     			
-     			
-     			<div class="col-sm-4">
+     				<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
@@ -310,13 +305,7 @@
      		
      			<div class="row">
      			<div class="col-sm-9">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                 	
-		                </div>
-	              
-	              </div>
+	     	
      			</div>
      				<div class="col-sm-3">
 	     			<div class="form-group">
@@ -333,8 +322,7 @@
 	              </div>
      			</div>
      			</div>    			
-     			
-              </form>    			   			
+     	<?php echo form_close();?>   			   			
      		</div>
      	</div>
     </section>

@@ -95,11 +95,11 @@ class Data_controller extends CI_Controller {
 		    if($query)
 		    {
 		        $this->session->set_userdata('status', "Success");
-		        redirect('nav_controller/student_reg');
+		        redirect('student/student_registration.php');
 		    }
 		    else {
 		        $this->session->set_userdata('status', "Failed at db");
-		        redirect('nav_controller/student_reg');
+		        redirect('student/student_registration.php');
 		    }  
 		}
 		
@@ -180,7 +180,9 @@ class Data_controller extends CI_Controller {
 	public function removeDT_student()
 	{
 	    $temp=$_GET['id'];
-	    $sql="DELETE FROM `student_details` WHERE USID='$temp'";
+	    $sql="UPDATE `student_details` SET 
+                isActive='0' WHERE
+                  USID ='$temp'";
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
@@ -804,6 +806,31 @@ class Data_controller extends CI_Controller {
 	//PAGE MASTER
 	public function loadDT_page(){
 		$this->load->view('data_fragment/pageData.php');
+	}
+	public function update_pageMaster(){
+		$id=$_GET['id'];
+		$role=$_GET['role'];
+		$status=$_GET['status'];
+		
+		$sql1 = "SELECT id FROM page_manager WHERE site_map_id='$id' AND role_id= '$role'
+		";
+		$query1 = $this->db->query ($sql1);
+		$duplicate=$query1->num_rows();
+		if($duplicate==0){
+			$sql="INSERT INTO `page_manager`(`site_map_id`, `role_id`, `isActive`) 
+					VALUES ('$id','$role','$status')";
+			$query = $this->db->query ($sql);
+		}else{
+			$sql2 = "UPDATE page_manager 
+					SET 
+					isActive='$status'
+					WHERE site_map_id='$id'
+					AND role_id='$role'
+			";
+			$query2 = $this->db->query ($sql2);
+		}
+		
+	
 	}
 	
 	//END PAGE MASTER
