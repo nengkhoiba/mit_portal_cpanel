@@ -85,7 +85,7 @@
 	              </div>
      			</div>
      		</div>
-     		<div class="row">
+     		<div class="row container-fluid" >
      			<div id="data_container">
      			
      			</div>
@@ -119,7 +119,14 @@
 	  				if(xmlHttp.responseText != null){
 	  					
 	  					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-	  					$('#table').DataTable();
+	  					$('#table').DataTable({
+	  				        dom: 'Bfrtip',
+	  				        buttons: [
+	  				            'csv', 'pdf', 'print'
+	  				        ]
+	  				    }
+								
+	  		  					);
 	  				}else{
 	  					alert("Error");
 	  				}

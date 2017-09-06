@@ -3,9 +3,7 @@
 <tr>
 <th>ID</th>
 <th>Title</th>
-<th>First Name</th>
-<th>Middle Name</th>
-<th>Last Name</th>
+<th>Name</th>
 <th>Mother's Name</th>
 <th>Father's Name</th>
 <th>Permanent Address</th>
@@ -50,9 +48,7 @@ if($query){
 	  <tr>
                 <td><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['title']; ?></td>
-                <td><?php echo $result['firstname']; ?></td>
-                <td><?php echo $result['middlename']; ?></td>
-                <td><?php echo $result['lastname']; ?></td>
+                <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
                 <td><?php echo $result['mName']; ?></td>
                 <td><?php echo $result['fName']; ?></td>
                 <td><?php echo $result['pAddress']; ?></td>

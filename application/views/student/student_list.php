@@ -176,7 +176,14 @@
 	  				if(xmlHttp.responseText != null){
 	  					
 	  					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-	  					$('#table').DataTable();
+	  					$('#table').DataTable(
+	  							{
+	  		  				        dom: 'Bfrtip',
+	  		  				        buttons: [
+	  		  				            'csv', 'pdf', 'print'
+	  		  				        ]
+	  		  				    }
+	  		  					);
 	  				}else{
 	  					alert("Error");
 	  				}
@@ -191,6 +198,7 @@
 		function edit(id)
 		{
 			window.open("<?php echo base_url();?>student/registration?id="+id);
+			
 		}
 		function remove(id){
 			if (confirm('Are you sure you want to delete?')) {

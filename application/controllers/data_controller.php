@@ -95,11 +95,11 @@ class Data_controller extends CI_Controller {
 		    if($query)
 		    {
 		        $this->session->set_userdata('status', "Success");
-		        redirect('nav_controller/student_reg');
+		        redirect('student/student_registration.php');
 		    }
 		    else {
 		        $this->session->set_userdata('status', "Failed at db");
-		        redirect('nav_controller/student_reg');
+		        redirect('student/student_registration.php');
 		    }  
 		}
 		
