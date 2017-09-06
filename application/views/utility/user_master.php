@@ -9,8 +9,8 @@
    <section class="content-header">
       	<h6>
           <ol class="breadcrumb">
-             <li><a href="<?php echo base_url()?>utility/semester"><i class="fa fa-gear"></i> User</a></li>
-            <li class="active">Master</li>
+             <li><a href="<?php echo base_url()?>utility/semester"><i class="fa fa-gear"></i> Utility</a></li>
+            <li class="active">User</li>
           </ol>
           </h6>  
     </section>
@@ -135,7 +135,7 @@
 	     			</div>
 	     			
 
-     		<div class="row container-fluid" >
+     		<div class="row " >
      			<div class="col-sm-9">
 	     			<div class="form-group">
 	            	

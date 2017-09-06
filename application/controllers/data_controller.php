@@ -775,7 +775,7 @@ class Data_controller extends CI_Controller {
 						$this->session->set_userdata('status', "Succesfully saved!");
 					}
 					
-					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
+					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($UEID,$dept_id,$deg_id,$role_id)";
 					$query3 =$this->db->query($sql3);
 					}else{
 						$this->session->set_userdata('status', "User already created!");
