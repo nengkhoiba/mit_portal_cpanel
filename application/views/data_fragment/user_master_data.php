@@ -19,27 +19,17 @@
 $user=$_GET['q'];
 $pass=$_GET['j'];
 $isFirst=$_GET['k'];
-$sql="SELECT el.UEID AS UEID,el.user AS Username,el.password as Password ,el.isFirst,
-ecr.role_id AS Role_Id,ecr.dept_id AS Department, ecr.deg_id AS Designation 
-FROM emp_login el LEFT JOIN emp_col_relation ecr ON ecr.UEID=el.UEID 
-LEFT JOIN role r ON r.id=ecr.role_id WHERE ecr.UEID=el.UEID AND el.isFirst='1'
-AND user like '%$user%'
+$sql="SELECT el.UEID AS UEID,el.user AS Username,el.password as Password ,el.isFirst, 
+r.name AS Role_Id,d.name AS Department, dg.name AS Designation 
+FROM emp_login el 
+LEFT JOIN emp_col_relation ecr ON ecr.UEID=el.UEID 
+LEFT JOIN role r ON r.id=ecr.role_id 
+LEFT JOIN department d ON d.id= ecr.dept_id 
+LEFT JOIN designation dg ON dg.id=ecr.deg_id
+WHERE ecr.UEID=el.UEID AND el.isFirst=1
+AND user like '%$user%' 
+
 ";
-
-/*
- * 
- * 
- * $sql="SELECT el.UEID AS UEID,ed.name AS empName,ecr.role_id AS role_id,r.name AS role   FROM emp_login el
-				LEFT JOIN emp_details ed ON ed.UEID=el.UEID
-				LEFT JOIN emp_col_relation ecr ON ecr.UEID=el.UEID
-				LEFT JOIN role r ON r.id=ecr.role_id
-				WHERE
-				el.user='$username'
-				AND el.password='$password'
-				AND ed.isActive=1 ";
- * 
- */
-
 
 $query = $this->db->query($sql);
 if($query){
