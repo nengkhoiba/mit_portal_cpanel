@@ -805,6 +805,31 @@ class Data_controller extends CI_Controller {
 	public function loadDT_page(){
 		$this->load->view('data_fragment/pageData.php');
 	}
+	public function update_pageMaster(){
+		$id=$_GET['id'];
+		$role=$_GET['role'];
+		$status=$_GET['status'];
+		
+		$sql1 = "SELECT id FROM page_manager WHERE site_map_id='$id' AND role_id= '$role'
+		";
+		$query1 = $this->db->query ($sql1);
+		$duplicate=$query1->num_rows();
+		if($duplicate==0){
+			$sql="INSERT INTO `page_manager`(`site_map_id`, `role_id`, `isActive`) 
+					VALUES ('$id','$role','$status')";
+			$query = $this->db->query ($sql);
+		}else{
+			$sql2 = "UPDATE page_manager 
+					SET 
+					isActive='$status'
+					WHERE site_map_id='$id'
+					AND role_id='$role'
+			";
+			$query2 = $this->db->query ($sql2);
+		}
+		
+	
+	}
 	
 	//END PAGE MASTER
 	

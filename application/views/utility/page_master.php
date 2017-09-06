@@ -128,7 +128,7 @@
   	}
 
 	function enable(sitemapId,roleID){
-	  	var url = "<?php echo site_url('data_controller/deleteDT_role?id=');?>"+sitemapId;
+	  	var url = "<?php echo site_url('data_controller/update_pageMaster?id=');?>"+sitemapId+"&role="+roleID+"&status=1"
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -151,7 +151,7 @@
 	  	}
 	function disable(sitemapId,roleID){
 
-	  	var url = "<?php echo site_url('data_controller/deleteDT_role?id=');?>"+sitemapId;
+	  	var url = "<?php echo site_url('data_controller/update_pageMaster?id=');?>"+sitemapId+"&role="+roleID+"&status=0";
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {

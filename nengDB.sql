@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+x-- phpMyAdmin SQL Dump
 -- version 4.4.15.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2017 at 06:35 PM
+-- Generation Time: Sep 06, 2017 at 01:38 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.3.29
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `department` (
   `id` int(10) NOT NULL,
   `name` varchar(30) NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `department`
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `designation` (
   `id` int(10) NOT NULL,
   `name` varchar(30) NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `designation`
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `emp_login` (
 --
 
 INSERT INTO `emp_login` (`UEID`, `user`, `password`, `isFirst`) VALUES
-(1, 'adam', 'welcome', 1),
+(1, 'adam121', 'welcome', 1),
 (4, 'Sachin', '', 1),
 (5, 'Sachin', '', 1),
 (6, 'Bill', '', 1),
@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `page_manager` (
   `site_map_id` int(10) NOT NULL,
   `role_id` int(10) NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `page_manager`
@@ -271,7 +271,8 @@ INSERT INTO `page_manager` (`id`, `site_map_id`, `role_id`, `isActive`) VALUES
 (8, 8, 1, 1),
 (9, 9, 1, 1),
 (10, 10, 1, 1),
-(11, 11, 1, 1);
+(11, 11, 1, 1),
+(12, 12, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -357,7 +358,7 @@ CREATE TABLE IF NOT EXISTS `site_map` (
   `css` varchar(20) NOT NULL,
   `url` varchar(50) NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `site_map`
@@ -367,14 +368,15 @@ INSERT INTO `site_map` (`id`, `name`, `css`, `url`, `isActive`) VALUES
 (1, 'Student Registration', 'fa fa-user', 'student/registration', 1),
 (2, 'Employee Registration', 'fa fa-group', 'employee/registration', 1),
 (3, 'Department Master', 'fa fa-briefcase', 'utility/department', 1),
-(4, 'Designation Master', 'fa fa-user', 'utility/designation', 1),
-(5, 'User Master', 'fa fa-user', 'utility/user', 1),
-(6, 'Role Master', 'fa fa-user', 'utility/role', 1),
-(7, 'Semester Master', 'fa fa-user', 'utility/semester', 1),
-(8, 'Trade Master', 'fa fa-user', 'utility/trade', 1),
-(9, 'Course Master', 'fa fa-user', 'utility/course', 1),
-(10, 'Exam Master', 'fa fa-user', 'utility/exam', 1),
-(11, 'Session Master', 'fa fa-user', 'utility/session', 1);
+(4, 'Designation Master', 'fa fa-address-card', 'utility/designation', 1),
+(5, 'User Master', 'fa fa-user-circle-o', 'utility/user', 1),
+(6, 'Role Master', 'fa fa-id-badge', 'utility/role', 1),
+(7, 'Semester Master', 'fa fa-list-ol', 'utility/semester', 1),
+(8, 'Trade Master', 'fa fa-sitemap', 'utility/trade', 1),
+(9, 'Course Master', 'fa fa-mortar-board', 'utility/course', 1),
+(10, 'Exam Master', 'fa fa-pencil-square', 'utility/exam', 1),
+(11, 'Session Master', 'fa fa-calendar', 'utility/session', 1),
+(12, 'Page Master', 'fa fa-sticky-note', 'utility/page', 1);
 
 -- --------------------------------------------------------
 
@@ -561,12 +563,12 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `emp_details`
 --
@@ -591,7 +593,7 @@ ALTER TABLE `login_history`
 -- AUTO_INCREMENT for table `page_manager`
 --
 ALTER TABLE `page_manager`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -611,7 +613,7 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT for table `site_map`
 --
 ALTER TABLE `site_map`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `student_details`
 --
