@@ -180,7 +180,9 @@ class Data_controller extends CI_Controller {
 	public function removeDT_student()
 	{
 	    $temp=$_GET['id'];
-	    $sql="DELETE FROM `student_details` WHERE USID='$temp'";
+	    $sql="UPDATE `student_details` SET 
+                isActive='0' WHERE
+                  USID ='$temp'";
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
