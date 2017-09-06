@@ -36,7 +36,8 @@ $Category=$_GET['m'];
 $isActive=$_GET['n'];
 
 
-$sql="SELECT `USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `added_on`, `isActive` FROM `student_details` WHERE
+$sql="SELECT `USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `added_on`, `isActive`
+ FROM `student_details` WHERE
 		firstname like '%$FirstName%' AND middlename like '%$MiddleName%' AND fName like '%$Father%' AND gender like '%$Gender%'
 AND isActive='$isActive'
 ";

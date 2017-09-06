@@ -66,41 +66,76 @@ class Data_controller extends CI_Controller {
 		    $rcategory=mysql_real_escape_string($rcategory);
 		    $phyhandicap=mysql_real_escape_string($phyhandicap);
 		    $ecoback=mysql_real_escape_string($ecoback);
-		    if($rcategory=="Yes")
-		    {
-		        $rcategory=1;
-		    }
-		    else {
-		        $rcategory=0;
-		    }
-		    if($phyhandicap=="Yes")
-		    {
-		        $phyhandicap=1;
-		    }
-		    else {
-		        $phyhandicap=0;
-		    }
-		    if($ecoback=="Yes")
-		    {
-		        $ecoback=1;
-		    }
-		    else {
-		        $ecoback=0;
-		    }
+		    $rcategory=mysql_real_escape_string($ecoback);		 
+		    $phyhandicap=mysql_real_escape_string($phyhandicap);		   
+		    $ecoback=mysql_real_escape_string($ecoback);
+		 
 		    
-		    $sql="INSERT INTO `student_details`( `title`,`firstname`, `middlename`,`dob`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `religion`, `nationality`,`category`,`isActive`,`reserve_cat`, `phy_han`, `eco_back`,`added_on`)
+		    $flag=$_POST['postType'];
+		    if($flag!=null){
+		        $sql = "UPDATE `student_details` SET   `title`='$title',
+                                                       `firstname`='$fname',
+                                                        `middlename`='$mname',
+                                                        `lastname`='$lname',
+                                                        `mName`='$mothername',
+                                                        `fName`='$fathername',
+                                                        `pAddress`='$padress',
+                                                        `cAddress`='$cadress',
+                                                        `phone`='$phone',
+                                                        `mobile`='$mobile',
+                                                        `gender`='$gender',
+                                                        `dob`='$dob',
+                                                        `religion`='$religion',
+                                                        `nationality`='$nationality',
+                                                        `category`='$category',
+                                                        `reserve_cat`='$rcategory',
+                                                        `phy_han`='$phyhandicap',
+                                                        `eco_back`='$ecoback'
+
+						WHERE USID='$flag' ";
+		        $query = $this->db->query($sql);
+		                               if($query){
+		                                  $this->session->set_userdata('status', "Succesfully Updated!");
+		                                  redirect('student/registration');
+		                                          }
+		                                          else 
+		                                          {
+		                                              $this->session->set_userdata('status', "Failed at Database");
+		                                              redirect('student/registration');
+		                                          }
+		        
+		    }
+		    else{
+		        
+		        
+		        $sql="INSERT INTO `student_details`( `title`,`firstname`, `middlename`,`dob`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `religion`, `nationality`,`category`,`isActive`,`reserve_cat`, `phy_han`, `eco_back`,`added_on`)
 		                                VALUES ('$title','$fname','$mname','$dob','$lname','$mothername','$fathername','$padress','$cadress','$phone','$mobile','$gender','$religion','$nationality','$category','1','$rcategory','$phyhandicap','$ecoback',NOW())";
+		        
+		        $query=$this->db->query($sql);
+		        if($query)
+		        {
+		            $this->session->set_userdata('status', "Successfully entered");
+		            redirect('student/registration');
+		        }
+		        else {
+		            $this->session->set_userdata('status', "Failed at db");
+		            redirect('student/registration');
+		        }  
 		    
-		    $query=$this->db->query($sql);
-		    if($query)
-		    {
-		        $this->session->set_userdata('status', "Success");
-		        redirect('student/student_registration.php');
 		    }
-		    else {
-		        $this->session->set_userdata('status', "Failed at db");
-		        redirect('student/student_registration.php');
-		    }  
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		   
 		}
 		
 	}

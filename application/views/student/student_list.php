@@ -195,9 +195,9 @@
 	  	catch(error) {}
 	  	}
 	  	}
-		function edit(id)
+		function edit(USID)
 		{
-			window.open("<?php echo base_url();?>student/registration?id="+id);
+			window.open("<?php echo base_url();?>student/registration?USID="+USID);
 			
 		}
 		function remove(id){

@@ -3,8 +3,57 @@
       <?php $this->load->view('global/side_menu.php');?>
  
 <?php 
-
-
+if(isset($_GET['USID']))
+{
+    $usid=trim($_GET['USID']);
+    $sql=$sql="SELECT `USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `added_on`, `isActive`
+ FROM `student_details` WHERE USID=$usid";
+    $query=$this->db->query($sql);
+        while($result=mysql_fetch_array($query->result_id))
+        {
+            $id=$result['USID'];
+            $title=$result['title'];
+            $firstname=$result['firstname'];
+            $middlename=$result['middlename'];
+            $lastname=$result['lastname'];
+            $mName=$result['mName'];
+            $fName=$result['fName'];
+            $pAddress=$result['pAddress'];
+            $cAddress=$result['cAddress'];
+            $phone=$result['phone'];
+            $mobile=$result['mobile'];
+            $gender=$result['gender'];
+            $dob=$result['dob'];
+            $religion=$result['religion'];
+            $nationality=$result['nationality'];
+            $category=$result['category'];
+            if($result['reserve_cat']==1)
+            {
+                $reserve_cat="YES";
+            }
+            else 
+            {
+                $reserve_cat="NO";
+            }
+            if($result['phy_han']==1)
+            {
+                $phy_han="YES";
+            }
+            else
+            {
+                $phy_han="NO";
+            }
+            if($result['eco_back']==1)
+            {
+                $eco_back="YES";
+            }
+            else
+            {
+                $eco_back="NO";
+            }
+          
+        }
+}
 
 
 
@@ -46,10 +95,10 @@
 		                  <div class="input-group-addon">
 		                    Title
 		                  </div>
-		                  <select name="txtTitle" class="form-control form-control-lg" value="<?php echo set_value('txtTitle')?> ">
-  								<option value="Mr">Mr.</option>
-  								<option value="Miss">Miss.</option>
-  								<option value="Ms">Ms.</option>
+		                  <select name="txtTitle" class="form-control form-control-lg" >
+  								<option value="Mr">Mr</option>
+  								<option value="Miss">Miss</option>
+  								<option value="Ms">Ms</option>
 								</select>
 		                </div>
 		                <?php echo form_error('txtTitle');?>
@@ -62,8 +111,8 @@
 		                  <div class="input-group-addon">
 		                    First Name
 		                  </div>
-		                  
-		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo set_value('txtFirstName')?>">
+		                  <input id="postType" type="hidden" name="postType" value="<?php echo (isset($_GET['USID']))?$id:null;?> ">
+		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtFirstName');?> ">
 		                </div>
 	              <?php echo form_error('txtFirstName');?>
 	              </div>
@@ -75,7 +124,7 @@
 		                  <div class="input-group-addon">
 		                    Middle Name
 		                  </div>
-		                  <input  name="txtMiddleName" type="text" class="form-control" value="<?php echo set_value('txtMiddleName')?>">
+		                  <input  name="txtMiddleName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$middlename:set_value('txtMiddleName');?> ">
 		                </div>
 	              
 	              </div>
@@ -94,7 +143,7 @@
 		                    Last Name
 		                  </div>
 		                  
-		                  <input  name="txtlastName" type="text" class="form-control" value="<?php echo set_value('txtlastName')?>">
+		                  <input  name="txtlastName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$lastname:set_value('txtlastName');?>" >
 		                </div>
 	              <?php echo form_error('txtlastName');?>
 	              </div>
@@ -107,7 +156,7 @@
 		                    Mother's name
 		                  </div>
 		                  
-		                  <input  name="txtMother" type="text" class="form-control" value="<?php echo set_value('txtMother')?>">
+		                  <input  name="txtMother" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$mName:set_value('txtMother');?> ">
 		                </div>
 	              <?php echo form_error('txtMother');?>
 	              </div>
@@ -119,7 +168,7 @@
 		                  <div class="input-group-addon">
 		                    Father's name
 		                  </div>
-		                  <input  name="txtFather" type="text" class="form-control" value="<?php echo set_value('txtFather')?>">
+		                  <input  name="txtFather" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$fName:set_value('txtFather');?> ">
 		                </div>
 	              <?php echo form_error('txtFather');?>
 	              </div>
@@ -131,7 +180,7 @@
 		                  <div class="input-group-addon">
 		                   Permanent Address
 		                  </div>
-		                  <input  name="txtPermanentAddress" type="text" class="form-control" value="<?php echo set_value('txtPermanentAddress')?>">
+		                  <input  name="txtPermanentAddress" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$pAddress:set_value('txtPermanentAddress');?>" >
 		                </div>
 	              <?php echo form_error('txtPermanentAddress');?>
 	              </div>
@@ -143,7 +192,7 @@
 		                  <div class="input-group-addon">
 		                    Address for Communication
 		                  </div>
-		                  <input  name="txtCAdress" type="text" class="form-control" value="<?php echo set_value('txtCAdress')?>">
+		                  <input  name="txtCAdress" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$cAddress:set_value('txtCAdress');?> ">
 		                </div>
 	              <?php echo form_error('txtCAdress');?>
 	              </div>
@@ -157,7 +206,7 @@
 		                    Residence Phone No
 		                  </div>
 		                  
-		                  <input  name="txtPhone" type="text" class="form-control" value="<?php echo set_value('txtPhone')?>">
+		                  <input  name="txtPhone" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$phone:set_value('txtPhone');?>" >
 		                </div>
 	              <?php echo form_error('txtPhone');?>
 	              </div>
@@ -170,7 +219,7 @@
 		                    Mobile No
 		                  </div>
 		                   
-		                  <input  name="txtMobile" type="text" class="form-control"  value="<?php echo set_value('txtMobile')?>">
+		                  <input  name="txtMobile" type="text" class="form-control"  value="<?php echo (isset($_GET['USID']))?$mobile:set_value('txtMobile');?> ">
 		                </div>
 	              <?php echo form_error('txtMobile');?>
 	              </div>
@@ -182,10 +231,10 @@
 		                  <div class="input-group-addon">
 		                    Gender
 		                  </div>
-		                  <select  name="txtGender" class="form-control form-control-lg" >
-  								<option>Male</option>
-  								<option>Female</option>
-  								<option>Others</option>
+		                  <select  name="txtGender" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$gender:set_value('txtGender');?> " >
+  								<option value="Male">Male</option>
+  								<option value="Female">Female</option>
+  								<option value="Others">Others</option>
 								</select>
 		                </div>
 	              
@@ -199,7 +248,7 @@
 		                    Date of Birth
 		                  </div>
 		           
-		                  <input  class="form-control" type="date" name="dateDOB" value="<?php echo set_value('dateDOB')?>">
+		                  <input  class="form-control" type="date" name="dateDOB" value="<?php echo (isset($_GET['USID']))?$dob:set_value('dateDOB');?>">
 		                        
 		                </div>
 	              			 <?php echo form_error('dateDOB');?>
@@ -216,7 +265,7 @@
 		                  <div class="input-group-addon">
 		                    Religion
 		                  </div>
-		                  <input  name="txtReligion" type="text" class="form-control" value="<?php echo set_value('txtReligion')?>">
+		                  <input  name="txtReligion" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$religion:set_value('txtReligion');?>" >
 		                </div>
 	              <?php echo form_error('txtReligion');?>
 	              </div>
@@ -230,7 +279,7 @@
 		                  <div class="input-group-addon">
 		                    Nationality
 		                  </div>
-		                  <input  name="txtNationality" type="text" class="form-control" value="<?php echo set_value('txtNationality')?>">
+		                  <input  name="txtNationality" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$nationality:set_value('txtNationality');?> ">
 		                </div>
 	              <?php echo form_error('txtNationality');?>
 	              </div>
@@ -242,7 +291,7 @@
 		                  <div class="input-group-addon">
 		                    Category
 		                  </div>
-		                  <input  name="txtCategory" type="text" class="form-control" value="<?php echo set_value('txtCategory')?>">
+		                  <input  name="txtCategory" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$category:set_value('txtCategory');?>" >
 		                </div>
 	              <?php echo form_error('txtCategory');?>
 	              </div>
@@ -254,9 +303,9 @@
 		                  <div class="input-group-addon">
 		                    Reserve Category
 		                  </div>
-		                  <select name="choiceRcategory" class="form-control form-control-lg" >
-  								<option>No</option>
-  								<option>Yes</option>
+		                  <select name="choiceRcategory" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$reserve_cat:set_value('choiceRcategory');?>" >
+  								<option value=0>No</option>
+  								<option value=1>Yes</option>
 								</select>
 		                </div>
 	              
@@ -269,9 +318,9 @@
 		                  <div class="input-group-addon">
 		                    Physically Handicapped
 		                  </div>
-		                  	   <select name="PhyHandicap" class="form-control form-control-lg">
-  								<option>No</option>
-  								<option>Yes</option>
+		                  	   <select name="PhyHandicap" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$phy_han:set_value('PhyHandicap');?>" >
+  								<option value=0>No</option>
+  								<option value=1>Yes</option>
 								</select>
 		                </div>
 	              
@@ -284,9 +333,9 @@
 		                  <div class="input-group-addon">
 		                    Economically Backward 
 		                  </div>
-		                  <select name="EcoBackward" class="form-control form-control-lg">
-  								<option>No</option>
-  								<option>Yes</option>
+		                  <select name="EcoBackward" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$eco_back:set_value('EcoBackward');?>" >
+  								<option value=0>No</option>
+  								<option value=1>Yes</option>
 								</select>
 		                </div>
 	              
