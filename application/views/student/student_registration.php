@@ -2,7 +2,13 @@
       <?php $this->load->view('global/header.php');?>
       <?php $this->load->view('global/side_menu.php');?>
  
+<?php 
 
+
+
+
+
+?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -40,7 +46,7 @@
 		                  <div class="input-group-addon">
 		                    Title
 		                  </div>
-		                  <select name="txtTitle" class="form-control form-control-lg" value="<?php echo set_value('txtTitle')?>">
+		                  <select name="txtTitle" class="form-control form-control-lg" value="<?php echo set_value('txtTitle')?> ">
   								<option value="Mr">Mr.</option>
   								<option value="Miss">Miss.</option>
   								<option value="Ms">Ms.</option>
