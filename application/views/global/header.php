@@ -107,11 +107,11 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left"> 
-                  <a href="<form action=" class="btn btn-default btn-flat">Change Password</a>
+                  <a href="<?php echo base_url();?>login_controller/change_password" class="btn btn-default btn-flat">Change Password</a>
                 </div>
-                 <?php// echo form_open('login_controller/logout');?> 
+                
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url();?>login_controller/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

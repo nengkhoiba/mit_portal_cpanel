@@ -62,7 +62,7 @@ class Login_controller extends CI_Controller {
 
 public function change_password(){
 	
-	
+	echo "change password";
 }
 
 
