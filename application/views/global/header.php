@@ -109,7 +109,7 @@
                 <div class="pull-left"> 
                   <a href="<form action=" class="btn btn-default btn-flat">Change Password</a>
                 </div>
-                 <?php echo form_open('login_controller/logout');?> 
+                 <?php// echo form_open('login_controller/logout');?> 
                 <div class="pull-right">
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
