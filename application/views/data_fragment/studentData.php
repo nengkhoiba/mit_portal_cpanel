@@ -28,18 +28,16 @@
 
 <tbody>
 <?php
-$FirstName=$_GET['q'];
-$MiddleName=$_GET['j'];
-$Father=$_GET['k'];
-$Gender=$_GET['l'];
-$Category=$_GET['m'];
+$Name=$_GET['q'];
+$Startdate=$_GET['j'];
+$EndDate=$_GET['k'];
+$mobile=$_GET['l'];
 $isActive=$_GET['n'];
 
 
 $sql="SELECT `USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `added_on`, `isActive`
  FROM `student_details` WHERE
-		firstname like '%$FirstName%' AND middlename like '%$MiddleName%' AND fName like '%$Father%' AND gender like '%$Gender%'
-AND isActive='$isActive'
+		firstname like '%$Name%' OR middlename like '%$Name%' AND mobile like '%$mobile%' AND DATE(added_on)between '$Startdate' and '$EndDate' AND isActive='$isActive'
 ";
 $query = $this->db->query($sql);
 if($query){

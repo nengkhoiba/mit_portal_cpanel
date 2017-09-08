@@ -3,9 +3,11 @@
       <?php $this->load->view('global/side_menu.php');?>
  
 <?php 
+$id="";
 if(isset($_GET['USID']))
 {
     $usid=trim($_GET['USID']);
+    $id=$usid;
     $sql=$sql="SELECT `USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `added_on`, `isActive`
  FROM `student_details` WHERE USID=$usid";
     $query=$this->db->query($sql);
@@ -109,9 +111,9 @@ if(isset($_GET['USID']))
 	     			<div class="form-group">
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    First Name
+		                     Name
 		                  </div>
-		                  <input id="postType" type="hidden" name="postType" value="<?php echo (isset($_GET['USID']))?$id:null;?> ">
+		                  <input id="postType" type="hidden" name="postType" value="<?php echo $id;?> ">
 		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtFirstName');?> ">
 		                </div>
 	              <?php echo form_error('txtFirstName');?>

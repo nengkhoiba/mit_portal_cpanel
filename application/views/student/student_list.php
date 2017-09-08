@@ -38,7 +38,7 @@
 	     			<div class="form-group">
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    First Name
+		                    Name
 		                  </div>
 		                  
 		                  <input id="txtFirstName" name="txtFirstName" type="text" class="form-control" value="<?php echo set_value('txtFirstName')?>">
@@ -51,58 +51,48 @@
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Middle Name
+		                    Entry Form
 		                  </div>
-		                  <input id="txtMiddleName" name="txtMiddleName" type="text" class="form-control" value="<?php echo set_value('txtMiddleName')?>">
+		           
+		                  <input  class="form-control" id="dateStart" type="date" name="dateStart" value="<?php echo set_value('dateStart');?>">
+		                        
 		                </div>
-	              
+	              			 <?php echo form_error('dateDOB');?>
 	              </div>
      			</div>
+     			
      				<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Father's name
+		                    To
 		                  </div>
-		                  <input id="txtFather"  name="txtFather" type="text" class="form-control" value="<?php echo set_value('txtFather')?>">
+		           
+		                  <input  class="form-control" id="dateEnd"  type="date" name="dateEnd" value="<?php echo set_value('dateEnd');?>">
+		                        
 		                </div>
-	              <?php echo form_error('txtFather');?>
+	              			 <?php echo form_error('dateDOB');?>
+	              </div>
+     			</div>
+     	</div>
+     			     		
+     		     			<div class="row">
+     		     			
+     		     	<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Mobile No
+		                  </div>
+		                   
+		                  <input  name="txtMobile" id="txtMobile" type="text" class="form-control"  value="<?php echo set_value('txtMobile');?> ">
+		                </div>
+	              <?php echo form_error('txtMobile');?>
 	              </div>
      			</div>
      			
-     			</div>
-     			     		
-     		     			<div class="row">
-     		
-     			<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    Gender
-		                  </div>
-		                  <select id="txtGender" name="txtGender" class="form-control form-control-lg" >
-  								<option>Male</option>
-  								<option>Female</option>
-  								<option>Others</option>
-								</select>
-		                </div>
-	              
-	              </div>
-	              </div>
-	              	<div class="col-sm-4">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                    Category
-		                  </div>
-		                  <input id="txtCategory" name="txtCategory" type="text" class="form-control" value="<?php echo set_value('txtCategory')?>">
-		                </div>
-	              <?php echo form_error('txtCategory');?>
-	              </div>
-     			</div>
      			<div class="col-sm-4">
 		     			<div class="form-group">
 		            	
@@ -167,7 +157,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_student?q=');?>"+document.getElementById('txtFirstName').value+"&j="+document.getElementById('txtMiddleName').value+"&k="+document.getElementById('txtFather').value+"&l="+document.getElementById('txtGender').value+"&m="+document.getElementById('txtCategory').value+"&n="+document.getElementById('ddlActive').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_student?q=');?>"+document.getElementById('txtFirstName').value+"&j="+document.getElementById('dateStart').value+"&k="+document.getElementById('dateEnd').value+"&l="+document.getElementById('txtMobile').value+"&n="+document.getElementById('ddlActive').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
