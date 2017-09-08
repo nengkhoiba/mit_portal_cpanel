@@ -900,6 +900,18 @@ class Data_controller extends CI_Controller {
 	//END PAGE MASTER
 	
 	
+	// START EXAM DATA ENTRY 
+	
+	public function update_exam_data_entry(){
+		
+		echo "Hello";
+	}
+	
+	
+	
+	
+	
+	//END EXAM DATA ENTRY 
 	
 	
 	
