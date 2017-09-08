@@ -71,7 +71,7 @@ class Data_controller extends CI_Controller {
 		    $ecoback=mysql_real_escape_string($ecoback);
 		 
 		    
-		    $flag=$_POST['postType'];
+		    $flag=trim($_POST['postType']);
 		    if($flag!=null){
 		        $sql = "UPDATE `student_details` SET   `title`='$title',
                                                        `firstname`='$fname',
@@ -871,6 +871,18 @@ class Data_controller extends CI_Controller {
 	//END PAGE MASTER
 	
 	
+	// START EXAM DATA ENTRY 
+	
+	public function update_exam_data_entry(){
+		
+		echo "Hello";
+	}
+	
+	
+	
+	
+	
+	//END EXAM DATA ENTRY 
 	
 	
 	
