@@ -10,6 +10,7 @@ class Data_controller extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'required');
+		$this->form_validation->set_rules('OptCourse', 'Course', 'required');
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
 		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
@@ -30,6 +31,11 @@ class Data_controller extends CI_Controller {
 		}
 		else
 		{
+		    $course=trim($_POST['OptCourse']);
+		    $trade=trim($_POST['OptTrade']);
+		    $stu_type=trim($_POST['OptStudentType']);
+		    $reg_no=trim($_POST['txtMuRegNo']);
+		    $reg_year=trim($_POST['txtRegYear']);
 		    $title=trim($_POST['txtTitle']);
 		    $fname=trim($_POST['txtFirstName']);
 		    $lname=trim($_POST['txtlastName']);
@@ -93,7 +99,7 @@ class Data_controller extends CI_Controller {
                                                         `eco_back`='$ecoback'
 
 						WHERE USID='$flag' ";
-		        $query = $this->db->query($sql);
+		                               $query = $this->db->query($sql);
 		                               if($query){
 		                                  $this->session->set_userdata('status', "Succesfully Updated!");
 		                                  redirect('student/registration');
@@ -114,8 +120,31 @@ class Data_controller extends CI_Controller {
 		        $query=$this->db->query($sql);
 		        if($query)
 		        {
-		            $this->session->set_userdata('status', "Successfully entered");
-		            redirect('student/registration');
+		            $sql1="SELECT USID
+					FROM  student_details
+					ORDER BY  student_details.USID DESC
+					LIMIT 1";
+		            $query1=$this->db->query($sql1);
+		            while($result=mysql_fetch_array($query1->result_id))
+		            {
+		                $res_id=$result['USID'];
+		            }
+		            $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`, `course_id`, `trade_id`, `isActive`)
+                                                  VALUES ('$res_id','','$reg_no','$course','$trade',1)";
+		            $query2=$this->db->query($sql2);
+		            if($query2)
+		            {
+		                $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`)
+                                                            VALUES ('$res_id','',$stu_type,'','',1)";
+		                $query3=$this->db->query($sql3);
+		                if($query3)
+		                {
+		                    $this->session->set_userdata('status', "Successfully entered");
+		                    redirect('student/registration');
+		                }
+		            }
+		            
+		           
 		        }
 		        else {
 		            $this->session->set_userdata('status', "Failed at db");

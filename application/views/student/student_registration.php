@@ -91,6 +91,62 @@ if(isset($_GET['USID']))
 
      		<?php echo form_open('data_controller/student_reg');?>
      		<div class="row">
+     		<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Course
+		                  </div>
+		                  <?php $this->load->view('global/drop_down_course')?>
+		                </div>   
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Trade
+		                  </div>
+		                  <?php $this->load->view('global/drop_down_trade')?>
+		                </div>   
+	              </div>
+     			</div>
+     				<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Student Type
+		                  </div>
+		                  <select name="OptStudentType" class="form-control form-control-lg" >
+		                  		<option value=0>Select</option>
+  								<option value=1>Fresher</option>
+  								<option value=3>Lateral Entry</option>
+  								</select>
+		                </div>   
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     MU reg no.
+		                  </div>
+		                  <input  name="txtMuRegNo" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtMuRegNo');?> ">
+		                </div>
+	              <?php echo form_error('txtMuRegNo');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     Registration year
+		                  </div>
+		                  <input  name="txtRegYear" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtRegYear');?> ">
+		                </div>
+	              <?php echo form_error('txtMuRegNo');?>
+	              </div>
+     			</div>
      			<div class="col-sm-4">
 	     			<div class="form-group">
 		                <div class="input-group">
@@ -98,6 +154,7 @@ if(isset($_GET['USID']))
 		                    Title
 		                  </div>
 		                  <select name="txtTitle" class="form-control form-control-lg" >
+		                  		<option value="">Select</option>
   								<option value="Mr">Mr</option>
   								<option value="Miss">Miss</option>
   								<option value="Ms">Ms</option>
