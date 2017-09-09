@@ -97,7 +97,7 @@ if(isset($_GET['USID']))
 		                  <div class="input-group-addon">
 		                    Course
 		                  </div>
-		                  <?php $this->load->view('global/drop_down_course')?>
+		                  <?php $this->load->view('global/drop_down_course');?>
 		                </div>   
 	              </div>
      			</div>
@@ -107,7 +107,7 @@ if(isset($_GET['USID']))
 		                  <div class="input-group-addon">
 		                    Trade
 		                  </div>
-		                  <?php $this->load->view('global/drop_down_trade')?>
+		                  <?php $this->load->view('global/drop_down_trade');?>
 		                </div>   
 	              </div>
      			</div>
@@ -133,7 +133,7 @@ if(isset($_GET['USID']))
 		                  </div>
 		                  <input  name="txtMuRegNo" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtMuRegNo');?> ">
 		                </div>
-	              <?php echo form_error('txtMuRegNo');?>
+	              
 	              </div>
      			</div>
      			<div class="col-sm-4">
@@ -144,7 +144,18 @@ if(isset($_GET['USID']))
 		                  </div>
 		                  <input  name="txtRegYear" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtRegYear');?> ">
 		                </div>
-	              <?php echo form_error('txtMuRegNo');?>
+	            
+	              </div>
+     			</div>
+     				<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+							MU Roll no.
+		                  </div>
+		                  <input  name="txtMuRoll" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtMuRoll');?> ">
+		                </div>
+	              
 	              </div>
      			</div>
      			<div class="col-sm-4">
@@ -168,7 +179,7 @@ if(isset($_GET['USID']))
 	     			<div class="form-group">
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                     Name
+		                    First Name
 		                  </div>
 		                  <input id="postType" type="hidden" name="postType" value="<?php echo $id;?> ">
 		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtFirstName');?> ">

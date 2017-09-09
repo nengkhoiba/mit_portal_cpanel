@@ -10,7 +10,7 @@ class Data_controller extends CI_Controller {
 		$this->load->library('form_validation');
 		
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'required');
-		$this->form_validation->set_rules('OptCourse', 'Course', 'required');
+		$this->form_validation->set_rules('OptCourse', 'Course', 'callback_course_check');
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
 		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
@@ -36,6 +36,7 @@ class Data_controller extends CI_Controller {
 		    $stu_type=trim($_POST['OptStudentType']);
 		    $reg_no=trim($_POST['txtMuRegNo']);
 		    $reg_year=trim($_POST['txtRegYear']);
+		    $mu_roll_no=trim($_POST['txtMuRoll']);
 		    $title=trim($_POST['txtTitle']);
 		    $fname=trim($_POST['txtFirstName']);
 		    $lname=trim($_POST['txtlastName']);
@@ -55,6 +56,12 @@ class Data_controller extends CI_Controller {
 		    $phyhandicap=trim($_POST['PhyHandicap']);
 		    $ecoback=trim($_POST['EcoBackward']);
 		    
+		    $course=mysql_real_escape_string($course);
+		    $trade=mysql_real_escape_string($trade);
+		    $stu_type=mysql_real_escape_string($stu_type);
+		    $reg_no=mysql_real_escape_string($reg_no);
+		    $reg_year=mysql_real_escape_string($reg_year);
+		    $mu_roll_no=mysql_real_escape_string($mu_roll_no);
 		    $title=mysql_real_escape_string($title);
 		    $fname=mysql_real_escape_string($fname);
 		    $lname=mysql_real_escape_string($lname);
@@ -101,6 +108,27 @@ class Data_controller extends CI_Controller {
 						WHERE USID='$flag' ";
 		                               $query = $this->db->query($sql);
 		                               if($query){
+		                                   if($reg_no!="" && $reg_year!="")
+		                                   {
+		                                       $sql1="UPDATE `std_col_relation` SET
+                                                        `reg_year`='$reg_year',
+                                                        `reg_no`='$reg_no',
+                                                        `course_id`='$course',
+                                                        `trade_id`='$trade'
+                                                        WHERE USID='$flag'";
+		                                       $query1=$this->db->query($sql1);
+		                                       if($query1)
+		                                       {
+		                                           if($mu_roll_no!="")
+		                                           {
+		                                               $sql2="UPDATE `std_col_relation` SET
+                                                        `MU_roll`='$mu_roll_no'                                                        
+                                                        WHERE USID='$flag'";
+		                                               $query2=$this->db->query($sql2);
+		                                           }                                 
+                 		                                       }
+		                                   }
+		                                   
 		                                  $this->session->set_userdata('status', "Succesfully Updated!");
 		                                  redirect('student/registration');
 		                                          }
@@ -129,15 +157,22 @@ class Data_controller extends CI_Controller {
 		            {
 		                $res_id=$result['USID'];
 		            }
-		            $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`, `course_id`, `trade_id`, `isActive`)
-                                                  VALUES ('$res_id','','$reg_no','$course','$trade',1)";
+		            $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`,`reg_year`, `course_id`, `trade_id`, `isActive`)
+                                                  VALUES ('$res_id','$mu_roll_no','$reg_no','$reg_year','$course','$trade',1)";
 		            $query2=$this->db->query($sql2);
 		            if($query2)
 		            {
-		                $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`)
-                                                            VALUES ('$res_id','',$stu_type,'','',1)";
+		                $sql3="SELECT `current_session_id` FROM `college` WHERE id=1";
 		                $query3=$this->db->query($sql3);
-		                if($query3)
+		                while($result=mysql_fetch_array($query3->result_id))
+		                {
+		                    $session_id=$result['current_session_id'];
+		                }
+		                
+		                $sql4="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`isActive`)
+                                                            VALUES ('$res_id','$session_id',$stu_type,1)";
+		                $query4=$this->db->query($sql4);
+		                if($query4)
 		                {
 		                    $this->session->set_userdata('status', "Successfully entered");
 		                    redirect('student/registration');
@@ -446,7 +481,7 @@ class Data_controller extends CI_Controller {
 	        }else{
 	            
 	            $sql = "INSERT INTO `session`(`name`,`isActive`) VALUES
-						('$session','$isActive')
+						('$session',0)
 				";
 	            $query = $this->db->query ($sql);
 	            if($query){
@@ -464,8 +499,76 @@ class Data_controller extends CI_Controller {
 	
 	public function deleteDT_student(){
 	    $id=$_GET['id'];
-	    $sql="DELETE FROM `emp_login` WHERE UEID='$id'";
+	    $sql="UPDATE `student_details` SET
+                                isActive=0
+                             WHERE UEID='$id'";
 	    $query = $this->db->query($sql);
+	}
+	public function loadDT_admission(){
+	    $this->load->view('data_fragment/AdmissionData.php');
+	}
+	
+	
+	public function update_current_session(){
+	    $id=trim($_GET['id']);
+	    $flag=trim($_GET['flag']);
+	    if($flag==1)
+	    {
+	        $sql="UPDATE `session` SET
+                                isActive=1
+                             WHERE id='$id'";
+	        $query = $this->db->query($sql);
+	        $sql1="UPDATE `session` SET
+                                isActive=0
+                             WHERE id!='$id'";
+	        $query1 = $this->db->query($sql1);
+	        $sql2="UPDATE `college` SET `current_session_id`='$id' WHERE id=1";
+	        $query2=$this->db->query($sql2);
+	    }
+	    else 
+	    {
+	        $sql1="UPDATE `session` SET
+                                isActive=0
+                             WHERE id='$id'";
+	        $query1 = $this->db->query($sql1);
+	    }
+	   
+	    
+	}
+	public function update_admission(){
+	    $this->load->helper(array('form', 'url'));
+	    
+	    $this->load->library('form_validation');
+	    
+	    $this->form_validation->set_rules('dateAdmission', 'Admission Date', 'required');
+	    $this->form_validation->set_rules('txtChallan', 'Challan no. or Transaction Id ', 'required');
+	    
+	    $id=trim($_POST['postType']);
+	    $doa=trim($_POST['dateAdmission']);
+	    $challan=trim($_POST['txtChallan']);
+	    if ($this->form_validation->run() == FALSE)
+	    {
+	        
+	        $this->load->view('student/student_admission.php');
+	        
+	    }
+	    else
+	    {
+	        $sql="UPDATE `admission_std_relation` SET 
+                                        `date_of_admission`='$doa',
+                                        `other`='$challan'
+                                        
+                                         WHERE USID='$id'";
+	        $query=$this->db->query($sql);
+	        if($query)
+	        {
+	            $this->session->set_userdata('status', "Succesfully saved!");
+	            redirect('nav_controller/student_admission');
+	        }
+	    }
+	    
+	    
+	    
 	}
 	//Athen
 	

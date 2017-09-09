@@ -7,8 +7,8 @@
     <section class="content-header">
       	<h6>
           <ol class="breadcrumb">
-             <li><a href="<?php echo base_url()?>utility/course"><i class="fa fa-gear"></i> Utility</a></li>
-            <li class="active">Course</li>
+             <li><a href="<?php echo base_url()?>student/admission"><i class="fa fa-gear"></i> Student</a></li>
+            <li class="active">Admission</li>
           </ol>
           </h6>  
     </section>
@@ -29,19 +29,19 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
-			<?php echo form_open('data_controller/update_master_course');?>
+			     		<?php echo form_open('data_controller/update_admission');?>
+
      			<div class="row">
 	     			<div class="col-sm-4">
 		     			<div class="form-group">
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Course Name
+			                    Course
 			                  </div>
-			                  <input id="postType" type="hidden" name="postType">
-			                  <input id="txtCourse" name="txtCourse" type="text" class="form-control" value="<?php echo set_value('txtCourse')?>">
+			                  <?php $this->load->view('global/drop_down_course');?>
 			                </div>
-			                <?php echo form_error('txtCourse');?>
+			               
 		              
 		              </div>
 	     			</div>
@@ -50,11 +50,11 @@
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Abv
+			                    Trade
 			                  </div>
-			                <input id="txtAbv" name="txtAbv" type="text" class="form-control" value="<?php echo set_value('txtAbv')?>">
+			                <?php $this->load->view('global/drop_down_trade');?>
 			                </div>
-			                <?php echo form_error('txtAbv');?>
+			                
 		              
 		              </div>
 	     			</div>
@@ -63,16 +63,50 @@
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Active
+			                    Semester
 			                  </div>
-			                  <select id="ddlActive" name="ddlActive" class="form-control">
-			                  	<option value="1">Yes</option>
-			                  	<option value="0">No</option>
-			                  </select>
+			                  <?php $this->load->view('global/drop_down_semester');?>
 			                </div>
 		              
 		              </div>
 	     			</div>
+	     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     Name
+		                  </div>
+		                  <input id="postType" type="hidden" name="postType">		                 
+		                  <input id="txtName" name="txtName" type="text" class="form-control">
+		                </div>
+	             
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Date of Admission
+		                  </div>
+		           
+		                  <input id="dateAdmission" class="form-control" type="date" name="dateAdmission" value="<?php echo set_value('dateAdmission');?>">
+		                        
+		                </div>
+	              			 <?php echo form_error('dateAdmission');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     Challan/Transaction Id
+		                  </div>		                 
+		                  <input  id="txtChallan" name="txtChallan" type="text" class="form-control" value="<?php echo set_value('"txtChallan"');?>">
+		                </div>
+	             <?php echo form_error('txtChallan');?>
+	              </div>
+     			</div>
      			</div>
      		<div class="row">
      			<div class="col-sm-9">
@@ -82,12 +116,13 @@
      			<div class="col-sm-3">
 	     			<div class="form-group">
 	     			<div class="btn-group btn-group-justified" role="group">
-						  <div class="btn-group" role="group">
-						    <input class="btn btn-default" type="submit" value="Save">
-						  </div>
-						  <div class="btn-group" role="group">
+	     					<div class="btn-group" role="group">
 						 <label class="btn btn-default" onclick="search()">Search</label>
 						   </div>
+	     					<div class="btn-group" role="group">
+						    <input class="btn btn-default" type="submit" value="Save">
+						  </div>
+						  
 						  <div class="btn-group" role="group">
 						  <input class="btn btn-default" type="reset" value="Reset">
 						   </div>						 
@@ -100,11 +135,9 @@
      			<div id="data_container">
      			
      			</div>
-     		</div>
-     			
+     		</div>    			
      		             		
-              <?php echo form_close();?>
-             
+             <?php form_close();?>             
 		   
      		</div>
      	</div>
@@ -121,7 +154,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_course?q=');?>"+document.getElementById('txtCourse').value+"&j="+document.getElementById('ddlActive').value+"&k="+document.getElementById('txtAbv').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_admission?q=');?>"+document.getElementById('OptCourse').value+"&j="+document.getElementById('OptTrade').value+"&k="+document.getElementById('OptSemester').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -147,35 +180,16 @@
 	  	catch(error) {}
 	  	}
 	  	}
-		function edit(id,name,abv)
+		function admit(id,name)
 		{
-			document.getElementById('txtCourse').value=name;
-			document.getElementById('postType').value=id;
-			document.getElementById('txtAbv').value=abv;
-			
-			
+			document.getElementById('postType').value=id;	
+			document.getElementById('txtName').value=name;		
 		}
-		function remove(id){
-			if (confirm('Are you sure you want to delete?')) {
-				var url = "<?php echo site_url('data_controller/removeDT_course?id=');?>"+id;
-			  	var xmlHttp = GetXmlHttpObject();
-			  	if (xmlHttp != null) {
-			  		try {
-			  			xmlHttp.onreadystatechange=function() {
-			  			if(xmlHttp.readyState == 4) {
-			  				if(xmlHttp.responseText != null){
-			  					search();
-			  				}else{
-			  					alert("Error");
-			  				}
-			  			}
-			  		}
-			  		xmlHttp.open("GET", url, true);
-			  		xmlHttp.send(null);
-			  	}
-			  	catch(error) {}
-			  	}
-			} 
-		  
-			}
+		function edit(id,dateofadmission,name,challan)
+		{
+			document.getElementById('dateAdmission').value=dateofadmission;
+			document.getElementById('postType').value=id;	
+			document.getElementById('txtName').value=name;	
+			document.getElementById('txtChallan').value=challan;	
+		}
   </script>

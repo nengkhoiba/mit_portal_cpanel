@@ -52,11 +52,12 @@
 		            	
 			                <div class="input-group">
 			                  <div class="input-group-addon">
-			                    Active
+			                    View Type
 			                  </div>
 			                  <select id="ddlActive" name="ddlActive" class="form-control">
-			                  	<option value="1">Yes</option>
-			                  	<option value="0">No</option>
+			                  	<option value="2">All</option>
+			                  	<option value="1">Only Active</option>
+			                  	<option value="0">Not Active</option>
 			                  </select>
 			                </div>
 		              
@@ -167,4 +168,27 @@
 			} 
 		  
 			}
+
+		function enable(sessionId,flag){
+		  	var url = "<?php echo site_url('data_controller/update_current_session?id=');?>"+sessionId+"&flag="+flag;
+		  	var xmlHttp = GetXmlHttpObject();
+		  	if (xmlHttp != null) {
+		  		try {
+		  			xmlHttp.onreadystatechange=function() {
+		  			if(xmlHttp.readyState == 4) {
+		  				if(xmlHttp.responseText != null){
+
+			  				search();	
+		  				
+		  				}else{
+		  					alert("Error");
+		  				}
+		  			}
+		  		}
+		  		xmlHttp.open("GET", url, true);
+		  		xmlHttp.send(null);
+		  	}
+		  	catch(error) {}
+		  	}
+		  	}
   </script>
