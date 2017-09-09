@@ -157,26 +157,26 @@ class Data_controller extends CI_Controller {
 		            {
 		                $res_id=$result['USID'];
 		            }
-		            $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`,`reg_year`, `course_id`, `trade_id`, `isActive`)
-                                                  VALUES ('$res_id','$mu_roll_no','$reg_no','$reg_year','$course','$trade',1)";
-		            $query2=$this->db->query($sql2);
-		            if($query2)
-		            {
-		                $sql3="SELECT `current_session_id` FROM `college` WHERE id=1";
-		                $query3=$this->db->query($sql3);
-		                while($result=mysql_fetch_array($query3->result_id))
-		                {
-		                    $session_id=$result['current_session_id'];
-		                }
-		                
-		                $sql4="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`isActive`)
-                                                            VALUES ('$res_id','$session_id',$stu_type,1)";
-		                $query4=$this->db->query($sql4);
-		                if($query4)
-		                {
-		                    $this->session->set_userdata('status', "Successfully entered");
-		                    redirect('student/registration');
-		                }
+            		            $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`,`reg_year`, `course_id`, `trade_id`, `isActive`)
+                                                              VALUES ('$res_id','$mu_roll_no','$reg_no','$reg_year','$course','$trade',1)";
+                        		            $query2=$this->db->query($sql2);
+                                    		            if($query2)
+                                    		            {
+                                    		                $sql3="SELECT `current_session_id` FROM `college` WHERE id=1";
+                                    		                $query3=$this->db->query($sql3);
+                                            		                while($result=mysql_fetch_array($query3->result_id))
+                                            		                {
+                                            		                    $session_id=$result['current_session_id'];
+                                            		                }
+                                            		                
+                                                    		                $sql4="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`isActive`)
+                                                                                                                VALUES ('$res_id','$session_id',$stu_type,1)";
+                                                    		                $query4=$this->db->query($sql4);
+                                                            		                if($query4)
+                                                            		                {
+                                                            		                    $this->session->set_userdata('status', "Successfully entered");
+                                                            		                    redirect('student/registration');
+                                                            		                }
 		            }
 		            
 		           
@@ -562,8 +562,8 @@ class Data_controller extends CI_Controller {
 	        $query=$this->db->query($sql);
 	        if($query)
 	        {
-	            $this->session->set_userdata('status', "Succesfully saved!");
-	            redirect('nav_controller/student_admission');
+	            $this->session->set_userdata('status', "You Are Admitted");
+	            redirect('student/student-admission');
 	        }
 	    }
 	    

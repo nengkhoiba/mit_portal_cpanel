@@ -182,6 +182,7 @@
 	  	}
 		function admit(id,name)
 		{
+			
 			document.getElementById('postType').value=id;	
 			document.getElementById('txtName').value=name;		
 		}

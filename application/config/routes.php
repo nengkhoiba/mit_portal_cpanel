@@ -60,6 +60,7 @@ $route['utility/session'] = 'nav_controller/master_session';
 $route['utility/exam'] = 'nav_controller/master_examtype';
 $route['student/registration'] = 'nav_controller/student_reg';
 $route['student/student-list'] = 'nav_controller/student_list';
+$route['student/student-admission'] = 'nav_controller/student_admission';
 //borison
 $route['utility/page'] = 'nav_controller/master_page';
 /* End of file routes.php */
