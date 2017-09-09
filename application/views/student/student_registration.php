@@ -112,6 +112,7 @@ if(isset($_GET['USID']))
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                     Name
+		                     <span style="color: red"> *</span>
 		                  </div>
 		                  <input id="postType" type="hidden" name="postType" value="<?php echo $id;?> ">
 		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtFirstName');?> ">
