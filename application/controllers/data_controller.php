@@ -186,20 +186,7 @@ class Data_controller extends CI_Controller {
 		            redirect('student/registration');
 		        }  
 		    
-		    }
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		   
+		    }		   
 		}
 		
 	}
@@ -563,7 +550,7 @@ class Data_controller extends CI_Controller {
 	        if($query)
 	        {
 	            $this->session->set_userdata('status', "You Are Admitted");
-	            redirect('student/student-admission');
+	            redirect('student/admission');
 	        }
 	    }
 	    

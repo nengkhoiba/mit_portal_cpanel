@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 09, 2017 at 03:19 PM
+-- Generation Time: Sep 10, 2017 at 02:18 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -41,9 +41,10 @@ CREATE TABLE IF NOT EXISTS `admission_std_relation` (
 --
 
 INSERT INTO `admission_std_relation` (`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`) VALUES
-(1, 0, 1, '2017-09-12', '12636', 1),
-(2, 0, 3, '0000-00-00', '', 1),
-(3, 1, 1, '0000-00-00', '', 1);
+(1, 0, 1, '2017-09-09', 'SBI 126369', 1),
+(2, 0, 3, '2017-09-10', '142026', 1),
+(3, 1, 1, '0000-00-00', '', 1),
+(4, 4, 1, '0000-00-00', '', 1);
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `college` (
 --
 
 INSERT INTO `college` (`id`, `current_session_id`) VALUES
-(1, 1);
+(1, 4);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 INSERT INTO `course` (`id`, `name`, `abv`, `isActive`) VALUES
-(1, 'Bachelor of engineering', 'B.E', 1),
+(1, 'Bachelor of Engineering', 'B.E', 1),
 (2, 'Master of Technology', 'M.Tech', 1);
 
 -- --------------------------------------------------------
@@ -99,14 +100,18 @@ CREATE TABLE IF NOT EXISTS `department` (
   `name` varchar(30) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `department`
 --
 
 INSERT INTO `department` (`id`, `name`, `isActive`) VALUES
-(1, 'CSE', 1);
+(1, 'CSE', 1),
+(2, 'Library', 1),
+(3, 'Examination', 1),
+(4, 'Account Section', 1),
+(5, 'Science And Humanities', 1);
 
 -- --------------------------------------------------------
 
@@ -292,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `page_manager` (
   `role_id` int(10) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `page_manager`
@@ -310,7 +315,8 @@ INSERT INTO `page_manager` (`id`, `site_map_id`, `role_id`, `isActive`) VALUES
 (9, 9, 1, 1),
 (10, 10, 1, 1),
 (11, 11, 1, 1),
-(12, 12, 1, 1);
+(12, 12, 1, 1),
+(13, 13, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -381,10 +387,10 @@ CREATE TABLE IF NOT EXISTS `session` (
 --
 
 INSERT INTO `session` (`id`, `name`, `isActive`) VALUES
-(1, '2014-15', 1),
+(1, '2014-15', 0),
 (2, '2015-16', 0),
 (3, '2016-17', 0),
-(4, '2017-18', 0);
+(4, '2017-18', 1);
 
 -- --------------------------------------------------------
 
@@ -400,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `site_map` (
   `url` varchar(50) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `site_map`
@@ -418,7 +424,8 @@ INSERT INTO `site_map` (`id`, `name`, `css`, `url`, `isActive`) VALUES
 (9, 'Course Master', 'fa fa-mortar-board', 'utility/course', 1),
 (10, 'Exam Master', 'fa fa-pencil-square', 'utility/exam', 1),
 (11, 'Session Master', 'fa fa-calendar', 'utility/session', 1),
-(12, 'Page Master', 'fa fa-sticky-note', 'utility/page', 1);
+(12, 'Page Master', 'fa fa-sticky-note', 'utility/page', 1),
+(13, 'Admission', 'fa fa-money', 'student/admission', 1);
 
 -- --------------------------------------------------------
 
@@ -444,7 +451,8 @@ CREATE TABLE IF NOT EXISTS `std_col_relation` (
 INSERT INTO `std_col_relation` (`USID`, `MU_roll`, `reg_no`, `reg_year`, `course_id`, `trade_id`, `isActive`) VALUES
 (1, '', '14430073', '', 1, 1, 1),
 (2, '', '15200129', '', 1, 1, 1),
-(3, '', '', '', 1, 1, 1);
+(3, '162045', '546921', '2016', 1, 1, 1),
+(4, '142056', '1080978', '2014', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -478,7 +486,7 @@ CREATE TABLE IF NOT EXISTS `student_details` (
   `added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`USID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `student_details`
@@ -487,7 +495,8 @@ CREATE TABLE IF NOT EXISTS `student_details` (
 INSERT INTO `student_details` (`USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `photo_url`, `added_by`, `added_on`, `isActive`) VALUES
 (1, 'Mr', 'Ningthoujam', 'Borison', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-09 12:25:14', 1),
 (2, 'Mr', 'Ningthoujam', 'Bibekson', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', '9615865655', '8794961391', 'Male', '2013-03-14', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-09 12:27:35', 1),
-(3, 'Mr', 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', 'gg', 'Male', '2017-09-06', 'gg', 'gg', 'gg', 0, 0, 0, '', 0, '2017-09-09 15:06:12', 1);
+(3, 'Mr', 'Ambed', '', 'Ningthoujam', 'N.Libiya', 'Ningthoujam Toni Singh', 'Moirangkampu Khewa Bazar,tinseed Road,Imphal East', 'Moirangkampu Khewa Bazar,tinseed Road,Imphal East', '9856209333', '9615865655', 'Male', '2015-02-14', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-10 13:50:46', 1),
+(4, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Konoha', 'Konoha', '9856209333', '9089779715', 'Male', '1996-07-08', 'Ninja', 'Japaneese', 'Shinobi', 0, 0, 0, '', 0, '2017-09-09 15:33:30', 1);
 
 -- --------------------------------------------------------
 
@@ -498,7 +507,7 @@ INSERT INTO `student_details` (`USID`, `title`, `firstname`, `middlename`, `last
 DROP TABLE IF EXISTS `trade`;
 CREATE TABLE IF NOT EXISTS `trade` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(45) NOT NULL,
   `abv` varchar(10) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
@@ -509,9 +518,9 @@ CREATE TABLE IF NOT EXISTS `trade` (
 --
 
 INSERT INTO `trade` (`id`, `name`, `abv`, `isActive`) VALUES
-(1, 'Computer Science and Engineeri', 'CSE', 1),
+(1, 'Computer Science and Engineering', 'CSE', 1),
 (2, 'Civil Engineering', 'CE', 1),
-(3, 'Electronics and Comuunication ', 'ECE', 1);
+(3, 'Electronics and Communication Engineering', 'ECE', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

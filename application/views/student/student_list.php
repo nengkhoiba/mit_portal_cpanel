@@ -23,7 +23,7 @@
      		
      			$msg=$this->session->userdata('status');
      			?>
-     			<div class="alert alert-warning alert-dismissible" role="alert">
+     			<div class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
@@ -32,7 +32,7 @@
      		}
      		?>
 
-     		<form action="<?php echo base_url();?>data_controller/student_list" method="post" accept-charset="utf-8">
+     		<form >
      		<div class="row">
      			<div class="col-sm-4">
 	     			<div class="form-group">
@@ -43,7 +43,6 @@
 		                  
 		                  <input id="txtFirstName" name="txtFirstName" type="text" class="form-control" value="<?php echo set_value('txtFirstName')?>">
 		                </div>
-	              <?php echo form_error('txtFirstName');?>
 	              </div>
      			</div>
      			<div class="col-sm-4">
@@ -57,7 +56,6 @@
 		                  <input  class="form-control" id="dateStart" type="date" name="dateStart" value="<?php echo set_value('dateStart');?>">
 		                        
 		                </div>
-	              			 <?php echo form_error('dateDOB');?>
 	              </div>
      			</div>
      			
@@ -72,7 +70,6 @@
 		                  <input  class="form-control" id="dateEnd"  type="date" name="dateEnd" value="<?php echo set_value('dateEnd');?>">
 		                        
 		                </div>
-	              			 <?php echo form_error('dateDOB');?>
 	              </div>
      			</div>
      	</div>
@@ -89,7 +86,6 @@
 		                   
 		                  <input  name="txtMobile" id="txtMobile" type="text" class="form-control"  value="<?php echo set_value('txtMobile');?> ">
 		                </div>
-	              <?php echo form_error('txtMobile');?>
 	              </div>
      			</div>
      			

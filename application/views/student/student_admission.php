@@ -21,7 +21,7 @@
      		
      			$msg=$this->session->userdata('status');
      			?>
-     			<div class="alert alert-warning alert-dismissible" role="alert">
+     			<div class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
@@ -102,7 +102,7 @@
 		                  <div class="input-group-addon">
 		                     Challan/Transaction Id
 		                  </div>		                 
-		                  <input  id="txtChallan" name="txtChallan" type="text" class="form-control" value="<?php echo set_value('"txtChallan"');?>">
+		                  <input  id="txtChallan" name="txtChallan" type="text" class="form-control" value="<?php echo set_value('txtChallan');?>">
 		                </div>
 	             <?php echo form_error('txtChallan');?>
 	              </div>
@@ -154,7 +154,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_admission?q=');?>"+document.getElementById('OptCourse').value+"&j="+document.getElementById('OptTrade').value+"&k="+document.getElementById('OptSemester').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_admission?q=');?>"+document.getElementById('OptCourse').value+"&j="+document.getElementById('OptTrade').value+"&k="+document.getElementById('OptSemester').value+"&l="+document.getElementById('txtName').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {

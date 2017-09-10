@@ -14,9 +14,13 @@
 $course=trim($_GET['q']);
 $trade=trim($_GET['j']);
 $Semester=trim($_GET['k']);
+$name=trim($_GET['l']);
 $sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,A.other
 FROM student_details S,admission_std_relation A,std_col_relation C
-WHERE C.course_id='$course' AND C.trade_id='$trade' AND A.sem_id='$Semester' AND C.USID=A.USID AND S.USID=C.USID
+WHERE C.course_id=CASE WHEN $course=0 THEN C.course_id ELSE '$course' END
+   AND C.trade_id=CASE WHEN $trade=0 THEN C.trade_id ELSE'$trade' END
+     AND A.sem_id=CASE WHEN $Semester=0 THEN A.sem_id ELSE'$Semester' END
+    AND C.USID=A.USID AND S.USID=C.USID
 ";
 $query = $this->db->query($sql);
 if($query){
