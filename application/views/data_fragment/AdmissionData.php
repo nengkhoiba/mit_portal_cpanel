@@ -16,12 +16,14 @@ $trade=trim($_GET['j']);
 $Semester=trim($_GET['k']);
 $name=trim($_GET['l']);
 $sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,A.other
-FROM student_details S,admission_std_relation A,std_col_relation C
+FROM student_details S LEFT JOIN admission_std_relation A on S.USID=A.USID
+                       LEFT JOIN std_col_relation C on C.USID=A.USID
 WHERE C.course_id=CASE WHEN $course=0 THEN C.course_id ELSE '$course' END
    AND C.trade_id=CASE WHEN $trade=0 THEN C.trade_id ELSE'$trade' END
      AND A.sem_id=CASE WHEN $Semester=0 THEN A.sem_id ELSE'$Semester' END
-    AND C.USID=A.USID AND S.USID=C.USID
-";
+
+AND (S.firstname like'%$name%' OR S.middlename like '%$name%' OR S.lastname like '%$name%')
+        ";
 $query = $this->db->query($sql);
 if($query){
     while($result=mysql_fetch_array($query->result_id)){

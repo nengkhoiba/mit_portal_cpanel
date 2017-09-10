@@ -9,19 +9,26 @@ class Data_controller extends CI_Controller {
 		
 		$this->load->library('form_validation');
 		
-		$this->form_validation->set_rules('txtFirstName', 'First Name', 'required');
-		$this->form_validation->set_rules('OptCourse', 'Course', 'callback_course_check');
-		$this->form_validation->set_rules('txtlastName', 'Last Name', 'required');
+		$this->form_validation->set_rules('txtFirstName', 'First Name', 'alpha|required',array("required"=>"please enter firstname"));
+		$this->form_validation->set_rules('txtTitle','Title','required',array("required"=>"please choose a title"));
+		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
+		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
+		$this->form_validation->set_rules('OptStudentType', 'Semester', 'required',array("required"=>"please choose a course"));		
+		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
-		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
-		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'required');
-		$this->form_validation->set_rules('txtFather', 'Father Name ', 'required');
-		$this->form_validation->set_rules('txtMother', 'Mother Name', 'required');
-		$this->form_validation->set_rules('txtPhone', 'Residence Phone no.', 'required');
-		$this->form_validation->set_rules('txtMobile', 'Mobile no', 'required');
-		$this->form_validation->set_rules('txtReligion', 'Religion', 'required');
-		$this->form_validation->set_rules('txtNationality', 'Nationality', 'required');
-		$this->form_validation->set_rules('txtCategory', 'Mother Name', 'required');
+		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'alpha_dash|required');
+		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'alpha_dash|required');
+		$this->form_validation->set_rules('txtFather', 'Father Name ', 'alpha|required');
+		$this->form_validation->set_rules('txtMother', 'Mother Name', 'alpha|required');
+		$this->form_validation->set_rules('txtPhone', 'Residence Phone no.', 'max_length[13]|min_length[7]|required');
+		$this->form_validation->set_rules('txtMobile', 'Mobile no', 'max_length[13]|min_length[10]|required');
+		$this->form_validation->set_rules('txtReligion', 'Religion', 'alpha|required');
+		$this->form_validation->set_rules('txtNationality', 'Nationality', 'alpha|required');
+		$this->form_validation->set_rules('txtCategory', 'Category', 'alpha|required');
+		$this->form_validation->set_rules('OptGender', 'Gender', 'required',array("required"=>"please choose a gender"));
+		$this->form_validation->set_rules('OptRcategory', ' ', 'required',array("required"=>"please choose a course"));
+		$this->form_validation->set_rules('OptPhyHandicap', ' ', 'required',array("required"=>"please choose a course"));
+		$this->form_validation->set_rules('OptEcoBackward', ' ', 'required',array("required"=>"please choose a course"));
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -48,13 +55,13 @@ class Data_controller extends CI_Controller {
 		    $fathername=trim($_POST['txtFather']);
 		    $mothername=trim($_POST['txtMother']);
 		    $mobile=trim($_POST['txtMobile']);
-		    $gender=trim($_POST['txtGender']);
+		    $gender=trim($_POST['OptGender']);
 		    $religion=trim($_POST['txtReligion']);
 		    $nationality=trim($_POST['txtNationality']);
 		    $category=trim($_POST['txtCategory']);
-		    $rcategory=trim($_POST['choiceRcategory']);
-		    $phyhandicap=trim($_POST['PhyHandicap']);
-		    $ecoback=trim($_POST['EcoBackward']);
+		    $rcategory=trim($_POST['OptRcategory']);
+		    $phyhandicap=trim($_POST['OptPhyHandicap']);
+		    $ecoback=trim($_POST['OptEcoBackward']);
 		    
 		    $course=mysql_real_escape_string($course);
 		    $trade=mysql_real_escape_string($trade);
@@ -79,11 +86,10 @@ class Data_controller extends CI_Controller {
 		    $rcategory=mysql_real_escape_string($rcategory);
 		    $phyhandicap=mysql_real_escape_string($phyhandicap);
 		    $ecoback=mysql_real_escape_string($ecoback);
-		    $rcategory=mysql_real_escape_string($ecoback);		 
-		    $phyhandicap=mysql_real_escape_string($phyhandicap);		   
+		    $rcategory=mysql_real_escape_string($ecoback);
+		    $phyhandicap=mysql_real_escape_string($phyhandicap);
 		    $ecoback=mysql_real_escape_string($ecoback);
-		 
-		    
+
 		    $flag=trim($_POST['postType']);
 		    if($flag!=null){
 		        $sql = "UPDATE `student_details` SET   `title`='$title',
