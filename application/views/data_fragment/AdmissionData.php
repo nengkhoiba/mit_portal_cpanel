@@ -36,7 +36,7 @@ if($query){
                                <?php 
                if($result['other']==''){
                 ?>
-                 <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>')" class="btn btn-danger">Admit Now</label></td>
+                 <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['date_of_admission']; ?>')" class="btn btn-danger">Admit Now</label></td>
                
                 <?php
                 }else{

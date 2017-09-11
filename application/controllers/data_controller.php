@@ -12,8 +12,8 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'alpha|required',array("required"=>"please enter firstname"));
 		$this->form_validation->set_rules('txtTitle','Title','required',array("required"=>"please choose a title"));
 		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
-		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
-		$this->form_validation->set_rules('OptStudentType', 'Semester', 'required',array("required"=>"please choose a course"));		
+		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a Trade"));
+		$this->form_validation->set_rules('OptStudentType', 'Semester', 'required',array("required"=>"please choose a Semester"));		
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
 		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'alpha_dash|required');
@@ -26,9 +26,9 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('txtNationality', 'Nationality', 'alpha|required');
 		$this->form_validation->set_rules('txtCategory', 'Category', 'alpha|required');
 		$this->form_validation->set_rules('OptGender', 'Gender', 'required',array("required"=>"please choose a gender"));
-		$this->form_validation->set_rules('OptRcategory', ' ', 'required',array("required"=>"please choose a course"));
-		$this->form_validation->set_rules('OptPhyHandicap', ' ', 'required',array("required"=>"please choose a course"));
-		$this->form_validation->set_rules('OptEcoBackward', ' ', 'required',array("required"=>"please choose a course"));
+		$this->form_validation->set_rules('OptRcategory', ' ', 'required',array("required"=>"please choose an option"));
+		$this->form_validation->set_rules('OptPhyHandicap', ' ', 'required',array("required"=>"please choose an option"));
+		$this->form_validation->set_rules('OptEcoBackward', ' ', 'required',array("required"=>"please choose an option"));
 		
 		if ($this->form_validation->run() == FALSE)
 		{

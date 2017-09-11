@@ -39,7 +39,7 @@ if($query){
                <?php 
                 if($result['isActive']==1){
                 ?>
-                 <td><label style="cursor: pointer" onclick="enable('<?php echo $result['id']; ?>,<?php echo 0;?>')" class="btn btn-success">Active</label></td>
+                 <td><label style="cursor: pointer" class="btn btn-success" disabled>Active</label></td>
                
                 <?php
                 }else{
