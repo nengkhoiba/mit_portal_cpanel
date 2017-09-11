@@ -11,16 +11,16 @@ class Data_controller extends CI_Controller {
 		
 
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'alpha|required',array("required"=>"please enter firstname"));
-		$this->form_validation->set_rules('txtTitle','Title','is_natural_no_zero|required',array("required"=>"please choose a title"));
+		$this->form_validation->set_rules('txtTitle','Title','required',array("required"=>"please choose a title"));
 		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
 		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a Trade"));
 		$this->form_validation->set_rules('OptStudentType', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a Semester"));		
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
-		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'alpha_dash|required');
-		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'alpha_dash|required');
-		$this->form_validation->set_rules('txtFather', 'Father Name ', 'alpha|required');
-		$this->form_validation->set_rules('txtMother', 'Mother Name', 'alpha|required');
+		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
+		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'required');
+		$this->form_validation->set_rules('txtFather', 'Father Name ', 'required');
+		$this->form_validation->set_rules('txtMother', 'Mother Name', 'required');
 		$this->form_validation->set_rules('txtPhone', 'Residence Phone no.', 'max_length[13]|min_length[7]|required');
 		$this->form_validation->set_rules('txtMobile', 'Mobile no', 'max_length[13]|min_length[10]|required');
 		$this->form_validation->set_rules('txtReligion', 'Religion', 'alpha|required');
