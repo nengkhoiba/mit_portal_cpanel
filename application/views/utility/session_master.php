@@ -169,8 +169,8 @@
 		  
 			}
 
-		function enable(sessionId,flag){
-		  	var url = "<?php echo site_url('data_controller/update_current_session?id=');?>"+sessionId+"&flag="+flag;
+		function enable(sessionId){
+		  	var url = "<?php echo site_url('data_controller/update_current_session?id=');?>"+sessionId;
 		  	var xmlHttp = GetXmlHttpObject();
 		  	if (xmlHttp != null) {
 		  		try {

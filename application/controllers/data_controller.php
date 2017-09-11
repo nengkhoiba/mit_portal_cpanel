@@ -11,10 +11,10 @@ class Data_controller extends CI_Controller {
 		
 
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'alpha|required',array("required"=>"please enter firstname"));
-		$this->form_validation->set_rules('txtTitle','Title','required',array("required"=>"please choose a title"));
+		$this->form_validation->set_rules('txtTitle','Title','is_natural_no_zero|required',array("required"=>"please choose a title"));
 		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
 		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a Trade"));
-		$this->form_validation->set_rules('OptStudentType', 'Semester', 'required',array("required"=>"please choose a Semester"));		
+		$this->form_validation->set_rules('OptStudentType', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a Semester"));		
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
 		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'alpha_dash|required');
@@ -31,19 +31,6 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('OptPhyHandicap', ' ', 'required',array("required"=>"please choose an option"));
 		$this->form_validation->set_rules('OptEcoBackward', ' ', 'required',array("required"=>"please choose an option"));
 
-		$this->form_validation->set_rules('txtFirstName', 'First Name', 'required');
-		$this->form_validation->set_rules('txtlastName', 'Last Name', 'required');
-		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
-		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
-		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'required');
-		$this->form_validation->set_rules('txtFather', 'Father Name ', 'required');
-		$this->form_validation->set_rules('txtMother', 'Mother Name', 'required');
-		$this->form_validation->set_rules('txtPhone', 'Residence Phone no.', 'required');
-		$this->form_validation->set_rules('txtMobile', 'Mobile no', 'required');
-		$this->form_validation->set_rules('txtReligion', 'Religion', 'required');
-		$this->form_validation->set_rules('txtNationality', 'Nationality', 'required');
-		$this->form_validation->set_rules('txtCategory', 'Mother Name', 'required');
-
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -53,6 +40,12 @@ class Data_controller extends CI_Controller {
 		}
 		else
 		{
+		    $course=trim($_POST['OptCourse']);
+		    $trade=trim($_POST['OptTrade']);
+		    $stutype=trim($_POST['OptStudentType']);
+		    $mu_roll=trim($_POST['txtMuRoll']);
+		    $reg_no=trim($_POST['txtMuRegNo']);
+		    $reg_year=trim($_POST['txtRegYear']);
 		    $title=trim($_POST['txtTitle']);
 		    $fname=trim($_POST['txtFirstName']);
 		    $lname=trim($_POST['txtlastName']);
@@ -118,6 +111,20 @@ class Data_controller extends CI_Controller {
 						WHERE USID='$flag' ";
 		        $query = $this->db->query($sql);
 		                               if($query){
+		                                   $sql1="UPDATE `std_col_relation` SET
+                                                                 `MU_roll`='$mu_roll',
+                                                                `reg_no`='$reg_no',
+                                                                `reg_year`='$reg_year',
+                                                                `course_id`='$course',
+                                                                `trade_id`='$trade'
+                                                                 WHERE USID='$flag'";
+		                                   $query1=$this->db->query($sql1);
+		                                   if($query1)
+		                                   {
+		                                     $sql2="UPDATE `admission_std_relation` SET `sem_id`='$stutype' WHERE USID='$flag'";  
+		                                   }
+		                                   
+		                                   
 		                                  $this->session->set_userdata('status', "Succesfully Updated!");
 		                                  redirect('student/registration');
 		                                          }
@@ -137,6 +144,22 @@ class Data_controller extends CI_Controller {
 		        $query=$this->db->query($sql);
 		        if($query)
 		        {
+		            $sql1="SELECT USID FROM `student_details` 
+                            ORDER BY student_details.USID DESC limit 1";
+		            $query1=$this->db->query($sql1);
+		            while($result=mysql_fetch_array($query1->result_id))
+		            {
+		                $usid=$result['USID'];
+		                $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`, `reg_year`, `course_id`, `trade_id`)
+                                                      VALUES ('$usid','$mu_roll','$reg_no','$reg_year','$course','$trade')";
+		                $query2=$this->db->query($sql2);
+		                if($query2)
+		                {
+		                    $session=$this->session->userdata('session');
+		                    $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`isActive`) 
+                                                                VALUES ('$usid','$session','$stutype','0')";
+		                }
+		            }
 		            $this->session->set_userdata('status', "Successfully entered");
 		            redirect('student/registration');
 		        }
@@ -146,18 +169,6 @@ class Data_controller extends CI_Controller {
 		        }  
 		    
 		    }
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
-		    
 		   
 		}
 		
@@ -215,7 +226,10 @@ class Data_controller extends CI_Controller {
 	public function removeDT_semester()
 	{
 	    $temp=$_GET['id'];
-	    $sql="DELETE FROM `semester` WHERE id='$temp'";
+	    //$sql="DELETE FROM `semester` WHERE id='$temp'";
+	    $sql="UPDATE `semester` SET
+                isActive='0' WHERE
+                  id ='$temp'";
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
@@ -228,7 +242,9 @@ class Data_controller extends CI_Controller {
 	public function removeDT_trade()
 	{
 	    $temp=$_GET['id'];
-	    $sql="DELETE FROM `trade` WHERE id='$temp'";
+	    $sql="UPDATE `trade` SET
+                isActive='0' WHERE
+                  id ='$temp'";
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
@@ -256,7 +272,10 @@ class Data_controller extends CI_Controller {
 	public function removeDT_course()
 	{
 	    $temp=$_GET['id'];
-	    $sql="DELETE FROM `course` WHERE id='$temp'";
+	   // $sql="DELETE FROM `course` WHERE id='$temp'";
+	    $sql="UPDATE `course` SET
+                isActive='0' WHERE
+                  id ='$temp'";
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
@@ -269,7 +288,10 @@ class Data_controller extends CI_Controller {
 	public function removeDT_session()
 	{
 	    $temp=$_GET['id'];
-	    $sql="DELETE FROM `session` WHERE id='$temp'";
+	    //$sql="DELETE FROM `session` WHERE id='$temp'";
+	    $sql="UPDATE `session` SET
+                isActive='0' WHERE
+                  id ='$temp'";
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
@@ -476,14 +498,20 @@ class Data_controller extends CI_Controller {
 	        $id=$_POST['postType'];
 	            $sql ="UPDATE `admission_std_relation` SET
                                 `date_of_admission`='$date',
-                                `other`='$challan'
-                                     WHERE USID='$id'";
+                                `other`='$challan',
+                                 `isActive`=1
+                                     WHERE USID='$id' AND session_id='$session'";
 	            $query = $this->db->query($sql);
 	            if($query){
 	                $this->session->set_userdata('status', "Succesfully Updated!");
+	                redirect('student/admission');
+	            }
+	            else {
+	                $this->session->set_userdata('status', "Failed To Update!!!");
+	                $this->load->view('student/student_admission');
 	            }
 	        	        
-	        redirect('student/admission');
+	      
 	    }
 	    
 	}
@@ -495,6 +523,33 @@ class Data_controller extends CI_Controller {
 	    $id=$_GET['id'];
 	    $sql="DELETE FROM `emp_login` WHERE UEID='$id'";
 	    $query = $this->db->query($sql);
+	}
+	public function update_current_session()
+	{
+	    $id=trim($_GET['id']);
+	    $sql="UPDATE `session` SET
+                        `isActive`='1' WHERE id='$id'";
+	    $query=$this->db->query($sql);
+	    if($query)
+	    {
+	        $sql1="UPDATE `session` SET
+	        `isActive`='0' WHERE id!='$id'";
+	        $query1=$this->db->query($sql1);
+	        if ($query1)
+	        {
+	            $sql2="UPDATE `college` SET `current_session_id`='$id' WHERE id=1";
+	            $query2=$this->db->query($sql2);
+	            if($query2)
+	            {
+	                redirect('utility/session');
+	                
+	            }
+	        }
+	    }
+	    else {
+	        $this->load->view('utility/session_master');
+	    }
+	    
 	}
 	//Athen
 	

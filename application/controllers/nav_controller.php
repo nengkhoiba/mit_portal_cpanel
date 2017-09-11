@@ -5,7 +5,13 @@ class Nav_controller extends CI_Controller {
 	//rohitkanta
 	public function __construct(){
 	    parent::__construct();
-	    $this->session->set_userdata('session','4');
+	    $sql="SELECT  `current_session_id` FROM  `college` WHERE id =1";
+	    $query=$this->db->query($sql);
+	    while ($result=mysql_fetch_array($query->result_id))
+	    {
+	        $session_id=$result['current_session_id'];
+	    }
+	    $this->session->set_userdata('session',$session_id);
 	    if($this->session->userdata('Role')=='ADMIN'){
 	        
 	    }else{

@@ -10,8 +10,8 @@ if(isset($_GET['USID']))
     $id=$usid;
     $sql=$sql="SELECT S.USID, S.title, S.firstname, S.middlename,S.lastname,S.mName, S.fName, S.pAddress, 
 S.cAddress,S.phone, S.mobile, S.gender, S.dob, S.religion, S.nationality, S.category, 
-S.reserve_cat, S.phy_han, S.eco_back,A.MU_roll,A.reg_no,A.reg_year,A.course_id,A.trade_id
- FROM student_details S LEFT JOIN std_col_relation A on S.USID=A.USID
+S.reserve_cat, S.phy_han, S.eco_back,A.MU_roll,A.reg_no,A.reg_year,A.course_id,A.trade_id,R.sem_id
+ FROM student_details S LEFT JOIN std_col_relation A on S.USID=A.USID LEFT JOIN admission_std_relation R on S.USID=R.USID
 WHERE S.USID=$usid";
     $query=$this->db->query($sql);
         while($result=mysql_fetch_array($query->result_id))
@@ -19,6 +19,7 @@ WHERE S.USID=$usid";
             $id=$result['USID'];
             $title=$result['title'];
             $course=$result['course_id'];
+            $trade=$result['trade_id'];
             $firstname=$result['firstname'];
             $middlename=$result['middlename'];
             $lastname=$result['lastname'];
@@ -33,9 +34,13 @@ WHERE S.USID=$usid";
             $religion=$result['religion'];
             $nationality=$result['nationality'];
             $category=$result['category'];
+            $rcat=$result['reserve_cat'];
+            $phand=$result['phy_han'];
+            $eco=$result['eco_back'];
             $mu_roll=$result['MU_roll'];
             $reg_no=$result['reg_no'];
-            $reg_year=$result['reg_year'];
+            $sem=$result['sem_id'];
+            $reg_year=$result['reg_year'];//`reserve_cat`, `phy_han`, `eco_back`
           
         }
 }
@@ -79,6 +84,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Course
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <?php $this->load->view('global/drop_down_course');?>
 		                </div> 
@@ -90,6 +96,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Trade
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <?php $this->load->view('global/drop_down_trade');?>
 		                </div>
@@ -101,9 +108,10 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Student Type
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <select name="OptStudentType" class="form-control form-control-lg" >
-		                  		<option value="">Select</option>
+		                  		<option value=0>Select</option>
   								<option value=1>Fresher</option>
   								<option value=3>Lateral Entry</option>
   								</select>
@@ -149,9 +157,10 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Title
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <select name="txtTitle" class="form-control form-control-lg" >
-		                  		<option value="">Select</option>
+		                  		<option value=0>Select</option>
   								<option value="Mr">Mr</option>
   								<option value="Miss">Miss</option>
   								<option value="Ms">Ms</option>
@@ -198,6 +207,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Last Name
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  
 		                  <input  name="txtlastName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$lastname:set_value('txtlastName');?>" >
@@ -211,6 +221,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Mother's name
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  
 		                  <input  name="txtMother" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$mName:set_value('txtMother');?>">
@@ -224,6 +235,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Father's name
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <input  name="txtFather" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$fName:set_value('txtFather');?>">
 		                </div>
@@ -236,6 +248,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                   Permanent Address
+		                   <span style="color: red"> *</span>
 		                  </div>
 		                  <input  name="txtPermanentAddress" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$pAddress:set_value('txtPermanentAddress');?>" >
 		                </div>
@@ -248,6 +261,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Address for Communication
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <input  name="txtCAdress" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$cAddress:set_value('txtCAdress');?>">
 		                </div>
@@ -261,6 +275,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Residence Phone No
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  
 		                  <input  name="txtPhone" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$phone:set_value('txtPhone');?>" >
@@ -274,6 +289,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Mobile No
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                   
 		                  <input  name="txtMobile" type="text" class="form-control"  value="<?php echo (isset($_GET['USID']))?$mobile:set_value('txtMobile');?>">
@@ -287,8 +303,9 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Gender
+		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select  name="OptGender" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$gender:set_value('txtGender');?>" >
+		                  <select id="OptGender" name="OptGender" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$gender:set_value('txtGender');?>" >
   								<option value="" >Select</option>
   								<option value="Male">Male</option>
   								<option value="Female">Female</option>
@@ -304,6 +321,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Date of Birth
+		                    <span style="color: red"> *</span>
 		                  </div>
 		           
 		                  <input  class="form-control" type="date" name="dateDOB" value="<?php echo (isset($_GET['USID']))?$dob:set_value('dateDOB');?>">
@@ -322,6 +340,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Religion
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <input  name="txtReligion" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$religion:set_value('txtReligion');?>" >
 		                </div>
@@ -336,6 +355,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Nationality
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <input  name="txtNationality" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$nationality:set_value('txtNationality');?>">
 		                </div>
@@ -348,6 +368,7 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Category
+		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <input  name="txtCategory" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$category:set_value('txtCategory');?>" >
 		                </div>
@@ -360,8 +381,9 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Reserve Category
+		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select name="OptRcategory" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$reserve_cat:set_value('choiceRcategory');?>" >
+		                  <select id="OptRcategory" name="OptRcategory" class="form-control form-control-lg" value="<?php echo set_value('choiceRcategory');?>" >
   								<option value="" >Select</option>
   								<option value=0>No</option>
   								<option value=1>Yes</option>
@@ -376,8 +398,9 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Physically Handicapped
+		                    <span style="color: red"> *</span>
 		                  </div>
-		                  	   <select name="OptPhyHandicap" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$phy_han:set_value('PhyHandicap');?>" >
+		                  	   <select id="OptPhyHandicap"  name="OptPhyHandicap" class="form-control form-control-lg" value="<?php echo set_value('PhyHandicap');?>" >
   								<option value="" >Select</option>
   								<option value=0>No</option>
   								<option value=1>Yes</option>
@@ -392,8 +415,9 @@ WHERE S.USID=$usid";
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Economically Backward 
+		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select name="OptEcoBackward" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$eco_back:set_value('EcoBackward');?>" >
+		                  <select id="OptEcoBackward" name="OptEcoBackward" class="form-control form-control-lg" value="<?php echo set_value('EcoBackward');?>" >
   								<option value="" >Select</option>
   								<option value=0>No</option>
   								<option value=1>Yes</option>
@@ -450,6 +474,17 @@ WHERE S.USID=$usid";
   <?php $this->load->view('global/footer.php');?>
    <script type="text/javascript">
   $(document).ready(function() {
-	  	$('#ddlCourse').val('<?php echo isset($_GET['USID'])?$course:0;?>');
-	  });
+	  	set();
+        });
+  function set()
+  {
+	  $('#OptCourse').val('<?php echo isset($_GET['USID'])?$course:0;?>');	
+	  $('#txtTitle').val('<?php echo isset($_GET['USID'])?$title:"";?>');  
+      $('#OptTrade').val('<?php echo isset($_GET['USID'])?$trade:0;?>');
+      $('#OptStudentType').val('<?php echo isset($_GET['USID'])?$sem:0;?>');       
+      $('#OptGender').val('<?php echo isset($_GET['USID'])?$gender:0;?>');       
+      $('#OptRcategory').val('<?php echo isset($_GET['USID'])?$rcat:0;?>');       
+      $('#OptPhyHandicap').val('<?php echo isset($_GET['USID'])?$phand:0;?>');       
+      $('#OptEcoBackward').val('<?php echo isset($_GET['USID'])?$eco:0;?>');
+  }
   </script>

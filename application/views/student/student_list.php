@@ -34,6 +34,46 @@
 
      		<form >
      		<div class="row">
+     		<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Course
+		                    <span style="color: red"> *</span>
+		                  </div>
+		                  <?php $this->load->view('global/drop_down_course');?>
+		                </div> 
+		                <?php echo form_error('OptCourse');?>  
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Trade
+		                    <span style="color: red"> *</span>
+		                  </div>
+		                  <?php $this->load->view('global/drop_down_trade');?>
+		                </div>
+		                <?php echo form_error('OptTrade');?>   
+	              </div>
+     			</div>
+     				<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                    Student Type
+		                    <span style="color: red"> *</span>
+		                  </div>
+		                  <select id="OptStudentType" name="OptStudentType" class="form-control form-control-lg" >
+		                  		<option value=0>Select</option>
+  								<option value=1>Fresher</option>
+  								<option value=3>Lateral Entry</option>
+  								</select>
+		                </div> 
+		                <?php echo form_error('OptStudentType');?>  
+	              </div>
+     			</div>
      			<div class="col-sm-4">
 	     			<div class="form-group">
 		                <div class="input-group">
@@ -153,7 +193,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_student?q=');?>"+document.getElementById('txtFirstName').value+"&j="+document.getElementById('dateStart').value+"&k="+document.getElementById('dateEnd').value+"&l="+document.getElementById('txtMobile').value+"&n="+document.getElementById('ddlActive').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_student?q=');?>"+document.getElementById('txtFirstName').value+"&j="+document.getElementById('dateStart').value+"&k="+document.getElementById('dateEnd').value+"&l="+document.getElementById('txtMobile').value+"&n="+document.getElementById('ddlActive').value+"&c="+document.getElementById('OptCourse').value+"&t="+document.getElementById('OptTrade').value+"&s="+document.getElementById('OptStudentType').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {

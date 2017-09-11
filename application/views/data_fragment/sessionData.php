@@ -6,6 +6,7 @@
 <th>Active</th>
 <th>Edit</th>
 <th>Remove</th>
+<th>Status</th>
 </tr>
 </thead>
 
@@ -15,7 +16,7 @@ $session=$_GET['q'];
 $isActive=$_GET['j'];
 $sql="SELECT `id`, `name`, `isActive` FROM `session` WHERE
 		name like '%$session%'
-AND isActive='$isActive'";
+AND isActive=CASE WHEN '$isActive'=2 THEN isActive ELSE '$isActive' END";
 $query = $this->db->query($sql);
 if($query){
     while($result=mysql_fetch_array($query->result_id)){
@@ -40,7 +41,7 @@ if($query){
                 <?php
                 }else{
                  ?>
-                 <td><label style="cursor: pointer" onclick="enable('<?php echo $result['id']; ?>','<?php echo 1;?>')" class="btn btn-warning">Set As Current</label></td>
+                 <td><label style="cursor: pointer" onclick="enable('<?php echo $result['id']; ?>')" class="btn btn-warning">Set As Current</label></td>
 
                
             </tr>

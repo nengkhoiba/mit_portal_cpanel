@@ -4,6 +4,11 @@
 <th>ID</th>
 <th>Title</th>
 <th>Name</th>
+<th>Course</th>
+<th>Trade</th>
+<th>Semester</th>
+<th>MU Roll</th>
+<th>Reg No.</th>
 <th>Mother's Name</th>
 <th>Father's Name</th>
 <th>Permanent Address</th>
@@ -28,17 +33,23 @@
 
 <tbody>
 <?php
-$Name=$_GET['q'];
-$Startdate=$_GET['j'];
-$EndDate=$_GET['k'];
-$mobile=$_GET['l'];
-$isActive=$_GET['n'];
-
-
-$sql="SELECT `USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `added_on`, `isActive`
- FROM `student_details` WHERE
-		firstname like '%$Name%' OR middlename like '%$Name%' AND mobile like '%$mobile%' AND DATE(added_on)between '$Startdate' and '$EndDate' AND isActive='$isActive'
-";
+$Name=trim($_GET['q']);
+$Startdate=trim($_GET['j']);
+$EndDate=trim($_GET['k']);
+$mobile=trim($_GET['l']);
+$isActive=trim($_GET['n']);
+$course=trim($_GET['c']);
+$trade=trim($_GET['t']);
+$sem=trim($_GET['s']);
+$sql="SELECT S.USID, S.title,S.firstname,S.middlename,S.lastname,S.mName,S.fName,S.pAddress,S.cAddress,S.phone,
+S.mobile,S.gender,S.dob,S.religion,S.nationality,S.category,S.reserve_cat,S.phy_han,S.eco_back,S.added_on,S.isActive,
+C.abv as course_name,T.abv as trade_name,P.name as semester_name,R.MU_roll,R.reg_no,R.reg_year
+ FROM `student_details` S LEFT JOIN admission_std_relation A on S.USID=A.USID LEFT JOIN std_col_relation R on R.USID=A.USID
+LEFT JOIN course C on C.id=R.course_id LEFT JOIN trade T on T.id=R.trade_id LEFT JOIN semester P on P.id=A.sem_id
+ WHERE S.firstname like '%$Name%' OR S.middlename like '%$Name%' AND S.mobile like '%$mobile%' AND DATE(S.added_on)between '$Startdate' and '$EndDate'
+ AND S.isActive='$isActive' AND C.id=CASE WHEN $course=0 THEN C.id ELSE '$course' END
+   AND T.id=CASE WHEN $trade=0 THEN T.id ELSE'$trade' END
+     AND P.id=CASE WHEN $sem=0 THEN P.id ELSE'$sem' END";
 $query = $this->db->query($sql);
 if($query){
     while($result=mysql_fetch_array($query->result_id)){
@@ -48,6 +59,11 @@ if($query){
                 <td><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['title']; ?></td>
                 <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
+                <td><?php echo $result['course_name']; ?></td>
+                <td><?php echo $result['trade_name']; ?></td>
+                <td><?php echo $result['semester_name']; ?></td>
+                <td><?php echo $result['MU_roll']; ?></td>
+                <td><?php echo $result['reg_no'].' of '.$result['reg_year']; ?></td>
                 <td><?php echo $result['mName']; ?></td>
                 <td><?php echo $result['fName']; ?></td>
                 <td><?php echo $result['pAddress']; ?></td>

@@ -74,14 +74,18 @@
 	     			<div class="form-group">
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                     Name
+		                     View Type
 		                  </div>
-		                  <input id="postType" type="hidden" name="postType">		                 
-		                  <input id="txtName" name="txtName" type="text" class="form-control">
+		                 <select id="OptView" name="Optview" class="form-control">
+			                  	<option value="2">All</option>
+			                  	<option value="1">Only Admitted</option>
+			                  	<option value="0">Not Admitted Only</option>
+			                  </select>
 		                </div>
 	             
 	              </div>
      			</div>
+	     			
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -96,6 +100,7 @@
 	              			 <?php echo form_error('dateAdmission');?>
 	              </div>
      			</div>
+     			
      			<div class="col-sm-4">
 	     			<div class="form-group">
 		                <div class="input-group">
@@ -105,6 +110,18 @@
 		                  <input  id="txtChallan" name="txtChallan" type="text" class="form-control" value="<?php echo set_value('txtChallan');?>">
 		                </div>
 	             <?php echo form_error('txtChallan');?>
+	              </div>
+     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     Name
+		                  </div>
+		                  <input id="postType" type="hidden" name="postType">		                 
+		                  <input id="txtName" name="txtName" type="text" class="form-control">
+		                </div>
+	             
 	              </div>
      			</div>
      			</div>
@@ -154,7 +171,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_admission?q=');?>"+document.getElementById('OptCourse').value+"&j="+document.getElementById('OptTrade').value+"&k="+document.getElementById('OptSemester').value+"&l="+document.getElementById('txtName').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_admission?q=');?>"+document.getElementById('OptCourse').value+"&j="+document.getElementById('OptTrade').value+"&k="+document.getElementById('OptSemester').value+"&l="+document.getElementById('txtName').value+"&m="+document.getElementById('OptView').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
