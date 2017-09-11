@@ -121,7 +121,7 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_course?q=');?>"+document.getElementById('txtCourse').value+"&j="+document.getElementById('ddlActive').value+"&k="+document.getElementById('txtAbv');
+		  var url = "<?php echo site_url('data_controller/loadDT_course?q=');?>"+document.getElementById('txtCourse').value+"&j="+document.getElementById('ddlActive').value+"&k="+document.getElementById('txtAbv').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
