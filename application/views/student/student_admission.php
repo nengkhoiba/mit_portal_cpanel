@@ -180,12 +180,11 @@
 	  	catch(error) {}
 	  	}
 	  	}
-		function admit(id,name,doa)
+		function admit(id,name)
 		{
 			
 			document.getElementById('postType').value=id;	
 			document.getElementById('txtName').value=name;	
-			document.getElementById('dateAdmission').value=doa;	
 		}
 		function edit(id,dateofadmission,name,challan)
 		{

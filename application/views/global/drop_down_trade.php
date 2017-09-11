@@ -1,8 +1,8 @@
 
- <select  class="form-control form-control-lg " id="ddlTrade" name="ddlTrade">
- <option value='0'>- Select - </option>
+ <select  class="form-control form-control-lg " id="OptTrade" name="OptTrade">
+ <option value=0>- Select - </option>
  
- <?php $sql="SELECT `id`, `name`  FROM `course` WHERE `isActive`=1" ;
+ <?php $sql="SELECT `id`, `name`  FROM `trade` WHERE `isActive`=1" ;
 
 $query = $this->db->query($sql);
 if($query)

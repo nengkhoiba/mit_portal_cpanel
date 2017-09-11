@@ -3,6 +3,15 @@
 class Nav_controller extends CI_Controller {
 
 	//rohitkanta
+	public function __construct(){
+	    parent::__construct();
+	    $this->session->set_userdata('session','4');
+	    if($this->session->userdata('Role')=='ADMIN'){
+	        
+	    }else{
+	        redirect('home');
+	    }
+	}
 	public function index(){
 		$this->load->view('employee/landing');
 	}
@@ -36,6 +45,9 @@ class Nav_controller extends CI_Controller {
 	
 	public function student_list(){
 	    $this->load->view('student/student_list');
+	}
+	public function student_admission(){
+	    $this->load->view('student/student_admission');
 	}
 	
 	public function master_semester(){

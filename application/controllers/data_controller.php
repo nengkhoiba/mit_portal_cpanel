@@ -9,7 +9,7 @@ class Data_controller extends CI_Controller {
 		
 		$this->load->library('form_validation');
 		
-<<<<<<< HEAD
+
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'alpha|required',array("required"=>"please enter firstname"));
 		$this->form_validation->set_rules('txtTitle','Title','required',array("required"=>"please choose a title"));
 		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
@@ -30,7 +30,7 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('OptRcategory', ' ', 'required',array("required"=>"please choose an option"));
 		$this->form_validation->set_rules('OptPhyHandicap', ' ', 'required',array("required"=>"please choose an option"));
 		$this->form_validation->set_rules('OptEcoBackward', ' ', 'required',array("required"=>"please choose an option"));
-=======
+
 		$this->form_validation->set_rules('txtFirstName', 'First Name', 'required');
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
@@ -43,7 +43,7 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('txtReligion', 'Religion', 'required');
 		$this->form_validation->set_rules('txtNationality', 'Nationality', 'required');
 		$this->form_validation->set_rules('txtCategory', 'Mother Name', 'required');
->>>>>>> 4404f6acdab0dd311fda9b1843e92b1e4f41eaa6
+
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -177,6 +177,9 @@ class Data_controller extends CI_Controller {
 	}
 	public function loadDT_session(){
 	    $this->load->view('data_fragment/sessionData.php');
+	}
+	public function loadDT_admission(){
+	    $this->load->view('data_fragment/AdmissionData.php');
 	}
 
 	
@@ -449,6 +452,38 @@ class Data_controller extends CI_Controller {
 	        }
 	        
 	        redirect('nav_controller/master_session');
+	    }
+	    
+	}
+	
+	public function update_admission(){
+	    $this->load->helper(array('form', 'url'));
+	    
+	    $this->load->library('form_validation');
+	    
+	    $this->form_validation->set_rules('dateAdmission', 'Date of Admission ', 'required');
+	    $this->form_validation->set_rules('txtChallan', 'Transcation Id/Challan', 'required');
+	    $session=$this->session->userdata('session');
+	    
+	    if ($this->form_validation->run() == FALSE)
+	    {
+	        $this->load->view('student/student_admission');
+	    }
+	    else
+	    {
+	        $date=$_POST['dateAdmission'];
+	        $challan=$_POST['txtChallan'];
+	        $id=$_POST['postType'];
+	            $sql ="UPDATE `admission_std_relation` SET
+                                `date_of_admission`='$date',
+                                `other`='$challan'
+                                     WHERE USID='$id'";
+	            $query = $this->db->query($sql);
+	            if($query){
+	                $this->session->set_userdata('status', "Succesfully Updated!");
+	            }
+	        	        
+	        redirect('student/admission');
 	    }
 	    
 	}

@@ -1,6 +1,6 @@
 
- <select  class="form-control form-control-lg " id="ddlSemester" name="ddlSemester">
- <option value='0'>- Select - </option>
+ <select  class="form-control form-control-lg " id="OptSemester" name="OptSemester">
+ <option value=0>- Select - </option>
  
  <?php $sql="SELECT `id`, `name`  FROM `semester` WHERE `isActive`=1" ;
 

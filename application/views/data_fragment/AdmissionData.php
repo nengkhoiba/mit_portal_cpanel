@@ -36,19 +36,20 @@ if($query){
                                <?php 
                if($result['other']==''){
                 ?>
-                 <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['date_of_admission']; ?>')" class="btn btn-danger">Admit Now</label></td>
+                 <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>')" class="btn btn-danger">Admit Now</label></td>
+                                <td></td>
                
                 <?php
                 }else{
                  ?>
                  <td><label style="cursor: pointer" class="btn btn-success">Admitted</label></td>
+               	 <td><i style="cursor: pointer" onclick="edit('<?php echo $result['USID']; ?>','<?php echo $result['date_of_admission']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['other'];?>')" class="fa fa-edit"></i></td>
                	
                 <?php
                  }
                 
                 
                 ?>
-                 <td><i style="cursor: pointer" onclick="edit('<?php echo $result['USID']; ?>','<?php echo $result['date_of_admission']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['other'];?>')" class="fa fa-edit"></i></td>
                 
       </tr>
 	<?php 

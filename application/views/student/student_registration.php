@@ -10,7 +10,7 @@ if(isset($_GET['USID']))
     $id=$usid;
     $sql=$sql="SELECT S.USID, S.title, S.firstname, S.middlename,S.lastname,S.mName, S.fName, S.pAddress, 
 S.cAddress,S.phone, S.mobile, S.gender, S.dob, S.religion, S.nationality, S.category, 
-S.reserve_cat, S.phy_han, S.eco_back,A.MU_roll,A.reg_no,A.reg_year
+S.reserve_cat, S.phy_han, S.eco_back,A.MU_roll,A.reg_no,A.reg_year,A.course_id,A.trade_id
  FROM student_details S LEFT JOIN std_col_relation A on S.USID=A.USID
 WHERE S.USID=$usid";
     $query=$this->db->query($sql);
@@ -18,6 +18,7 @@ WHERE S.USID=$usid";
         {
             $id=$result['USID'];
             $title=$result['title'];
+            $course=$result['course_id'];
             $firstname=$result['firstname'];
             $middlename=$result['middlename'];
             $lastname=$result['lastname'];
@@ -447,3 +448,8 @@ WHERE S.USID=$usid";
 
  
   <?php $this->load->view('global/footer.php');?>
+   <script type="text/javascript">
+  $(document).ready(function() {
+	  	$('#ddlCourse').val('<?php echo isset($_GET['USID'])?$course:0;?>');
+	  });
+  </script>

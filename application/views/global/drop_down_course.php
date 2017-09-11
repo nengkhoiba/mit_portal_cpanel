@@ -1,8 +1,8 @@
 
- <select  class="form-control form-control-lg " id="ddlCourse" name="ddlCourse">
- <option value='0'>- Select - </option>
+ <select  class="form-control form-control-lg " id="OptCourse" name="OptCourse">
+ <option value=0>- Select - </option>
  
- <?php $sql="SELECT `UEID`, `name`  FROM `emp_details` WHERE `isActive`=1" ;
+ <?php $sql="SELECT `id`, `name`  FROM `course` WHERE `isActive`=1" ;
 
 $query = $this->db->query($sql);
 if($query)
@@ -11,7 +11,7 @@ if($query)
 	while($result=mysql_fetch_array($query->result_id)){
 		
 		?>
-		<option value="<?php echo $result['UEID']?>"><?php echo $result['name']?></option>
+		<option value="<?php echo $result['id']?>"><?php echo $result['name']?></option>
 		<?php 
 	}
 	
