@@ -2,7 +2,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.2.0
     </div>
-    <strong>Copyright &copy; <?php echo date('Y');?> <a href="<?php echo base_url(); ?>">Mit Portal</a>.</strong> All rights
+    <strong>Copyright &copy; 2017 <a href="<?php echo base_url(); ?>">Mit Portal</a>.</strong> All rights
     reserved.
   </footer>
 

@@ -164,7 +164,12 @@ WHERE S.USID=$usid";
 	     			<div class="form-group">
 		                <div class="input-group">
 		                  <div class="input-group-addon">
+<<<<<<< HEAD
+		                     Name
+		                     <span style="color: red"> *</span>
+=======
 		                    First Name
+>>>>>>> c57e73059fff376430e0f30cf02371bed66a400e
 		                  </div>
 		                  <input id="postType" type="hidden" name="postType" value="<?php echo $id;?> ">
 		                  <input  name="txtFirstName" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$firstname:set_value('txtFirstName');?>">
