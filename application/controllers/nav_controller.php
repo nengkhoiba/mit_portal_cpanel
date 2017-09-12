@@ -42,6 +42,9 @@ class Nav_controller extends CI_Controller {
 	public function master_role(){
 		$this->load->view('utility/role_master');
 	}
+	public function exam_data(){
+		$this->load->view('student/exam_data_entry');
+	}
 	//thoisana
 	
 	//borison
