@@ -9,7 +9,7 @@ if(isset($_GET['USID']))
     $usid=trim($_GET['USID']);
     $id=$usid;
     $sql=$sql="SELECT S.USID, S.title, S.firstname, S.middlename,S.lastname,S.mName, S.fName, S.pAddress, 
-S.cAddress,S.phone, S.mobile, S.gender, S.dob, S.religion, S.nationality, S.category, 
+S.cAddress,S.phone, S.mobile, S.gender, S.dob, S.religion, S.nationality, S.category, R.other,
 S.reserve_cat, S.phy_han, S.eco_back,A.MU_roll,A.reg_no,A.reg_year,A.course_id,A.trade_id,R.sem_id
  FROM student_details S LEFT JOIN std_col_relation A on S.USID=A.USID LEFT JOIN admission_std_relation R on S.USID=R.USID
 WHERE S.USID=$usid";
@@ -40,6 +40,7 @@ WHERE S.USID=$usid";
             $mu_roll=$result['MU_roll'];
             $reg_no=$result['reg_no'];
             $sem=$result['sem_id'];
+            $other=$result['other'];
             $reg_year=$result['reg_year'];//`reserve_cat`, `phy_han`, `eco_back`
           
         }
@@ -110,15 +111,40 @@ WHERE S.USID=$usid";
 		                    Student Type
 		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select id="OptStudentType" name="OptStudentType" class="form-control form-control-lg" >
+		                  <select onchange="oldnewcheck()" id="OptStudentType" name="OptStudentType" class="form-control form-control-lg" >
 		                  		<option value=0 <?php echo set_select('OptStudentType',0);?>>Select</option>
   								<option value=1 <?php echo set_select('OptStudentType',1);?>>Fresher</option>
   								<option value=3 <?php echo set_select('OptStudentType',3);?>>Lateral Entry</option>
+  								<option value=4 <?php echo set_select('OptStudentType',4);?>>Old</option>
   								</select>
 		                </div> 
 		                <?php echo form_error('OptStudentType');?>  
 	              </div>
      			</div>
+     			<div class="col-sm-4">
+		     			<div class="form-group">
+		            	
+			                <div class="input-group">
+			                  <div class="input-group-addon">
+			                    Semester
+			                  </div>
+			                  <?php $this->load->view('global/drop_down_semester.php');?>
+			                </div>
+		              
+		              </div>
+	     			</div>
+     			<div class="col-sm-4">
+	     			<div class="form-group">
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                     Transaction Id/Challan
+		                  </div>
+		                  <input id="txtChallan" name="txtChallan" type="text" class="form-control" value="<?php echo (isset($_GET['USID']))?$other:set_value('txtChallan');?>">
+		                </div>
+	              <?php echo form_error('txtChallan');?>
+	              </div>
+     			</div>
+     			
      			<div class="col-sm-4">
 	     			<div class="form-group">
 		                <div class="input-group">
@@ -130,6 +156,7 @@ WHERE S.USID=$usid";
 	              
 	              </div>
      			</div>
+     			
      			<div class="col-sm-4">
 	     			<div class="form-group">
 		                <div class="input-group">
@@ -195,13 +222,7 @@ WHERE S.USID=$usid";
 	              
 	              </div>
      			</div>
-     			
-     			</div>
-     			     		
-     		     			<div class="row">
-     			
-     			
-     			<div class="col-sm-4">
+     				<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
@@ -229,6 +250,13 @@ WHERE S.USID=$usid";
 	              <?php echo form_error('txtMother');?>
 	              </div>
      			</div>
+     			
+     			</div>
+     			     		
+     		     			<div class="row">
+     			
+     			
+     		
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -330,10 +358,6 @@ WHERE S.USID=$usid";
 	              			 <?php echo form_error('dateDOB');?>
 	              </div>
      			</div>
-     			
-     			</div>
-     			
-     				<div class="row">
      				<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -362,6 +386,11 @@ WHERE S.USID=$usid";
 	              <?php echo form_error('txtNationality');?>
 	              </div>
      			</div>
+     			
+     			</div>
+     			
+     				<div class="row">
+     			
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -477,6 +506,10 @@ WHERE S.USID=$usid";
 	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
 		});
 	  	set();
+	  	$('#OptSemester').attr({
+            'disabled': 'disabled'
+        });
+        oldnewcheck();
         });
   function set()
   {
@@ -494,4 +527,19 @@ WHERE S.USID=$usid";
       <?php } ?>
 	  
   }
+  function oldnewcheck()
+  {
+	var choice=document.getElementById('OptStudentType').value;
+	if(choice==4)
+	{
+		$('#OptSemester').removeAttr('disabled');
+	}
+	else
+	{
+		$('#OptSemester').attr({
+            'disabled': 'disabled'
+        });
+    }
+  }
+	  
   </script>
