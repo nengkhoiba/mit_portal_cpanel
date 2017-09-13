@@ -14,9 +14,10 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('txtTitle','Title','required',array("required"=>"please choose a title"));
 		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
 		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a Trade"));
-		$this->form_validation->set_rules('OptStudentType', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a Semester"));		
+		$this->form_validation->set_rules('OptStudentType', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a Semester"));	
+		$this->form_validation->set_rules('OptSemester', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
-		$this->form_validation->set_rules('txtChallan', 'Transcation Details', 'alpha|required');
+		$this->form_validation->set_rules('txtChallan', 'Transcation Details', 'required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
 		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
 		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'required');
@@ -63,9 +64,10 @@ class Data_controller extends CI_Controller {
 		    $religion=trim($_POST['txtReligion']);
 		    $nationality=trim($_POST['txtNationality']);
 		    $category=trim($_POST['txtCategory']);
-		    $rcategory=trim($_POST['choiceRcategory']);
-		    $phyhandicap=trim($_POST['PhyHandicap']);
-		    $ecoback=trim($_POST['EcoBackward']);
+		    $rcategory=trim($_POST['OptRcategory']);
+		    $phyhandicap=trim($_POST['OptPhyHandicap']);
+		    $ecoback=trim($_POST['OptEcoBackward']);
+		    $semester=trim($_POST['OptSemester']);
 		    
 		    $title=mysql_real_escape_string($title);
 		    $fname=mysql_real_escape_string($fname);
@@ -88,7 +90,10 @@ class Data_controller extends CI_Controller {
 		    $phyhandicap=mysql_real_escape_string($phyhandicap);		   
 		    $ecoback=mysql_real_escape_string($ecoback);
 		 
-		    
+		    if($stutype=4)
+		    {
+		        $stutype=$semester;
+		    }
 		    $flag=trim($_POST['postType']);
 		    if($flag!=null){
 		        $sql = "UPDATE `student_details` SET   `title`='$title',
@@ -172,7 +177,7 @@ class Data_controller extends CI_Controller {
 		                if($query2)
 		                {
 		                    $session=$this->session->userdata('session');
-		                    $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,'date_of_admission',`other`,`isActive`) 
+		                    $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`date_of_admission`,`other`,`isActive`) 
                                                                 VALUES ('$usid','$session','$stutype',CURDATE(),'$challan','1')";
 		                    $query3=$this->db->query($sql3);
 		                    if($query3)
