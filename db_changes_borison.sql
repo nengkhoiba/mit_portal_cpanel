@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 10, 2017 at 02:18 PM
+-- Generation Time: Sep 13, 2017 at 01:10 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS `admission_std_relation` (
 --
 
 INSERT INTO `admission_std_relation` (`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`) VALUES
-(1, 0, 1, '2017-09-09', 'SBI 126369', 1),
-(2, 0, 3, '2017-09-10', '142026', 1),
-(3, 1, 1, '0000-00-00', '', 1),
-(4, 4, 1, '0000-00-00', '', 1);
+(1, 4, 1, '0000-00-00', '', 0),
+(2, 4, 3, '0000-00-00', '', 0),
+(3, 4, 1, '0000-00-00', '', 0),
+(4, 4, 1, '0000-00-00', '', 0);
 
 -- --------------------------------------------------------
 
@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `page_manager` (
   `role_id` int(10) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `page_manager`
@@ -316,7 +316,8 @@ INSERT INTO `page_manager` (`id`, `site_map_id`, `role_id`, `isActive`) VALUES
 (10, 10, 1, 1),
 (11, 11, 1, 1),
 (12, 12, 1, 1),
-(13, 13, 1, 1);
+(13, 13, 1, 1),
+(14, 14, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -406,14 +407,14 @@ CREATE TABLE IF NOT EXISTS `site_map` (
   `url` varchar(50) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `site_map`
 --
 
 INSERT INTO `site_map` (`id`, `name`, `css`, `url`, `isActive`) VALUES
-(1, 'Student Registration', 'fa fa-user', 'student/registration', 1),
+(1, 'Student Registration', 'fa fa-user-plus', 'student/registration', 1),
 (2, 'Employee Registration', 'fa fa-group', 'employee/registration', 1),
 (3, 'Department Master', 'fa fa-briefcase', 'utility/department', 1),
 (4, 'Designation Master', 'fa fa-address-card', 'utility/designation', 1),
@@ -425,7 +426,8 @@ INSERT INTO `site_map` (`id`, `name`, `css`, `url`, `isActive`) VALUES
 (10, 'Exam Master', 'fa fa-pencil-square', 'utility/exam', 1),
 (11, 'Session Master', 'fa fa-calendar', 'utility/session', 1),
 (12, 'Page Master', 'fa fa-sticky-note', 'utility/page', 1),
-(13, 'Admission', 'fa fa-money', 'student/admission', 1);
+(13, 'Admission', 'fa fa-link', 'student/admission', 1),
+(14, 'Student List', 'fa fa-id-card', 'student/list', 1);
 
 -- --------------------------------------------------------
 
@@ -449,10 +451,10 @@ CREATE TABLE IF NOT EXISTS `std_col_relation` (
 --
 
 INSERT INTO `std_col_relation` (`USID`, `MU_roll`, `reg_no`, `reg_year`, `course_id`, `trade_id`, `isActive`) VALUES
-(1, '', '14430073', '', 1, 1, 1),
-(2, '', '15200129', '', 1, 1, 1),
-(3, '162045', '546921', '2016', 1, 1, 1),
-(4, '142056', '1080978', '2014', 1, 1, 1);
+(1, '142026', '1430073', '2014', 1, 1, 1),
+(2, '182026', '1830073', '2018', 2, 1, 1),
+(3, '141026', '1410073', '2014', 1, 2, 1),
+(4, '143026', '1410083', '2018', 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -493,10 +495,10 @@ CREATE TABLE IF NOT EXISTS `student_details` (
 --
 
 INSERT INTO `student_details` (`USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `photo_url`, `added_by`, `added_on`, `isActive`) VALUES
-(1, 'Mr', 'Ningthoujam', 'Borison', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-09 12:25:14', 1),
-(2, 'Mr', 'Ningthoujam', 'Bibekson', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', 'Moiranglampu Khewa Bazar,Tinseed Road,Imphal East', '9615865655', '8794961391', 'Male', '2013-03-14', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-09 12:27:35', 1),
-(3, 'Mr', 'Ambed', '', 'Ningthoujam', 'N.Libiya', 'Ningthoujam Toni Singh', 'Moirangkampu Khewa Bazar,tinseed Road,Imphal East', 'Moirangkampu Khewa Bazar,tinseed Road,Imphal East', '9856209333', '9615865655', 'Male', '2015-02-14', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-10 13:50:46', 1),
-(4, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Konoha', 'Konoha', '9856209333', '9089779715', 'Male', '1996-07-08', 'Ninja', 'Japaneese', 'Shinobi', 0, 0, 0, '', 0, '2017-09-09 15:33:30', 1);
+(1, 'Mr', 'Ningthoujam', 'Borison', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moirangkampu', 'Moirangkampu', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-13 11:28:12', 1),
+(2, 'Mr', 'Ningthoujam', 'Borison', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moirangkampu', 'Moirangkampu', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-13 11:34:57', 1),
+(3, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Lea Village', '9615865655', '9089779715', 'Male', '2010-07-08', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-13 11:38:00', 1),
+(4, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Lea Village', '9615865655', '9089779715', 'Male', '2017-09-15', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-13 11:43:06', 1);
 
 -- --------------------------------------------------------
 
