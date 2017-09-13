@@ -3,6 +3,9 @@
 <tr>
 <th>Student Id</th>
 <th>Name</th>
+<th>Course</th>
+<th>Trade</th>
+<th>Semester</th>
 <th>Admission Date</th>
 <th>Status</th>
 <th>Action</th>
@@ -16,9 +19,10 @@ $trade=trim($_GET['j']);
 $Semester=trim($_GET['k']);
 $name=trim($_GET['l']);
 $viewtype=trim($_GET['m']);
-$sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,A.other
+$sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,A.other,D.abv as course_name,T.abv as trade_name,X.name as sem_name
 FROM student_details S LEFT JOIN admission_std_relation A on S.USID=A.USID
                        LEFT JOIN std_col_relation C on C.USID=A.USID
+LEFT JOIN course D on D.id=C.course_id LEFT JOIN trade T on C.trade_id=T.id LEFT JOIN semester X on X.id=A.sem_id
 WHERE C.course_id=CASE WHEN $course=0 THEN C.course_id ELSE '$course' END
    AND C.trade_id=CASE WHEN $trade=0 THEN C.trade_id ELSE'$trade' END
      AND A.sem_id=CASE WHEN $Semester=0 THEN A.sem_id ELSE'$Semester' END
@@ -33,7 +37,10 @@ if($query){
 	  <tr>
                 <td><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
-                <td><?php echo $result['date_of_admission']; ?></td>                 
+                <td><?php echo $result['date_of_admission']; ?></td>
+                <td><?php echo $result['course_name']; ?></td>
+                <td><?php echo $result['trade_name']; ?></td>
+                <td><?php echo $result['sem_name']; ?></td>                 
                                <?php 
                if($result['other']==''){
                 ?>

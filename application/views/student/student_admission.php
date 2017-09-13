@@ -21,7 +21,7 @@
      		
      			$msg=$this->session->userdata('status');
      			?>
-     			<div class="alert alert-success alert-dismissible" role="alert">
+     			<div id="success-alert" class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
@@ -166,6 +166,8 @@
   <?php $this->load->view('global/footer.php');?>
   <script type="text/javascript">
   $(document).ready(function() {
+	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
+		});
 	  	search();
 	  });
 	  
