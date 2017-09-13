@@ -236,6 +236,11 @@ WHERE S.USID=$usid";
 	              <?php echo form_error('txtlastName');?>
 	              </div>
      			</div>
+     			
+     			
+     			</div>
+     			     		
+     		     			<div class="row">
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -250,11 +255,6 @@ WHERE S.USID=$usid";
 	              <?php echo form_error('txtMother');?>
 	              </div>
      			</div>
-     			
-     			</div>
-     			     		
-     		     			<div class="row">
-     			
      			
      		
      			<div class="col-sm-4">
@@ -373,6 +373,11 @@ WHERE S.USID=$usid";
      			</div>
      			
      			
+     			
+     			
+     			</div>
+     			
+     				<div class="row">
      			<div class="col-sm-4">
 	     			<div class="form-group">
 	            	
@@ -386,10 +391,6 @@ WHERE S.USID=$usid";
 	              <?php echo form_error('txtNationality');?>
 	              </div>
      			</div>
-     			
-     			</div>
-     			
-     				<div class="row">
      			
      			<div class="col-sm-4">
 	     			<div class="form-group">
