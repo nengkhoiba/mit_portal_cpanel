@@ -3,22 +3,23 @@
       <?php $this->load->view('global/header.php');?>
       <?php $this->load->view('global/side_menu.php');?>
  
-
-  <!-- Content Wrapper. Contains page content -->
+ 
+ 
+ <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
    <section class="content-header">
       	<h6>
           <ol class="breadcrumb">
-             <li><a href="<?php echo base_url()?>utility/semester"><i class="fa fa-gear"></i> Employee</a></li>
-            <li class="active">Registration</li>
+             <li><a href="<?php echo base_url()?>nav_controller/exam_data"><i class="fa fa-gear"></i> Student</a></li>
+            <li class="active">Exam Data</li>
           </ol>
           </h6>  
     </section>
 
     <section class="content">
-     	<div class="row">    
-     		<div class="col-sm-12">
+     	<div class="row">
+     	 <div class="col-sm-12">
      		<?php 
      		if($this->session->userdata('status')!=null){
      		
@@ -33,7 +34,8 @@
      		}
      		?>
      		
-     		<div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     		
+     			<div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -43,94 +45,202 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <form>
-			          <div class="form-group">
-			            <label for="recipient-name" class="form-control-label">Mark1:</label>
-			            <input type="text" class="form-control" id="mark1">
+			       <label id="lblStudentName"></label>
+			       <label id="lblStdRoll"></label>
+			        <label id="lblStdReg"></label>
+			         
+			           <div class='row '>
+			         	<div class='col-sm-12'>
+			         		<div class='col-sm-6'>
+			         		 <div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    Exam Type
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <?php $this->load->view('global/drop_down_exam_type') ?>
+						                </div>
+					              </div>
+					        </div>
+					         <div class="col-sm-6">
+					     			<div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    Status
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="text" class="form-control" id="status">
+						                </div>
+					              </div>
+				     			</div>
+					
+					        
+			         	</div>
 			          </div>
-			          <div class="form-group">
-			            <label for="message-text" class="form-control-label">Mark2:</label>
-			            <input type="text" class="form-control" id="mark2">
+			         
+			           <div class='row'>
+			         	<div class='col-sm-12'>
+			         		<div class='col-sm-6'>
+			         		 <div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    Mark Score 
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="text" class="form-control" id="mark_score">
+						                </div>
+					              </div>
+					         </div>
+					        <div class="col-sm-6">
+					     			<div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    Grand Total
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="text" class="form-control" id="grand_total">
+						                </div>
+					              </div>
+				     			</div>
+					        
+			         	</div>
 			          </div>
-			          <div class="form-group">
-			            <label for="recipient-name" class="form-control-label">Mark3:</label>
-			            <input type="text" class="form-control" id="mark3">
+			            <div class='row'>
+			         	<div class='col-sm-12'>
+			         		<div class='col-sm-6'>
+			         		 <div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    Mark Sheet Number
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="text" class="form-control" id="mark_sheet_number">
+						                </div>
+					              </div>
+					         </div>
+					        <div class="col-sm-6">
+					     			<div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    DOE
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="date" class="form-control" id="doe">
+						                </div>
+					              </div>
+				     			</div>
+					        
+			         	</div>
 			          </div>
-			          <div class="form-group">
-			            <label for="message-text" class="form-control-label">Mark4:</label>
-			            <input type="text" class="form-control" id="mark4">
+			            <div class='row'>
+			         	<div class='col-sm-12'>
+			         		<div class='col-sm-6'>
+			         		 <div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    DOR
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="date" class="form-control" id="dor">
+						                </div>
+					              </div>
+					         </div>
+					        <div class="col-sm-6">
+					     			<div class="form-group">
+						                <div class="input-group">
+						                  <div class="input-group-addon">
+						                    DOP
+						                    <span style="color: red"> * </span>
+						                  </div>
+						                    <input type="date" class="form-control" id="dop">
+						                </div>
+					              </div>
+				     			</div>
+					        
+			         	</div>
 			          </div>
-			          <div class="form-group">
-			            <label for="recipient-name" class="form-control-label">Mark5:</label>
-			            <input type="text" class="form-control" id="mark5">
-			          </div>
-			          <div class="form-group">
-			            <label for="message-text" class="form-control-label">Mark6:</label>
-			            <input type="text" class="form-control" id="mark6">
-			          </div>
-			        </form>
+			         
+			         
+			       
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save</button>
+			        <button type="submit" onclick='submit_data()' class="btn btn-primary">Save</button>
 			      </div>
 			    </div>
 			  </div>
 			</div>
      		
-     	
-     		<form action="<?php echo base_url(); ?>data_controller/update_exam_data_entry"   method="post" accept-charset="utf-8">  
-     			 
-     			
-     			<div class="row ">
-     			<div class="col-sm-4">
+     		
+     		
+		
+     			<div class="row">
+     			<div class="col-sm-3">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Course
+		                    <span style="color: red"> * </span>
 		                  </div>
 		                     <?php $this->load->view('global/drop_down_course')?>
 		                </div>
 	              
 	              </div>
      			</div>
-     			<div class="col-sm-4">
+     				<div class="col-sm-3">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Semester 
+		                    Semester
+		                    <span style="color: red"> * </span> 
 		                  </div>
 		                   <?php $this->load->view('global/drop_down_trade')?>
 		                </div>
 	              
 	              </div>
      			</div>
-     			<div class="col-sm-4">
+     			
+     			<div class="col-sm-3">
 	     			<div class="form-group">
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                   Trade
+		                   <span style="color: red"> * </span>
 		                  </div>
 		                   <?php $this->load->view('global/drop_down_semester')?>
 		                </div>
 	              
 	              </div>
      			</div>
+     		<div class="col-sm-3">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                  <div class="input-group-addon">
+		                  Name
+		                  </div>
+		                   <input type="text" class="form-control" id="mark6">
+		                </div>
+	              
+	              </div>
      			</div>
-     			
-     			
-     				<div class="row">
-     			
-     			
-     			
-     			
-     			<div class="row container-fluid ">
-	     			<div class="col-sm-9">
-	     			</div>
-     				<div class="col-sm-3">
+	     			
+	     	</div>
+
+     		<div class="row " >
+     			<div class="col-sm-9">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                 	
+		                </div>
+	              
+	              </div>
+     			</div>
+     					<div class="col-sm-3">
 	     			<div class="btn-group btn-group-justified" role="group">
 		                <div class="btn-group" role="group">
 						 <label class="btn btn-default" onclick="search()">Search</label>
@@ -141,33 +251,82 @@
 	              
 	              </div>
      			</div>
-     			</div>
-              
-     		</div>
+     			</div>    
+     		 </br>		
      		<div class="row container-fluid">
      			<div id="data_container">
      			
      			</div>
      		</div>
-     		<?php echo form_close();?>
-     		
-     		
+            
+             </div>
+     		</div>
      	</div>
     </section>
-  
-  </div>
-
+ 
  
   <?php $this->load->view('global/footer.php');?>
   
   
    <script >
 
+   var usid,sem_id,session_id;
+   
+   function submit_data()
+   {
+
+   	var url = "<?php echo site_url('data_controller/update_exam_data_entry?q=');?>"+document.getElementById('OptExamType').value+
+   	"&k="+usid+
+   	"&l="+sem_id+
+   	"&n="+session_id+
+   	"&o="+document.getElementById('status').value+
+   	"&p="+document.getElementById('mark_score').value+
+   	"&r="+document.getElementById('grand_total').value+
+   	"&s="+document.getElementById('mark_sheet_number').value+
+   	"&t="+document.getElementById('dor').value+
+   	"&u="+document.getElementById('doe').value+
+   	"&v="+document.getElementById('dop').value;
+
+
+   	var xmlHttp = GetXmlHttpObject();
+   	if (xmlHttp != null) {
+   		try {
+   			xmlHttp.onreadystatechange=function() {
+   			if(xmlHttp.readyState == 4) {
+   				if(xmlHttp.responseText != null){
+   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
+   					$('#table').DataTable({
+   				        dom: 'Bfrtip',
+   				        buttons: [
+   				            'csv', 'pdf', 'print'
+   				        ]
+   				    });
+   				}else{
+   					alert("Error");
+   				}
+   			}
+   		}
+   		xmlHttp.open("GET", url, true);
+   		xmlHttp.send(null);
+   	}
+   	catch(error) {}
+   	}
+   	}
+	
+   
   $(document).ready (function(){
 	  search();
   });
 
-  function loadDT_Exam(){
+ 
+  function loadDT_Exam(id,name,mu_roll,reg_no,semester,session){
+
+	  usid=id;
+	  sem_id=semester;
+	  session_id=session;
+	  document.getElementById('lblStudentName').innerHTML=name;
+	 document.getElementById('lblStdRoll').innerHTML=mu_roll;
+	  document.getElementById('lblStdReg').innerHTML=reg_no;
 	  $('#examModal').modal('show');
   }
   

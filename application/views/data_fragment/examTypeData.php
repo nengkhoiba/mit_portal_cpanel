@@ -1,11 +1,13 @@
 <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Exam Type Name</th>
-                <th>Active</th>
-                <th>Edit</th>
-				<th>Remove</th>
+                <th>USID</th>
+                <th>Name</th>
+                <th>MU Roll</th>
+                <th>Registration No.</th>
+				<th>Course</th>
+				<th>Trade</th>
+				<th>Semester</th>
             </tr>
         </thead>
        
@@ -14,13 +16,16 @@
         $sem=$_GET['j'];
         $course=$_GET['q'];
         $trade=$_GET['k'];
-$sql="SELECT sd.USID as USID,CONCAT(sd.firstname, sd.middlename, sd.lastname)as Name,scr.MU_roll as MU_Roll,scr.reg_no as Registration_No,
-		scr.course_id as Course,scr.trade_id as Trade,asr.sem_id as Semester 
+$sql="SELECT sd.USID as USID,CONCAT(sd.firstname,' ', sd.middlename,' ', sd.lastname)as Name,scr.MU_roll as MU_Roll,scr.reg_no as Registration_No,
+		c.name as Course,t.name as Trade,s.name as Semester 
 		FROM student_details sd LEFT JOIN std_col_relation scr ON scr.USID=sd.USID
 		LEFT JOIN admission_std_relation asr ON asr.USID=sd.USID
-		WHERE scr.course_id=1 
-		AND scr.trade_id= 1 
-		AND asr.sem_id= 1 
+        LEFT JOIN course c ON scr.course_id = c.id 
+ 		LEFT JOIN semester s ON asr.sem_id = s.id 
+  		LEFT JOIN trade t ON scr.trade_id = t.id 
+		WHERE scr.course_id='$course' 
+		AND scr.trade_id= '$trade' 
+		AND asr.sem_id='$sem'
 
 ";
 $query = $this->db->query($sql);
@@ -28,13 +33,14 @@ if($query){
 	while($result=mysql_fetch_array($query->result_id)){
 	
 	?>
-	  <tr onclick="loadDT_Exam()">
+	  <tr onclick="loadDT_Exam('<?php echo $result['USID']; ?>','<?php echo $result['Name']; ?>','<?php echo $result['MU_Roll']; ?>','<?php echo $result['Registration_No']; ?>','<?php echo $sem; ?>','<?php echo $this->session->userdata('session'); ?>')">
                 <td ><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['Name']?></td>
-                <td><?php echo "helo";?></td>
-                
-                <td><i style="cursor: pointer" onclick="edit('<?php echo $result['USID']; ?>','<?php echo $result['Name']; ?>')" class="fa fa-edit"></i></td>
-                <td><i style="cursor: pointer" onclick="remove('<?php echo $result['USID']; ?>')" class="fa fa-remove"></i></td>
+                <td><?php echo $result['MU_Roll']?></td>
+                <td><?php echo $result['Registration_No']?></td>
+                <td><?php echo $result['Course']?></td>
+                <td><?php echo $result['Trade']?></td>
+                <td><?php echo $result['Semester']?></td>
                
             </tr>
 	<?php 
