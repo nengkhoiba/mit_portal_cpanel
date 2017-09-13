@@ -19,7 +19,8 @@ $trade=trim($_GET['j']);
 $Semester=trim($_GET['k']);
 $name=trim($_GET['l']);
 $viewtype=trim($_GET['m']);
-$sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,A.other,D.abv as course_name,T.abv as trade_name,X.name as sem_name
+$sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,
+A.other,D.abv as course_name,T.abv as trade_name,X.name as sem_name,A.sem_id
 FROM student_details S LEFT JOIN admission_std_relation A on S.USID=A.USID
                        LEFT JOIN std_col_relation C on C.USID=A.USID
 LEFT JOIN course D on D.id=C.course_id LEFT JOIN trade T on C.trade_id=T.id LEFT JOIN semester X on X.id=A.sem_id
@@ -37,14 +38,15 @@ if($query){
 	  <tr>
                 <td><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
-                <td><?php echo $result['date_of_admission']; ?></td>
+               
                 <td><?php echo $result['course_name']; ?></td>
                 <td><?php echo $result['trade_name']; ?></td>
-                <td><?php echo $result['sem_name']; ?></td>                 
+                <td><?php echo $result['sem_name']; ?></td>   
+                 <td><?php echo $result['date_of_admission']; ?></td>              
                                <?php 
                if($result['other']==''){
                 ?>
-                 <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>')" class="btn btn-danger">Admit Now</label></td>
+                 <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['sem_id'];?>')" class="btn btn-danger">Admit Now</label></td>
                                 <td></td>
                
                 <?php

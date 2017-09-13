@@ -199,11 +199,12 @@
 	  	catch(error) {}
 	  	}
 	  	}
-		function admit(id,name)
+		function admit(id,name,sem)
 		{
 			
 			document.getElementById('postType').value=id;	
 			document.getElementById('txtName').value=name;	
+			$('#OptSemester').val(sem);
 		}
 		function edit(id,dateofadmission,name,challan)
 		{
