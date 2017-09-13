@@ -27,9 +27,7 @@ LEFT JOIN role r ON r.id=ecr.role_id
 LEFT JOIN department d ON d.id= ecr.dept_id 
 LEFT JOIN designation dg ON dg.id=ecr.deg_id
 WHERE ecr.UEID=el.UEID AND el.isFirst=1
-AND user like '%$user%' 
-
-";
+AND user like '%$user%'";
 
 $query = $this->db->query($sql);
 if($query){

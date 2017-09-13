@@ -111,9 +111,9 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <select id="OptStudentType" name="OptStudentType" class="form-control form-control-lg" >
-		                  		<option value=0>Select</option>
-  								<option value=1>Fresher</option>
-  								<option value=3>Lateral Entry</option>
+		                  		<option value=0 <?php echo set_select('OptStudentType',0);?>>Select</option>
+  								<option value=1 <?php echo set_select('OptStudentType',1);?>>Fresher</option>
+  								<option value=3 <?php echo set_select('OptStudentType',3);?>>Lateral Entry</option>
   								</select>
 		                </div> 
 		                <?php echo form_error('OptStudentType');?>  
@@ -159,11 +159,11 @@ WHERE S.USID=$usid";
 		                    Title
 		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select id="txtTitle" name="txtTitle" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$title:set_value('txtTitle');?>">
-		                  		<option value="0">Select</option>
-  								<option value="Mr">Mr</option>
-  								<option value="Miss">Miss</option>
-  								<option value="Ms">Ms</option>
+		                  <select id="txtTitle" name="txtTitle" class="form-control form-control-lg">
+		                  		<option value="" <?php echo isset($_GET['USID'])?set_select('txtTitle','',FALSE):set_select('txtTitle','txtTitle',TRUE);?>>Select</option>
+  								<option value="Mr" <?php echo set_select('txtTitle','Mr');?>>Mr</option>
+  								<option value="Miss" <?php echo set_select('txtTitle','Miss');?>>Miss</option>
+  								<option value="Ms" <?php echo set_select('txtTitle','Ms');?>>Ms</option>
 								</select>
 		                </div>
 		                <?php echo form_error('txtTitle');?>
@@ -306,10 +306,10 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <select id="OptGender" name="OptGender" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$gender:set_value('txtGender');?>" >
-  								<option value="0" >Select</option>
-  								<option value="Male">Male</option>
-  								<option value="Female">Female</option>
-  								<option value="Others">Others</option>
+  								<option value="" <?php echo set_select('OptGender','');?>>Select</option>
+  								<option value="Male" <?php echo set_select('OptGender','Male');?>>Male</option>
+  								<option value="Female" <?php echo set_select('OptGender','Female');?>>Female</option>
+  								<option value="Others" <?php echo set_select('OptGender','Others');?>>Others</option>
 								</select>
 		                </div>
 	              
@@ -384,9 +384,9 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <select id="OptRcategory" name="OptRcategory" class="form-control form-control-lg" value="<?php echo set_value('choiceRcategory');?>" >
-  								<option value="" >Select</option>
-  								<option value=0>No</option>
-  								<option value=1>Yes</option>
+  								<option value="" <?php echo set_select('OptRcategory','');?>>Select</option>
+  								<option value=0 <?php echo set_select('OptRcategory',0);?>>No</option>
+  								<option value=1 <?php echo set_select('OptRcategory',1);?>>Yes</option>
 								</select>
 		                </div>
 	              <?php echo form_error('OptRcategory');?>
@@ -401,9 +401,9 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		                  	   <select id="OptPhyHandicap"  name="OptPhyHandicap" class="form-control form-control-lg" value="<?php echo set_value('PhyHandicap');?>" >
-  								<option value="" >Select</option>
-  								<option value=0>No</option>
-  								<option value=1>Yes</option>
+  								<option value="" <?php echo set_select('OptPhyHandicap','');?>>Select</option>
+  								<option value=0 <?php echo set_select('OptPhyHandicap',0);?>>No</option>
+  								<option value=1 <?php echo set_select('OptPhyHandicap',1);?>>Yes</option>
 								</select>
 		                </div>
 	              <?php echo form_error('OptPhyHandicap');?>
@@ -418,9 +418,9 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		                  <select id="OptEcoBackward" name="OptEcoBackward" class="form-control form-control-lg" value="<?php echo set_value('EcoBackward');?>" >
-  								<option value="" >Select</option>
-  								<option value=0>No</option>
-  								<option value=1>Yes</option>
+  								<option value="" <?php echo set_select('OptEcoBackward','');?>>Select</option>
+  								<option value=0 <?php echo set_select('OptEcoBackward',0);?>>No</option>
+  								<option value=1 <?php echo set_select('OptEcoBackward',1);?>>Yes</option>
 								</select>
 		                </div>
 	              	              <?php echo form_error('OptEcoBackward');?>
@@ -474,20 +474,24 @@ WHERE S.USID=$usid";
   <?php $this->load->view('global/footer.php');?>
    <script type="text/javascript">
   $(document).ready(function() {
-	  $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-		    $("#success-alert").slideUp(500);
+	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
 		});
 	  	set();
         });
   function set()
   {
-	  $('#OptCourse').val('<?php echo isset($_GET['USID'])?$course:0;?>');	
-	  $('#txtTitle').val('<?php echo isset($_GET['USID'])?$title:"0";?>');  
-      $('#OptTrade').val('<?php echo isset($_GET['USID'])?$trade:0;?>');
-      $('#OptStudentType').val('<?php echo isset($_GET['USID'])?$sem:0;?>');       
-      $('#OptGender').val('<?php echo isset($_GET['USID'])?$gender:"0";?>');       
-      $('#OptRcategory').val('<?php echo isset($_GET['USID'])?$rcat:0;?>');       
-      $('#OptPhyHandicap').val('<?php echo isset($_GET['USID'])?$phand:0;?>');       
-      $('#OptEcoBackward').val('<?php echo isset($_GET['USID'])?$eco:0;?>');
+	  <?php if(isset($_GET['USID']))
+	      
+	  {?>
+	  $('#OptCourse').val('<?php echo $course;?>');	
+	  $('#txtTitle').val('<?php echo $title;?>');  
+      $('#OptTrade').val('<?php echo $trade;?>');
+      $('#OptStudentType').val('<?php echo $sem;?>');       
+      $('#OptGender').val('<?php echo $gender;?>');       
+      $('#OptRcategory').val('<?php echo $rcat;?>');       
+      $('#OptPhyHandicap').val('<?php echo $phand;?>');       
+      $('#OptEcoBackward').val('<?php echo $eco;?>');
+      <?php } ?>
+	  
   }
   </script>

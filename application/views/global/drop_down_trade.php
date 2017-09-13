@@ -11,7 +11,7 @@ if($query)
 	while($result=mysql_fetch_array($query->result_id)){
 		
 		?>
-		<option value="<?php echo $result['id']?>"><?php echo $result['name']?></option>
+		<option value="<?php echo $result['id']?>" <?php echo set_select('OptTrade',$result['id']);?>><?php echo $result['name']?></option>
 		<?php 
 	}
 	

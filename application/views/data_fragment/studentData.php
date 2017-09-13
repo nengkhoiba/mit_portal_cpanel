@@ -45,11 +45,14 @@ $sql="SELECT S.USID, S.title,S.firstname,S.middlename,S.lastname,S.mName,S.fName
 S.mobile,S.gender,S.dob,S.religion,S.nationality,S.category,S.reserve_cat,S.phy_han,S.eco_back,S.added_on,S.isActive,
 C.abv as course_name,T.abv as trade_name,P.name as semester_name,R.MU_roll,R.reg_no,R.reg_year
  FROM `student_details` S LEFT JOIN admission_std_relation A on S.USID=A.USID LEFT JOIN std_col_relation R on R.USID=A.USID
-LEFT JOIN course C on C.id=R.course_id LEFT JOIN trade T on T.id=R.trade_id LEFT JOIN semester P on P.id=A.sem_id
- WHERE S.firstname like '%$Name%' OR S.middlename like '%$Name%' AND S.mobile like '%$mobile%' AND DATE(S.added_on)between '$Startdate' and '$EndDate'
- AND S.isActive='$isActive' AND C.id=CASE WHEN $course=0 THEN C.id ELSE '$course' END
-   AND T.id=CASE WHEN $trade=0 THEN T.id ELSE'$trade' END
-     AND P.id=CASE WHEN $sem=0 THEN P.id ELSE'$sem' END";
+LEFT JOIN course C on C.id=R.course_id LEFT JOIN trade T on T.id=R.trade_id LEFT JOIN semester P on P.id=A.sem_id";
+ //WHERE (S.firstname like '%$Name%' OR S.middlename like '%$Name%')
+// AND S.mobile like '%$mobile%' 
+//AND DATE(S.added_on)between '$Startdate' and '$EndDate'
+// AND S.isActive='$isActive'
+// AND C.id=CASE WHEN $course=0 THEN C.id ELSE '$course' END
+   // AND T.id=CASE WHEN $trade=0 THEN T.id ELSE'$trade' END
+    // AND P.id=CASE WHEN $sem=0 THEN P.id ELSE'$sem' END";
 $query = $this->db->query($sql);
 if($query){
     while($result=mysql_fetch_array($query->result_id)){

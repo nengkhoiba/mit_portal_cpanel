@@ -57,7 +57,7 @@ class Data_controller extends CI_Controller {
 		    $fathername=trim($_POST['txtFather']);
 		    $mothername=trim($_POST['txtMother']);
 		    $mobile=trim($_POST['txtMobile']);
-		    $gender=trim($_POST['txtGender']);
+		    $gender=trim($_POST['OptGender']);
 		    $religion=trim($_POST['txtReligion']);
 		    $nationality=trim($_POST['txtNationality']);
 		    $category=trim($_POST['txtCategory']);
@@ -107,34 +107,48 @@ class Data_controller extends CI_Controller {
                                                         `reserve_cat`='$rcategory',
                                                         `phy_han`='$phyhandicap',
                                                         `eco_back`='$ecoback'
-
-						WHERE USID='$flag' ";
-		        $query = $this->db->query($sql);
-		                               if($query){
-		                                   $sql1="UPDATE `std_col_relation` SET
-                                                                 `MU_roll`='$mu_roll',
-                                                                `reg_no`='$reg_no',
-                                                                `reg_year`='$reg_year',
-                                                                `course_id`='$course',
-                                                                `trade_id`='$trade'
-                                                                 WHERE USID='$flag'";
-		                                   $query1=$this->db->query($sql1);
-		                                   if($query1)
-		                                   {
-		                                     $sql2="UPDATE `admission_std_relation` SET `sem_id`='$stutype' WHERE USID='$flag'";  
-		                                   }
-		                                   
-		                                   
-		                                  $this->session->set_userdata('status', "Succesfully Updated!");
-		                                  redirect('student/registration');
-		                                          }
-		                                          else 
-		                                          {
-		                                              $this->session->set_userdata('status', "Failed at Database");
-		                                              redirect('student/registration');
-		                                          }
-		        
-		    }
+                                                        WHERE USID='$flag' ";
+                            		        $query = $this->db->query($sql);
+                            		        if($query){
+                            		            $sql1="UPDATE `std_col_relation` SET
+                                                                     `MU_roll`='$mu_roll',
+                                                                    `reg_no`='$reg_no',
+                                                                    `reg_year`='$reg_year',
+                                                                    `course_id`='$course',
+                                                                    `trade_id`='$trade'
+                                                                     WHERE USID='$flag'";
+                            		            $query1=$this->db->query($sql1);
+                            		            if($query1)
+                            		            {
+                            		                $sql2="UPDATE `admission_std_relation` SET `sem_id`='$stutype' WHERE USID='$flag'";
+                            		                $query2=$this->db->query($sql2);
+                            		                if($query2)
+                            		                {
+                            		                    $this->session->set_userdata('status', "Succesfully Updated!");
+                            		                    redirect('student/registration');
+                            		                }
+                            		                else {
+                            		                    $this->session->set_userdata('status', "Failed at Database level3");
+                            		                    $this->load->view('student/student_registration');
+                            		                }
+                            		                
+                            		            }
+                            		            else {
+                            		                $this->session->set_userdata('status', "Failed at Database level2");
+                            		                $this->load->view('student/student_registration');
+                            		            }
+                            		            
+                            		            
+                            		            
+                            		        }
+                            		        else
+                            		        {
+                            		            
+                            		            $this->session->set_userdata('status', "Failed at Database level1");
+                            		            $this->load->view('student/student_registration');
+                            		            
+                            		        }
+}
 		    else{
 		        
 		        
@@ -150,29 +164,34 @@ class Data_controller extends CI_Controller {
 		            while($result=mysql_fetch_array($query1->result_id))
 		            {
 		                $usid=$result['USID'];
-		                $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`, `reg_year`, `course_id`, `trade_id`)
-                                                      VALUES ('$usid','$mu_roll','$reg_no','$reg_year','$course','$trade')";
+		                $sql2="INSERT INTO `std_col_relation`(`USID`, `MU_roll`, `reg_no`, `reg_year`, `course_id`, `trade_id`,`isActive`)
+                                                      VALUES ('$usid','$mu_roll','$reg_no','$reg_year','$course','$trade','1')";
 		                $query2=$this->db->query($sql2);
 		                if($query2)
 		                {
 		                    $session=$this->session->userdata('session');
 		                    $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`isActive`) 
                                                                 VALUES ('$usid','$session','$stutype','0')";
+		                    $query3=$this->db->query($sql3);
+		                    if($query3)
+		                    {
+		                        $this->session->set_userdata('status', "Successfully entered");
+		                        redirect('student/registration');
+		                    }
 		                }
 		            }
-		            $this->session->set_userdata('status', "Successfully entered");
-		            redirect('student/registration');
+		           
 		        }
 		        else {
 		            $this->session->set_userdata('status', "Failed at db");
-		            redirect('student/registration');
+		           $this->load->view('student/student_registration.php');
 		        }  
 		    
-		    }
+		    }//insertcode
 		   
-		}
+		}//form sucess code
 		
-	}
+	}//end of student_reg()
 
 	
 	
