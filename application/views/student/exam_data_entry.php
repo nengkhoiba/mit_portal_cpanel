@@ -294,13 +294,7 @@
    			xmlHttp.onreadystatechange=function() {
    			if(xmlHttp.readyState == 4) {
    				if(xmlHttp.responseText != null){
-   					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
-   					$('#table').DataTable({
-   				        dom: 'Bfrtip',
-   				        buttons: [
-   				            'csv', 'pdf', 'print'
-   				        ]
-   				    });
+   					window.reload();
    				}else{
    					alert("Error");
    				}
