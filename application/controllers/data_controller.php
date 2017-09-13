@@ -1014,6 +1014,8 @@ class Data_controller extends CI_Controller {
 	
 	public function update_exam_data_entry(){
 		
+		$usid=$_GET['k'];
+		echo $usid;
 		
 	}
 	
