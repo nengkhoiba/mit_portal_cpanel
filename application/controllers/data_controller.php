@@ -16,6 +16,7 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a Trade"));
 		$this->form_validation->set_rules('OptStudentType', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a Semester"));		
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
+		$this->form_validation->set_rules('txtChallan', 'Transcation Details', 'alpha|required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
 		$this->form_validation->set_rules('txtPermanentAddress', 'Permanent Adress', 'required');
 		$this->form_validation->set_rules('txtCAdress', 'Communication Adress', 'required');
@@ -42,6 +43,7 @@ class Data_controller extends CI_Controller {
 		{
 		    $course=trim($_POST['OptCourse']);
 		    $trade=trim($_POST['OptTrade']);
+		    $challan=trim($_POST['txtChallan']);
 		    $stutype=trim($_POST['OptStudentType']);
 		    $mu_roll=trim($_POST['txtMuRoll']);
 		    $reg_no=trim($_POST['txtMuRegNo']);
@@ -170,8 +172,8 @@ class Data_controller extends CI_Controller {
 		                if($query2)
 		                {
 		                    $session=$this->session->userdata('session');
-		                    $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,`isActive`) 
-                                                                VALUES ('$usid','$session','$stutype','0')";
+		                    $sql3="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`,'date_of_admission',`other`,`isActive`) 
+                                                                VALUES ('$usid','$session','$stutype',CURDATE(),'$challan','1')";
 		                    $query3=$this->db->query($sql3);
 		                    if($query3)
 		                    {
