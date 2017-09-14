@@ -93,7 +93,10 @@ if($query2){
         ?>
 	  <tr>
                 <td><?php echo $result['name']; ?></td>
-                <?php $sid=$result['id']?>
+                <?php $sid=$result['id'];
+                $sql3="";
+                
+                ?>
                 <td><?php echo $result['name'];?></td>
                 <td><?php echo $result['name']; ?></td>
                 <td><?php echo $result['name']; ?></td>

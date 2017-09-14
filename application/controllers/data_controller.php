@@ -222,6 +222,9 @@ class Data_controller extends CI_Controller {
 	public function loadDT_studentmodal(){
 	    $this->load->view('data_fragment/student_modalData.php');
 	}
+	public function loadDT_Master_examType(){
+	    $this->load->view('data_fragment/examType_MasterData.php');
+	}
 
 	
 	
@@ -720,6 +723,7 @@ class Data_controller extends CI_Controller {
 	public function loadDT_examType(){
 		$this->load->view('data_fragment/examTypeData.php');
 	}
+	
 	
 	//END
 	
