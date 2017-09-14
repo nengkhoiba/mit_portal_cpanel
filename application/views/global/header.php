@@ -7,6 +7,10 @@
  	<link href="<?php echo base_url();?>css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
  	<link href="<?php echo base_url();?>css/dataTables.bootstrap.min.css" rel="stylesheet">
  <link href="<?php echo base_url();?>css/buttons.dataTables.min.css" rel="stylesheet">
+ <link href="<?php echo base_url();?>css/bootstrap-datepicker.standalone.css"  rel="stylesheet">
+<link href="<?php echo base_url();?>css/bootstrap-datepicker.css" rel="stylesheet">
+<link href="<?php echo base_url();?>css/bootstrap-datepicker3.css" rel="stylesheet">
+
 </head>
 <body>
 <body class="hold-transition skin-blue sidebar-mini">
