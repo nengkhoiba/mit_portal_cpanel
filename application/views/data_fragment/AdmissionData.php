@@ -21,15 +21,17 @@ $name=trim($_GET['l']);
 $viewtype=trim($_GET['m']);
 $sql="SELECT S.USID,A.date_of_admission,S.firstname,S.middlename,S.lastname,
 A.other,D.abv as course_name,T.abv as trade_name,X.name as sem_name,A.sem_id,A.isActive
-FROM student_details S LEFT JOIN admission_std_relation A on S.USID=A.USID
-                       LEFT JOIN std_col_relation C on C.USID=A.USID
-LEFT JOIN course D on D.id=C.course_id LEFT JOIN trade T on C.trade_id=T.id LEFT JOIN semester X on X.id=A.sem_id
-WHERE C.course_id=CASE WHEN $course=0 THEN C.course_id ELSE '$course' END
-   AND C.trade_id=CASE WHEN $trade=0 THEN C.trade_id ELSE'$trade' END
-     AND A.sem_id=CASE WHEN $Semester=0 THEN A.sem_id ELSE'$Semester' END
-    AND A.isActive=CASE WHEN $viewtype=2 THEN A.isActive ELSE '$viewtype'  END
-AND (S.firstname like'%$name%' OR S.middlename like '%$name%' OR S.lastname like '%$name%')
-        ";
+FROM student_details S
+ LEFT JOIN admission_std_relation A on S.USID=A.USID
+ LEFT JOIN std_col_relation C on C.USID=A.USID
+ LEFT JOIN course D on D.id=C.course_id
+ LEFT JOIN trade T on C.trade_id=T.id
+ LEFT JOIN semester X on X.id=A.sem_id WHERE 
+ C.course_id=CASE WHEN $course=0 THEN C.course_id ELSE '$course' END AND
+ C.trade_id=CASE WHEN $trade=0 THEN C.trade_id ELSE'$trade' END AND 
+ A.sem_id=CASE WHEN $Semester=0 THEN A.sem_id ELSE'$Semester' END AND 
+ A.isActive=CASE WHEN $viewtype=2 THEN A.isActive ELSE '$viewtype' END AND 
+(S.firstname like'%$name%' OR S.middlename like '%$name%' OR S.lastname like '%$name%')";
 $query = $this->db->query($sql);
 if($query){
     while($result=mysql_fetch_array($query->result_id)){

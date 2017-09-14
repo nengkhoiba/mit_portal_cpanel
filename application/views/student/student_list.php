@@ -62,16 +62,12 @@
 	     			<div class="form-group">
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Student Type
+		                    Semester
 		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select id="OptStudentType" name="OptStudentType" class="form-control form-control-lg" >
-		                  		<option value=0>Select</option>
-  								<option value=1>Fresher</option>
-  								<option value=3>Lateral Entry</option>
-  								</select>
+		                 <?php $this->load->view('global/drop_down_semester.php');?>
 		                </div> 
-		                <?php echo form_error('OptStudentType');?>  
+		                <?php echo form_error('OptSemester');?>  
 	              </div>
      			</div>
      			<div class="col-sm-4">
@@ -137,8 +133,9 @@
 			                    Active
 			                  </div>
 			                  <select id="ddlActive" name="ddlActive" class="form-control">
-			                  	<option value="1">Yes</option>
-			                  	<option value="0">No</option>
+			                  	<option value=2>All</option>
+			                  	<option value=1>Yes</option>
+			                  	<option value=0>No</option>
 			                  </select>
 			                </div>
 		              
@@ -196,7 +193,15 @@
 	  
 	  function search()
 	  {
-		  var url = "<?php echo site_url('data_controller/loadDT_student?q=');?>"+document.getElementById('txtFirstName').value+"&j="+document.getElementById('dateStart').value+"&k="+document.getElementById('dateEnd').value+"&l="+document.getElementById('txtMobile').value+"&n="+document.getElementById('ddlActive').value+"&c="+document.getElementById('OptCourse').value+"&t="+document.getElementById('OptTrade').value+"&s="+document.getElementById('OptStudentType').value;
+		  var url = "<?php echo site_url('data_controller/loadDT_student?q=');?>"
+			  +document.getElementById('txtFirstName').value
+			  +"&j="+document.getElementById('dateStart').value
+			  +"&k="+document.getElementById('dateEnd').value
+			  +"&l="+document.getElementById('txtMobile').value
+			  +"&n="+document.getElementById('ddlActive').value
+			  +"&c="+document.getElementById('OptCourse').value
+			  +"&t="+document.getElementById('OptTrade').value
+			  +"&s="+document.getElementById('OptSemester').value;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {

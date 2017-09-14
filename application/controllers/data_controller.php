@@ -45,7 +45,7 @@ class Data_controller extends CI_Controller {
 		    $course=trim($_POST['OptCourse']);
 		    $trade=trim($_POST['OptTrade']);
 		    $challan=trim($_POST['txtChallan']);
-		    $stutype=trim($_POST['OptStudentType']);
+		    addslashes($stutype=trim($_POST['OptStudentType']));
 		    $mu_roll=trim($_POST['txtMuRoll']);
 		    $reg_no=trim($_POST['txtMuRegNo']);
 		    $reg_year=trim($_POST['txtRegYear']);
@@ -282,17 +282,19 @@ class Data_controller extends CI_Controller {
 	}
 	public function removeDT_student()
 	{
-	    $temp=$_GET['id'];
-	    $sql="UPDATE `student_details` SET 
-                isActive='0' WHERE
-                  USID ='$temp'";
-	    $query=$this->db->query($sql);
+	    $id=trim($_GET['id']);
+	    $sql="UPDATE `student_details` SET isActive='0' WHERE USID='$id'";
+	    $query = $this->db->query($sql);
 	    if($query)
 	    {
-	        $this->session->set_userdata('status', "Succesfully Deleted!");
-	    }
-	    else {
-	        $this->session->set_userdata('status', "Failed!");
+	        $sql1="UPDATE `admission_std_relation` SET isActive='0' WHERE USID='$id'";
+	        $query1=$this->db->query($sql1);
+	        if($query1)
+	        {
+	            $sql2="UPDATE `std_col_relation` SET isActive='0' WHERE USID='$id'";
+	            $query2=$this->db->query($sql2);
+	            $this->session->set_userdata('status', "Succesfully Deleted!");
+	        }
 	    }
 	}
 	public function removeDT_course()
@@ -547,8 +549,19 @@ class Data_controller extends CI_Controller {
 	
 	public function deleteDT_student(){
 	    $id=$_GET['id'];
-	    $sql="DELETE FROM `emp_login` WHERE UEID='$id'";
+	    $sql="UPDATE `student_details` SET `isActive`=0 WHERE USID='$id'";
 	    $query = $this->db->query($sql);
+	    if($query)
+	    {
+	        $sql1="UPDATE `admission_std_relation` SET `isActive`=0 WHERE USID='$id'";
+	        $query1=$this->db->query($sql1);
+	        if($query1)
+	        {
+	            $sql2="UPDATE `std_col_relation` SET `isActive`=0 WHERE USID='$id'";
+	            $query2=$this->db->uery($query2);
+	           
+	        }
+	    }
 	}
 	public function update_current_session()
 	{
