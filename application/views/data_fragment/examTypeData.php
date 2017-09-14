@@ -23,9 +23,9 @@
         LEFT JOIN course c ON scr.course_id = c.id 
  		LEFT JOIN semester s ON asr.sem_id = s.id 
   		LEFT JOIN trade t ON scr.trade_id = t.id 
-		WHERE scr.course_id='$course' 
-		AND scr.trade_id= '$trade' 
-		AND asr.sem_id='$sem'
+		WHERE scr.course_id= CASE WHEN $course=0 THEN scr.course_id ELSE '$course' END 
+		AND scr.trade_id=  CASE WHEN $trade=0 THEN scr.trade_id ELSE '$trade' END  
+		AND asr.sem_id= CASE WHEN $sem=0 THEN asr.sem_id ELSE '$sem' END 
 
 ";
 $query = $this->db->query($sql);
@@ -33,7 +33,7 @@ if($query){
 	while($result=mysql_fetch_array($query->result_id)){
 	
 	?>
-	  <tr onclick="loadDT_Exam('<?php echo $result['USID']; ?>','<?php echo $result['Name']; ?>','<?php echo $result['MU_Roll']; ?>','<?php echo $result['Registration_No']; ?>','<?php echo $sem; ?>','<?php echo $this->session->userdata('session'); ?>')">
+	  <tr style="cursor: pointer" onclick="loadDT_Exam('<?php echo $result['USID']; ?>','<?php echo $result['Name']; ?>','<?php echo $result['MU_Roll']; ?>','<?php echo $result['Registration_No']; ?>','<?php echo $sem; ?>','<?php echo $this->session->userdata('session'); ?>')">
                 <td ><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['Name']?></td>
                 <td><?php echo $result['MU_Roll']?></td>

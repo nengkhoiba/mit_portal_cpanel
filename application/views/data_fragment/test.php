@@ -83,6 +83,7 @@ if($query1)
 <?php 
     }
     }?>
+<th>Course</th>
 <th>Mark</th>
 <th>Year of passing</th>
 </tr>
@@ -99,17 +100,14 @@ if($query2){
                 <td><?php echo $result['name']; ?></td>
                 <?php $sid=$result['id'];
                 $sql3="SELECT  `mark_scored`,`status`, `DOE`, `DOP`
-                                 FROM `exam_details` WHERE `USID`='$id' AND `sem_id`='$sid' order by exam_type_id ASC";
+                                 FROM `exam_details` WHERE `USID`='$id' AND `sem_id`='$sid'";
                 $query3 = $this->db->query($sql3);
                 if($query3){
                     while($result=mysql_fetch_array($query3->result_id))
                     {?>
-                    <td><?php echo $result['status']==1?"Passed".''.$result['DOE']:"Back";?></td>
-                    <td><?php echo $result['status']==1?"-":"Back";?></td>
-                    <td><?php echo $result['status']==1?"-":"Back";?></td>
-                    <td><?php echo $result['status']==1?"-":"Back";?></td>
-                	<td><?php echo $result['mark_scored']; ?></td>
-                	<td><?php echo $result['DOP']; ?></td>
+                        <td><?php echo $result['status'];?></td>
+                		<td><?php echo $result['mark']; ?></td>
+                		<td><?php echo $result['DOP']; ?></td>
                   <?php  }
                          }?>
                 
