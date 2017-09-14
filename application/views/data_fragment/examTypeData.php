@@ -16,7 +16,7 @@
         $sem=$_GET['j'];
         $course=$_GET['q'];
         $trade=$_GET['k'];
-$sql="SELECT sd.USID as USID,CONCAT(sd.firstname,' ', sd.middlename,' ', sd.lastname)as Name,scr.MU_roll as MU_Roll,scr.reg_no as Registration_No,
+		$sql="SELECT sd.USID as USID,CONCAT(sd.firstname,' ', sd.middlename,' ', sd.lastname)as Name,scr.MU_roll as MU_Roll,scr.reg_no as Registration_No,
 		c.name as Course,t.name as Trade,s.name as Semester 
 		FROM student_details sd LEFT JOIN std_col_relation scr ON scr.USID=sd.USID
 		LEFT JOIN admission_std_relation asr ON asr.USID=sd.USID

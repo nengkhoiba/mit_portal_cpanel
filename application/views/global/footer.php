@@ -23,4 +23,6 @@
 	    <script src="<?php echo base_url();?>js/buttons.html5.min.js"></script>
 	    <script src="<?php echo base_url();?>js/buttons.print.min.js"></script>
 	   <script src="<?php echo base_url();?>js/bootstrap-datepicker.min.js"></script> 
+	     
+  <script src="jquery-ui.js"></script>
 </html>

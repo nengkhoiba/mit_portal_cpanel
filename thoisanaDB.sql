@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2017 at 02:28 PM
+-- Generation Time: Sep 14, 2017 at 03:31 PM
 -- Server version: 5.6.25
 -- PHP Version: 5.3.29
 
@@ -41,14 +41,19 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
   `DOR` date NOT NULL,
   `DOP` date NOT NULL,
   `isActive` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `exam_details`
 --
 
 INSERT INTO `exam_details` (`id`, `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`) VALUES
-(1, 1, 1, 1, 4, 0, '123', '321', '123', '0000-00-00', '0000-00-00', '0000-00-00', 1);
+(1, 1, 1, 1, 4, 0, '123', '321', '123', '0000-00-00', '0000-00-00', '0000-00-00', 1),
+(2, 1, 3, 1, 4, 0, '100', '900', '12', '0000-00-00', '0000-00-00', '0000-00-00', 1),
+(3, 1, 1, 1, 4, 0, '1232', '1314', '123', '0000-00-00', '0000-00-00', '0000-00-00', 1),
+(4, 1, 1, 1, 4, 0, '13', '123', '12', '0000-00-00', '2017-09-19', '0000-00-00', 1),
+(5, 1, 1, 1, 4, 0, '123', '132', '1', '2017-08-29', '2017-09-26', '2017-09-26', 1),
+(6, 1, 1, 1, 4, 0, '132', '132', '12', '2017-08-28', '2017-09-19', '2017-09-18', 1);
 
 --
 -- Indexes for dumped tables
@@ -68,7 +73,7 @@ ALTER TABLE `exam_details`
 -- AUTO_INCREMENT for table `exam_details`
 --
 ALTER TABLE `exam_details`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

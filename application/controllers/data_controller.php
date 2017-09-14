@@ -745,7 +745,7 @@ class Data_controller extends CI_Controller {
 				WHERE id='$flag'
 				";
 				$query = $this->db->query ($sql);
-				if(query){
+				if($query){
 					$this->session->set_userdata('status', "Succesfully Updated!");
 				}
 			}else{
@@ -754,7 +754,7 @@ class Data_controller extends CI_Controller {
 				('$role','$isActive')
 				";
 				$query = $this->db->query ($sql);
-				if(query){
+				if($query){
 					$this->session->set_userdata('status', "Succesfully saved!");
 				}
 			}
@@ -803,7 +803,7 @@ class Data_controller extends CI_Controller {
 				WHERE id='$flag'
 				";
 				$query = $this->db->query ($sql);
-				if(query){
+				if($query){
 					$this->session->set_userdata('status', "Succesfully Updated!");
 				}
 			}else{
@@ -812,7 +812,7 @@ class Data_controller extends CI_Controller {
 				('$dept','$isActive')
 				";
 				$query = $this->db->query ($sql);
-				if(query){
+				if($query){
 					$this->session->set_userdata('status', "Succesfully saved!");
 				}
 			}
@@ -868,7 +868,7 @@ class Data_controller extends CI_Controller {
 				('$desig','$isActive')
 				";
 				$query = $this->db->query ($sql);
-				if(query){
+				if($query){
 					$this->session->set_userdata('status', "Succesfully saved!");
 				}
 			}
@@ -1044,11 +1044,23 @@ class Data_controller extends CI_Controller {
 			$doe=mysql_real_escape_string($doe);
 			$dop=mysql_real_escape_string($dop);
 				
+			
+			$dor = date("Y-m-d", strtotime($dor));
+			$doe= date("Y-m-d", strtotime($doe));
+			$dop= date("Y-m-d", strtotime($dop));
+			
+			
 		
 					$sql1 = "INSERT INTO `exam_details`( `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`)
 							 VALUES ('$sem_id','$exam_type','$usid','$session_id','$status','$mark_score','$grand_total','$mark_sheet_number','$doe','$dor','$dop','1')
 							";
 					$query1 = $this->db->query ($sql1);
+					if($query1){
+						$this->session->set_userdata('status', "Succesfully saved!");
+					}
+					else {
+						$this->session->set_userdata('status', "Something went wrong !");
+					}
 					
 					
 		

@@ -10,6 +10,7 @@
  <link href="<?php echo base_url();?>css/bootstrap-datepicker.standalone.css"  rel="stylesheet">
 <link href="<?php echo base_url();?>css/bootstrap-datepicker.css" rel="stylesheet">
 <link href="<?php echo base_url();?>css/bootstrap-datepicker3.css" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo base_url();?>css/jquery-ui.css">
 
 </head>
 <body>
