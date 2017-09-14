@@ -19,16 +19,16 @@
      	<div class="row">    
      		<div class="col-sm-12">
      		<?php 
-     		if($this->session->userdata('status')!=null){
+     		if($this->session->userdata('removedt_student_status')!=null){
      		
-     			$msg=$this->session->userdata('status');
+     			$msg=$this->session->userdata('removedt_student_status');
      			?>
      			<div id="success-alert" class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
      			<?php 
-     			$this->session->set_userdata('status', null);
+     			$this->session->set_userdata('removedt_student_status', null);
      		}
      		?>
 

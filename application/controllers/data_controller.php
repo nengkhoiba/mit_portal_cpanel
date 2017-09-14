@@ -286,15 +286,11 @@ class Data_controller extends CI_Controller {
 	    $sql="UPDATE `student_details` SET isActive='0' WHERE USID='$id'";
 	    $query = $this->db->query($sql);
 	    if($query)
-	    {
-	        $sql1="UPDATE `admission_std_relation` SET isActive='0' WHERE USID='$id'";
-	        $query1=$this->db->query($sql1);
-	        if($query1)
-	        {
-	            $sql2="UPDATE `std_col_relation` SET isActive='0' WHERE USID='$id'";
+	    {  
+	        $sql2="UPDATE `std_col_relation` SET isActive='0' WHERE USID='$id'";
 	            $query2=$this->db->query($sql2);
-	            $this->session->set_userdata('status', "Succesfully Deleted!");
-	        }
+	            $this->session->set_userdata('removedt_student_status', "Succesfully Deleted!");
+	        
 	    }
 	}
 	public function removeDT_course()
