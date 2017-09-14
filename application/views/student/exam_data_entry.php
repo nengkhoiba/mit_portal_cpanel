@@ -266,7 +266,7 @@
 		                    Semester
 		                    <span style="color: red"> * </span> 
 		                  </div>
-		                   <?php $this->load->view('global/drop_down_trade')?>
+		                   <?php $this->load->view('global/drop_down_semester')?>
 		                </div>
 	              
 	              </div>
@@ -280,7 +280,7 @@
 		                   Trade
 		                   <span style="color: red"> * </span>
 		                  </div>
-		                   <?php $this->load->view('global/drop_down_semester')?>
+		                   <?php $this->load->view('global/drop_down_trade')?>
 		                </div>
 	              
 	              </div>

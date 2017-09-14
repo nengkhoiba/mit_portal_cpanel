@@ -40,6 +40,12 @@ WHERE S.USID=$usid";
             $mu_roll=$result['MU_roll'];
             $reg_no=$result['reg_no'];
             $sem=$result['sem_id'];
+            $semold=0;
+            if($sem>3)
+            {
+                $semold=$sem;
+                $sem=4;
+            }
             $other=$result['other'];
             $reg_year=$result['reg_year'];//`reserve_cat`, `phy_han`, `eco_back`
           
@@ -525,6 +531,7 @@ WHERE S.USID=$usid";
       $('#OptRcategory').val('<?php echo $rcat;?>');       
       $('#OptPhyHandicap').val('<?php echo $phand;?>');       
       $('#OptEcoBackward').val('<?php echo $eco;?>');
+      $('#OptSemester').val('<?php echo $semold;?>')
       <?php } ?>
 	  
   }
