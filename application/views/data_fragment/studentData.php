@@ -47,7 +47,7 @@ $trade=trim($_GET['t']);
 $sem=trim($_GET['s']);
 $sql="SELECT S.USID, S.title,S.firstname,S.middlename,S.lastname,S.mName,S.fName,S.pAddress,S.cAddress,S.phone,
 S.mobile,S.gender,S.dob,S.religion,S.nationality,S.category,S.reserve_cat,S.phy_han,S.eco_back,S.added_on,S.isActive,
-C.abv as course_name,T.abv as trade_name,P.name as semester_name,R.MU_roll,R.reg_no,R.reg_year
+C.abv as course_name,C.name as course_title,T.abv as trade_name,T.name as trade_title,P.name as semester_name,R.MU_roll,R.reg_no,R.reg_year
  FROM `student_details` S LEFT JOIN admission_std_relation A on S.USID=A.USID LEFT JOIN std_col_relation R on R.USID=A.USID
 LEFT JOIN course C on C.id=R.course_id LEFT JOIN trade T on T.id=R.trade_id LEFT JOIN semester P on P.id=A.sem_id
  WHERE S.isActive=CASE WHEN $isactive=2 THEN S.isActive ELSE '$isactive' END
@@ -61,7 +61,10 @@ if($query){
     while($result=mysql_fetch_array($query->result_id)){
         
         ?>
-	  <tr>
+	  <tr style="cursor: pointer" onclick="show('<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname'];?>',
+	  '<?php echo $result['fName'];?>','<?php echo $result['mName'];?>','<?php echo $result['pAddress'];?>',
+	  '<?php echo $result['mobile'];?>','<?php echo $result['course_title'];?>','<?php echo $result['trade_title'];?>',
+	  '<?php echo $result['MU_roll'];?>','<?php echo $result['reg_no'].' of '.$result['reg_year']; ?>')">
                 <td><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['title']; ?></td>
                 <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
