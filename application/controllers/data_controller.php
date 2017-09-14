@@ -215,8 +215,12 @@ class Data_controller extends CI_Controller {
 	public function loadDT_session(){
 	    $this->load->view('data_fragment/sessionData.php');
 	}
+	
 	public function loadDT_admission(){
 	    $this->load->view('data_fragment/AdmissionData.php');
+	}
+	public function loadDT_studentmodal(){
+	    $this->load->view('data_fragment/student_modalData.php');
 	}
 
 	

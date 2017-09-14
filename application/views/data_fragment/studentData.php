@@ -61,10 +61,7 @@ if($query){
     while($result=mysql_fetch_array($query->result_id)){
         
         ?>
-	  <tr style="cursor: pointer" onclick="show('<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname'];?>',
-	  '<?php echo $result['fName'];?>','<?php echo $result['mName'];?>','<?php echo $result['pAddress'];?>',
-	  '<?php echo $result['mobile'];?>','<?php echo $result['course_title'];?>','<?php echo $result['trade_title'];?>',
-	  '<?php echo $result['MU_roll'];?>','<?php echo $result['reg_no'].' of '.$result['reg_year']; ?>')">
+	  <tr style="cursor: pointer" onclick="new_tab('<?php echo $result['USID'];?>')">
                 <td><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['title']; ?></td>
                 <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
