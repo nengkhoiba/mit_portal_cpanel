@@ -615,7 +615,6 @@ class Data_controller extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			//$this->session->set_userdata('status', "Unsuccessful");
 			$this->session->set_userdata('lanba', "Unsuccessful");
 			redirect('nav_controller/emp_reg');
 		}
@@ -657,9 +656,6 @@ class Data_controller extends CI_Controller {
 				
 				$sql2=" INSERT INTO emp_login (`UEID`, `user`, `password`, `isFirst`) VALUES ($ueid,'$loginName','','1')";
 				$query2 = $this->db->query($sql2);
-				
-				/*	$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($ueid,$dept_id,$deg_id,$role_id)";
-				 $query3 =$this->db->query($sql3);*/
 				
 				$this->session->set_userdata('status', "Success");
 				redirect('nav_controller/emp_reg');
@@ -1026,9 +1022,42 @@ class Data_controller extends CI_Controller {
 	// START EXAM DATA ENTRY 
 	
 	public function update_exam_data_entry(){
+	
 		
-		$usid=$_GET['k'];
-		echo $usid;
+			$exam_type=$_GET['q'];
+			$usid=trim($_GET['k']);
+			$sem_id = trim($_GET['l']);
+			$session_id = trim($_GET['n']);
+			$status = trim($_GET['o']);
+			$mark_score=trim($_GET['p']);
+			$grand_total=trim($_GET['r']);
+			$mark_sheet_number=trim($_GET['s']);
+			$dor=trim($_GET['t']);
+			$doe=trim($_GET['u']);
+			$dop=trim($_GET['v']);
+			
+			
+			$usid=mysql_real_escape_string($usid);
+			$sem_id = mysql_real_escape_string($sem_id);
+			$session_id = mysql_real_escape_string($session_id);
+			$status = mysql_real_escape_string($status);
+			$mark_score=mysql_real_escape_string($mark_score);
+			$grand_total=mysql_real_escape_string($grand_total);
+			$mark_sheet_number=mysql_real_escape_string($mark_sheet_number);
+			$dor=mysql_real_escape_string($dor);
+			$doe=mysql_real_escape_string($doe);
+			$dop=mysql_real_escape_string($dop);
+				
+		
+					$sql1 = "INSERT INTO `exam_details`( `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`)
+							 VALUES ('$sem_id','$exam_type','$usid','$session_id','$status','$mark_score','$grand_total','$mark_sheet_number','$doe','$dor','$dop','1')
+							";
+					$query1 = $this->db->query ($sql1);
+					
+					
+		
+		
+	
 		
 	}
 	
