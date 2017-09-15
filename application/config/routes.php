@@ -50,7 +50,7 @@ $route['utility/department'] = 'nav_controller/master_department';
 $route['utility/designation'] = 'nav_controller/master_designation';
 $route['utility/user'] = 'nav_controller/master_user';
 $route['utility/role'] = 'nav_controller/master_role';
-$route['student/exam-details']='nav_controller/exam_data';
+$route['student/exam-result']='nav_controller/exam_data';
 //thoisana
 
 //borison

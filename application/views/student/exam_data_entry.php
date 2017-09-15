@@ -45,9 +45,10 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			       <label id="lblStudentName"></label>
-			       <label id="lblStdRoll"></label>
-			        <label id="lblStdReg"></label>
+			      <label id="lblStudentName"></label>
+			      <label id="lblStdRoll"> </label>
+			      <label>of</label>
+			       <label id="lblStdReg"></label>
 			         
 			           <div class='row '>
 			         	<div class='col-sm-12'>
@@ -70,7 +71,7 @@
 						                    <span style="color: red"> * </span>
 						                  </div>
 						                     <select  id="status" class="form-control form-control-lg">
-											  <option value='0'>-Select-</option>
+											  <option value=''>-Select-</option>
 											  <option value="pass">Pass</option>
 											  <option value="fail">Fail</option>
 											  
@@ -127,10 +128,10 @@
 					     			<div class="form-group">
 						                <div class="input-group">
 						                  <div class="input-group-addon">
-						                    DOE
+						                    Date Of Examination
 						                    <span style="color: red"> * </span>
 						                  </div>
-						                    <input type="text" class="form-control" id="doe">
+										<input  class="form-control" type="date" id="doe" >
 						                </div>
 					              </div>
 				     			</div>
@@ -143,10 +144,10 @@
 			         		 <div class="form-group">
 						                <div class="input-group">
 						                  <div class="input-group-addon">
-						                    DOR
+						                    Date Of Result 
 						                    <span style="color: red"> * </span>
 						                  </div>
-						                    <input type="text" class="form-control" id="dor">
+						           <input  class="form-control" type="date" id="dor" >
 						                </div>
 					              </div>
 					         </div>
@@ -154,11 +155,10 @@
 					     			<div class="form-group">
 						                <div class="input-group">
 						                  <div class="input-group-addon">
-						                    DOP
+						                    Date of Publish
 						                    <span style="color: red"> * </span>
 						                  </div>
-						                    <input type="text" class="form-control" id="dop">
-						                </div>
+						                  <input  class="form-control" type="date" id="dop" >						                </div>
 					              </div>
 				     			</div>
 					        
