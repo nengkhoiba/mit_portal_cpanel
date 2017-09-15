@@ -17,7 +17,7 @@
         $course=$_GET['q'];
         $trade=$_GET['k'];
 		$sql="SELECT sd.USID as USID,CONCAT(sd.firstname,' ', sd.middlename,' ', sd.lastname)as Name,scr.MU_roll as MU_Roll,scr.reg_no as Registration_No,
-		c.name as Course,t.name as Trade,s.name as Semester 
+		c.name as Course,t.name as Trade,s.name as Semester,scr.reg_year as year
 		FROM student_details sd LEFT JOIN std_col_relation scr ON scr.USID=sd.USID
 		LEFT JOIN admission_std_relation asr ON asr.USID=sd.USID
         LEFT JOIN course c ON scr.course_id = c.id 
@@ -33,7 +33,7 @@ if($query){
 	while($result=mysql_fetch_array($query->result_id)){
 	
 	?>
-	  <tr style="cursor: pointer" onclick="loadDT_Exam('<?php echo $result['USID']; ?>','<?php echo $result['Name']; ?>','<?php echo $result['MU_Roll']; ?>','<?php echo $result['Registration_No']; ?>','<?php echo $sem; ?>','<?php echo $this->session->userdata('session'); ?>')">
+	  <tr style="cursor: pointer" onclick="loadDT_Exam('<?php echo $result['USID']; ?>','<?php echo $result['Name']; ?>','<?php echo $result['MU_Roll']; ?>','<?php echo $result['Registration_No']; ?>','<?php echo $sem; ?>','<?php echo $this->session->userdata('session'); ?>','<?php echo $result['year'];?>')">
                 <td ><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['Name']?></td>
                 <td><?php echo $result['MU_Roll']?></td>

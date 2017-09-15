@@ -46,10 +46,14 @@
 			      </div>
 			      <div class="modal-body">
 			      <label id="lblStudentName"></label>
+			      <br>
+			      <label>     MU Roll No. : </label>
 			      <label id="lblStdRoll"> </label>
-			      <label>of</label>
+			      <br>
+			      <label>Reg no.</label>
 			       <label id="lblStdReg"></label>
-			         
+			       <label> of </label>
+			         <label id="lblStdRegYear"></label>
 			           <div class='row '>
 			         	<div class='col-sm-12'>
 			         		<div class='col-sm-6'>
@@ -131,7 +135,7 @@
 						                    Date Of Examination
 						                    <span style="color: red"> * </span>
 						                  </div>
-										<input  class="form-control" type="date" id="doe" >
+										<input  class="form-control"  id="doe" >
 						                </div>
 					              </div>
 				     			</div>
@@ -147,7 +151,7 @@
 						                    Date Of Result 
 						                    <span style="color: red"> * </span>
 						                  </div>
-						           <input  class="form-control" type="date" id="dor" >
+						           <input  class="form-control"  id="dor" >
 						                </div>
 					              </div>
 					         </div>
@@ -158,7 +162,7 @@
 						                    Date of Publish
 						                    <span style="color: red"> * </span>
 						                  </div>
-						                  <input  class="form-control" type="date" id="dop" >						                </div>
+						                  <input  class="form-control"  id="dop" >						                </div>
 					              </div>
 				     			</div>
 					        
@@ -319,7 +323,7 @@
   });
 
  
-  function loadDT_Exam(id,name,mu_roll,reg_no,semester,session){
+  function loadDT_Exam(id,name,mu_roll,reg_no,semester,session,year){
 
 	  usid=id;
 	  sem_id=semester;
@@ -327,6 +331,7 @@
 	  document.getElementById('lblStudentName').innerHTML=name;
 	 document.getElementById('lblStdRoll').innerHTML=mu_roll;
 	  document.getElementById('lblStdReg').innerHTML=reg_no;
+	  document.getElementById('lblStdRegYear').innerHTML=year;
 	  $('#examModal').modal('show');
   }
   
