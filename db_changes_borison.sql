@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2017 at 01:10 PM
+-- Generation Time: Sep 16, 2017 at 12:57 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.3
 
@@ -41,10 +41,15 @@ CREATE TABLE IF NOT EXISTS `admission_std_relation` (
 --
 
 INSERT INTO `admission_std_relation` (`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`) VALUES
-(1, 4, 1, '0000-00-00', '', 0),
-(2, 4, 3, '0000-00-00', '', 0),
-(3, 4, 1, '0000-00-00', '', 0),
-(4, 4, 1, '0000-00-00', '', 0);
+(1, 4, 1, '2017-09-13', '', 1),
+(2, 4, 3, '2017-09-13', '', 1),
+(3, 4, 1, '2017-09-13', '', 1),
+(4, 4, 1, '2017-09-13', '', 1),
+(8, 4, 7, '2017-09-13', '1165', 1),
+(9, 4, 7, '2017-09-14', '12', 1),
+(10, 4, 5, '2017-09-14', '12', 1),
+(11, 4, 5, '2017-09-14', '12423', 1),
+(12, 4, 5, '2017-09-14', '0000', 1);
 
 -- --------------------------------------------------------
 
@@ -242,7 +247,15 @@ CREATE TABLE IF NOT EXISTS `exam_details` (
   `DOP` date NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `exam_details`
+--
+
+INSERT INTO `exam_details` (`id`, `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`) VALUES
+(1, 5, 1, 11, 4, 0, '750', '900', '1255', '2017-06-01', '2017-08-15', '2017-08-08', 1),
+(2, 1, 1, 1, 4, 0, '717', '900', '789865', '2014-12-01', '2015-02-18', '2015-02-18', 1);
 
 -- --------------------------------------------------------
 
@@ -297,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `page_manager` (
   `role_id` int(10) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `page_manager`
@@ -317,7 +330,8 @@ INSERT INTO `page_manager` (`id`, `site_map_id`, `role_id`, `isActive`) VALUES
 (11, 11, 1, 1),
 (12, 12, 1, 1),
 (13, 13, 1, 1),
-(14, 14, 1, 1);
+(14, 14, 1, 1),
+(15, 15, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -407,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `site_map` (
   `url` varchar(50) NOT NULL,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `site_map`
@@ -427,7 +441,8 @@ INSERT INTO `site_map` (`id`, `name`, `css`, `url`, `isActive`) VALUES
 (11, 'Session Master', 'fa fa-calendar', 'utility/session', 1),
 (12, 'Page Master', 'fa fa-sticky-note', 'utility/page', 1),
 (13, 'Admission', 'fa fa-link', 'student/admission', 1),
-(14, 'Student List', 'fa fa-id-card', 'student/list', 1);
+(14, 'Student List', 'fa fa-id-card', 'student/list', 1),
+(15, 'Examination Data', 'fa fa-upload', 'student/exam-result', 1);
 
 -- --------------------------------------------------------
 
@@ -453,8 +468,13 @@ CREATE TABLE IF NOT EXISTS `std_col_relation` (
 INSERT INTO `std_col_relation` (`USID`, `MU_roll`, `reg_no`, `reg_year`, `course_id`, `trade_id`, `isActive`) VALUES
 (1, '142026', '1430073', '2014', 1, 1, 1),
 (2, '182026', '1830073', '2018', 2, 1, 1),
-(3, '141026', '1410073', '2014', 1, 2, 1),
-(4, '143026', '1410083', '2018', 2, 2, 1);
+(3, '141026', '1410073', '2014', 1, 2, 0),
+(4, '143026', '1410083', '2018', 2, 2, 0),
+(8, '142026', '1430073', '2018', 1, 1, 1),
+(9, '152042', '154007', '2015', 1, 1, 1),
+(10, '152890', '145299', '2015', 1, 1, 1),
+(11, '142011', '14430014', '2014', 1, 1, 1),
+(12, '142032', '0000', '2014', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -488,7 +508,7 @@ CREATE TABLE IF NOT EXISTS `student_details` (
   `added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `isActive` int(1) NOT NULL,
   PRIMARY KEY (`USID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `student_details`
@@ -497,8 +517,13 @@ CREATE TABLE IF NOT EXISTS `student_details` (
 INSERT INTO `student_details` (`USID`, `title`, `firstname`, `middlename`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `dob`, `religion`, `nationality`, `category`, `reserve_cat`, `phy_han`, `eco_back`, `photo_url`, `added_by`, `added_on`, `isActive`) VALUES
 (1, 'Mr', 'Ningthoujam', 'Borison', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moirangkampu', 'Moirangkampu', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-13 11:28:12', 1),
 (2, 'Mr', 'Ningthoujam', 'Borison', 'Singh', 'Ningthoujam Mema Devi', 'Ningthoujam Tompishak Singh', 'Moirangkampu', 'Moirangkampu', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-13 11:34:57', 1),
-(3, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Lea Village', '9615865655', '9089779715', 'Male', '2010-07-08', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-13 11:38:00', 1),
-(4, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Lea Village', '9615865655', '9089779715', 'Male', '2017-09-15', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-13 11:43:06', 1);
+(3, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Lea Village', '9615865655', '9089779715', 'Male', '2010-07-08', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-14 06:49:53', 0),
+(4, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Lea Village', '9615865655', '9089779715', 'Male', '2017-09-15', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-14 06:55:15', 0),
+(8, 'Mr', 'Naruto', '', 'Uzumaki', 'Kushina', 'Minato', 'Hidden Leaf village', 'Hidden Leaf Village', '9615865655', '9089779715', 'Male', '1996-07-08', 'Meitei', 'Japaneese', 'General', 0, 0, 0, '', 0, '2017-09-13 15:44:56', 1),
+(9, 'Mr', 'Pankaj', '', 'Chongtham', 'Keisham Belarani', 'Chongtham Dhirendra', 'Wangkhei Angom Leikai', 'Wangkhei Angom Leikai', '8014519512', '8014519512', 'Male', '1994-04-18', 'hindu', 'indian', 'ur', 0, 0, 0, '', 0, '2017-09-15 14:46:49', 1),
+(10, 'Mr', 'abc', 'xyz', 'aaa', 'mother name', 'father name', 'wangkhei', 'wangkhei', '1234567', '1234567899', 'Male', '1991-04-14', 'hindu', 'indian', 'ur', 0, 0, 0, '', 0, '2017-09-14 06:02:47', 1),
+(11, 'Mr', 'Sidartha', '', 'Huidrom', 'Hemabati', 'Imo', 'Yaiskul', 'Yaiskul', '8794201643', '8794201643', 'Male', '1996-03-23', 'hindu', 'Indian', 'General', 0, 0, 0, '', 0, '2017-09-14 06:16:30', 1),
+(12, 'Mr', 'RajKumar', '', 'Ronaldo', 'RK(o)Shantibala', 'RajKumar Sanajaoba', 'Haobam Marak Keisham Leikai', 'Haobam Marak Keisham leikai', '7005671750', '7005671750', 'Female', '1997-03-31', 'Meeitei', 'Indian', 'UR', 0, 0, 0, '', 0, '2017-09-14 06:22:15', 1);
 
 -- --------------------------------------------------------
 
