@@ -34,152 +34,10 @@
      		}
      		?>
      		
+     		<div id="examModalData">
      		
-     			<div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h3 class="modal-title" id="exampleModalLabel"> <b>Enter The Marks</b> </h3>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      <label id="lblStudentName"></label>
-			      <br>
-			      <label>     MU Roll No. : </label>
-			      <label id="lblStdRoll"> </label>
-			      <br>
-			      <label>Reg no.</label>
-			       <label id="lblStdReg"></label>
-			       <label> of </label>
-			         <label id="lblStdRegYear"></label>
-			           <div class='row '>
-			         	<div class='col-sm-12'>
-			         		<div class='col-sm-6'>
-			         		 <div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Exam Type
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                    <?php $this->load->view('global/drop_down_exam_type') ?>
-						                </div>
-					              </div>
-					        </div>
-					         <div class="col-sm-6">
-					     			<div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Status
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                     <select  id="status" class="form-control form-control-lg">
-											  <option value=''>-Select-</option>
-											  <option value="pass">Pass</option>
-											  <option value="fail">Fail</option>
-											  
-											</select> 
-						                </div>
-					              </div>
-				     			</div>
-				
-					        
-			         	</div>
-			          </div>
-			         
-			           <div class='row'>
-			         	<div class='col-sm-12'>
-			         		<div class='col-sm-6'>
-			         		 <div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Mark Score 
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                    <input type="text" class="form-control" id="mark_score">
-						                </div>
-					              </div>
-					         </div>
-					        <div class="col-sm-6">
-					     			<div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Grand Total
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                    <input type="text" class="form-control" id="grand_total">
-						                </div>
-					              </div>
-				     			</div>
-					        
-			         	</div>
-			          </div>
-			            <div class='row'>
-			         	<div class='col-sm-12'>
-			         		<div class='col-sm-6'>
-			         		 <div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Mark Sheet Number
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                    <input type="text" class="form-control" id="mark_sheet_number">
-						                </div>
-					              </div>
-					         </div>
-					        <div class="col-sm-6">
-					     			<div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Date Of Examination
-						                    <span style="color: red"> * </span>
-						                  </div>
-										<input  class="form-control"  id="doe" >
-						                </div>
-					              </div>
-				     			</div>
-					        
-			         	</div>
-			          </div>
-			            <div class='row'>
-			         	<div class='col-sm-12'>
-			         		<div class='col-sm-6'>
-			         		 <div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Date Of Result 
-						                    <span style="color: red"> * </span>
-						                  </div>
-						           <input  class="form-control"  id="dor" >
-						                </div>
-					              </div>
-					         </div>
-					        <div class="col-sm-6">
-					     			<div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Date of Publish
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                  <input  class="form-control"  id="dop" >						                </div>
-					              </div>
-				     			</div>
-					        
-			         	</div>
-			          </div>
-			          
-			       
-			         
-			       
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			        <button type="submit" onclick='submit_data()' class="btn btn-primary">Save</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+     		</div>
+ 
      		
      		
      		
@@ -281,7 +139,7 @@
    <script >
 
    var usid,sem_id,session_id;
-   
+
    function submit_data()
    {
 	   $('#examModal').modal('hide');
@@ -323,17 +181,29 @@
   });
 
  
-  function loadDT_Exam(id,name,mu_roll,reg_no,semester,session,year){
-
-	  usid=id;
-	  sem_id=semester;
-	  session_id=session;
-	  document.getElementById('lblStudentName').innerHTML=name;
-	 document.getElementById('lblStdRoll').innerHTML=mu_roll;
-	  document.getElementById('lblStdReg').innerHTML=reg_no;
-	  document.getElementById('lblStdRegYear').innerHTML=year;
-	  $('#examModal').modal('show');
-  }
+  function loadDT_ExamModal(id){
+	
+	  var url = "<?php echo site_url('data_controller/loadDT_examDataModal?q=');?>"+id;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+	  					document.getElementById('examModalData').innerHTML = xmlHttp.responseText;
+	  				  $('#examModal').modal('show');
+	  		
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+ }
   
   function search()
   {
@@ -399,6 +269,7 @@
 		}
 	}
 
+
 	/*
 	DATE PICKER 
 	*/
@@ -425,7 +296,6 @@
 	/*
 	DATE PICKER 
 	*/
-	
   </script>
   
   
