@@ -721,7 +721,7 @@ class Data_controller extends CI_Controller {
 		
 	}
 	public function loadDT_examType(){
-		$this->load->view('data_fragment/examTypeData.php');
+		$this->load->view('data_fragment/examTypeDataModal.php');
 	}
 	
 	
@@ -1081,7 +1081,9 @@ class Data_controller extends CI_Controller {
 	public function loadDT_examData(){
 		$this->load->view('data_fragment/examTypeData.php');
 	}
-	
+	public function loadDT_examDataModal(){
+		$this->load->view('data_fragment/examTypeDataModal.php');
+	}
 	
 	
 	//END EXAM DATA ENTRY 
