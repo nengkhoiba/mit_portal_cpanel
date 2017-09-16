@@ -2,16 +2,7 @@
       <?php $this->load->view('global/side_menu.php');?>
        <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-          <h6>
-          <ol class="breadcrumb">
-             <li><a href="<?php echo base_url()?>student/student_list"><i class="fa fa-gear"></i> Student</a></li>
-            <li class="active">List</li>
-          </ol>
-          </h6>      
-    </section>
-
-    <section class="content">
+     <section class="content">
      	<div class="row">    
      		<div class="col-sm-12">
      		<?php 

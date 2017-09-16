@@ -531,7 +531,7 @@ WHERE S.USID=$usid";
       $('#OptRcategory').val('<?php echo $rcat;?>');       
       $('#OptPhyHandicap').val('<?php echo $phand;?>');       
       $('#OptEcoBackward').val('<?php echo $eco;?>');
-      $('#OptSemester').val('<?php echo $semold;?>')
+      $('#OptSemester').val('<?php echo $semold;?>');
       <?php } ?>
 	  
   }
