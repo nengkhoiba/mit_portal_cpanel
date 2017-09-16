@@ -26,7 +26,7 @@
      		<?php if (isset($_GET['usid']))
      		{
      		$id=mysql_real_escape_string(trim($_GET['usid']));
-     		    $sql="SELECT R.MU_roll,R.reg_no,R.reg_year,S.firstname,S.middlename,S.lastname,S.fName,S.pAddress,
+     		    $sql="SELECT R.MU_roll,R.reg_no,R.reg_year,R.course_id,S.firstname,S.middlename,S.lastname,S.fName,S.pAddress,
                         S.gender,S.category,date(S.added_on) AS date,C.name as course_name,T.name as trade_name
                          FROM `student_details` S LEFT JOIN admission_std_relation A on S.USID=A.USID
                          LEFT JOIN std_col_relation R on R.USID=A.USID
@@ -37,6 +37,7 @@
      		    $query=$this->db->query($sql);
      		    if($query){
      		        while($result=mysql_fetch_array($query->result_id)){
+     		            $cid=$result['course_id'];
      		            ?>
          <h3 style="text-align:center;color:red;"></h3>
          <h4 style="text-align:center;">Student Bio-data</h4>
@@ -51,8 +52,22 @@
 		 <h4 > ADDRESS : <?php echo $result['pAddress'];?></h4>
 		 <h4 > CATEGORY : <?php echo $result['gender'].' - '.$result['category'];?></h4>
 		 <h4 > ADMISSION(1ST SEM) : <?php echo $result['date'];?></h4>
-		 <h4 >4 YEARS COMPLETE </h4>
-		 <h4 >8 YEARS COMPLETE </h4>
+		 <h4 ><?php if($cid==1)
+		 {
+		     echo "4 YEARS COMPLETE";
+		 }
+		 else 
+		 {
+		     echo "2 YEARS COMPLETE";
+     		        }?></h4>
+		 <h4 ><?php if($cid==1)
+		 {
+		     echo "8 YEARS COMPLETE";
+		 }
+		 else 
+		 {
+		     echo "4 YEARS COMPLETE";
+     		        }?></h4>
 		 <br>
 		 <br>
 		     </section>
@@ -83,7 +98,14 @@ if($query1)
 </thead>
 <tbody>
 <?php
-$sql2="SELECT  `id`,`name` FROM `semester` WHERE `isActive`=1";
+if($cid==1)
+{
+$sql2="SELECT  `id`,`name` FROM `semester` WHERE `isActive`=1 order by id ASC LIMIT 8";
+}
+else 
+{
+    $sql2="SELECT  `id`,`name` FROM `semester` WHERE `isActive`=1 ORDER by id ASC LIMIT 4";
+}
 $query2 = $this->db->query($sql2);
 if($query2){
     while($result=mysql_fetch_array($query2->result_id)){
