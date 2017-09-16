@@ -80,18 +80,11 @@
 <thead>
 <tr>
 <th>Semester</th>
-<?php 
-$sql1="SELECT  `name` FROM `exam_type` WHERE `isActive`=1";
-$query1=$this->db->query($sql1);
-if($query1)
-{
-    while($result=mysql_fetch_array($query1->result_id))
-    {
-        ?>
-        <th><?php echo $result['name']?></th>
-<?php 
-    }
-    }?>
+<th>Regular</th> 
+<th><center>Year 1</center></th>
+<th><center>Year 2</center></th>
+<th><center>Year 3</center></th>
+
 <th>Mark</th>
 <th>Year of passing</th>
 </tr>
@@ -113,19 +106,20 @@ if($query2){
         ?>
 	  <tr>
                 <td><?php echo $result['name']; ?></td>
+                
                 <?php $sid=$result['id'];
-                $sql3="SELECT  `mark_scored`,`status`, `DOE`, `DOP`
-                                 FROM `exam_details` WHERE `USID`='$id' AND `sem_id`='$sid' order by exam_type_id ASC";
+                $sql3="SELECT  ed.mark_scored as mark,ed.DOE,ed.DOP,et.name,et.id,status
+                                 FROM `exam_details` ed LEFT JOIN `exam_type` et ON ed.exam_type_id=et.id WHERE `USID`='$id' AND `sem_id`='$sid' order by exam_type_id ASC";
                 $query3 = $this->db->query($sql3);
                 if($query3){
-                                    while($result=mysql_fetch_array($query3->result_id))
+                    while($result=mysql_fetch_array($query3->result_id))
                                     { ?>
-                                    <td><?php echo $result['status']==1?"Passed".''.$result['DOE']:"Back";?></td>
-                                    <td><?php echo $result['status']==1?"-":"Back";?></td>
-                                    <td><?php echo $result['status']==1?"-":"Back";?></td>
-                                    <td><?php echo $result['status']==1?"-":"Back";?></td>
-                                	<td><?php echo $result['mark_scored']; ?></td>
-                                	<td><?php echo $result['DOP']; ?></td>
+                                    <td><?php echo $result['status']==1?"Passed".'<br>'.$result['DOE']:"Back";?></td>
+                                    <td><?php echo $result['status']==1?"-":"Back".'<br>'.$result['DOE'];?></td>
+                                    <td><?php echo $result['status']==1?"-":"Back".'<br>'.$result['DOE'];?></td>
+                                    <td><?php echo $result['status']==1?"-":"Back".'<br>'.$result['DOE'];?></td>
+                                	<td><?php echo $result['mark'];?></td>
+                                	<td><?php echo $result['DOP'];?></td>
                               <?php }//end of while
                          
                            }//end of query3
@@ -137,10 +131,11 @@ if($query2){
       </tr>
       
  </tbody>
+
  </table>
   <?php 
       $sql4="SELECT   SUM(`mark_scored`) as mark, SUM(`Grand_total`) as total
-                       FROM `exam_details` WHERE  `status`=0 AND `USID`='$id'";
+                       FROM `exam_details` WHERE  `status`=1 AND `USID`='$id'";
       $query4=$this->db->query($sql4);
       if($query4)
       {
@@ -154,8 +149,8 @@ if($query2){
           }//end of while
       }//end of query4
       $sql5="SELECT `marksheet_no` as marksheet,YEAR(`DOP`) as year
-                 FROM `exam_details` WHERE `status`=0 AND `USID`='$id' 
-                 order by exam_details.session_id DESC LIMIT 1";
+                 FROM `exam_details` WHERE `status`=1 AND `USID`='$id' 
+                 order by exam_details.sem_id DESC LIMIT 1";
       $query5=$this->db->query($sql5);
       if($query5)
       {
