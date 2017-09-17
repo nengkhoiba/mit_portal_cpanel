@@ -109,15 +109,15 @@ if($query2){
                 
                 <?php $sid=$result['id'];
                 $sql3="SELECT  ed.mark_scored as mark,ed.DOE,ed.DOP,et.name,et.id,status
-                                 FROM `exam_details` ed LEFT JOIN `exam_type` et ON ed.exam_type_id=et.id WHERE `USID`='$id' AND `sem_id`='$sid' order by exam_type_id ASC";
+                                 FROM `exam_details` ed LEFT JOIN `exam_type` et ON ed.exam_type_id=et.id WHERE `USID`='$id' AND `sem_id`='$sid' AND status=1 order by session_id ASC";
                 $query3 = $this->db->query($sql3);
                 if($query3){
                     while($result=mysql_fetch_array($query3->result_id))
                                     { ?>
                                     <td><?php echo $result['status']==1?"Passed".'<br>'.$result['DOE']:"Back";?></td>
-                                    <td><?php echo $result['status']==1?"-":"Back".'<br>'.$result['DOE'];?></td>
-                                    <td><?php echo $result['status']==1?"-":"Back".'<br>'.$result['DOE'];?></td>
-                                    <td><?php echo $result['status']==1?"-":"Back".'<br>'.$result['DOE'];?></td>
+                                    <td><?php echo $result['status']==1?"-":"Passed".'<br>'.$result['DOE'];?></td>
+                                    <td><?php echo $result['status']==1?"-":"Passed".'<br>'.$result['DOE'];?></td>
+                                    <td><?php echo $result['status']==1?"-":"Passed".'<br>'.$result['DOE'];?></td>
                                 	<td><?php echo $result['mark'];?></td>
                                 	<td><?php echo $result['DOP'];?></td>
                               <?php }//end of while
