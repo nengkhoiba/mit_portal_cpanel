@@ -138,7 +138,7 @@
   
    <script >
 
-   var usid,sem_id,session_id;
+  var usid,sem_id,session_id;
 
    function submit_data()
    {
@@ -181,8 +181,10 @@
   });
 
  
-  function loadDT_ExamModal(id){
-	
+  function loadDT_ExamModal(id,usid,session){
+
+	  
+		
 	  var url = "<?php echo site_url('data_controller/loadDT_examDataModal?q=');?>"+id;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {

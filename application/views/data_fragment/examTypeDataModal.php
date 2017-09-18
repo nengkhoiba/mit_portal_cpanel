@@ -1,5 +1,11 @@
-    		    			<div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    	
+    		    			
+    		    			
+    		    			
+    		    			
+    		  <div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
+			  <div class="modal-dialog modal-lg">
 			    <div class="modal-content">
 			      <div class="modal-header">
 			        <h3 class="modal-title" id="exampleModalLabel"> <b>Enter The Marks</b> </h3>
@@ -21,7 +27,7 @@
 			      	$flag = $query->num_rows();
 			      	if($flag != null){
 			      		while($result=mysql_fetch_array($query->result_id)){
-			      			$sid=$result['USID'];
+			      			$usid=$result['USID'];
 			      			$id=$result['id'];
 			      			$exam_type_id=$result['name'];
 			      			$session_id=$result['session_id'];
@@ -150,7 +156,7 @@
 			         			<span style="color: red"> * </span>
 			         			</div>
 						                   <select  id="status" class="form-control form-control-lg">
-											  <option value=''>-Select-</option>
+											  <option value='0'>-Select-</option>
 											  <option value='pass'>Pass</option>
 											  <option value='fail'>Fail</option>
 											  
@@ -183,11 +189,11 @@
 			         			Mark Score 
 			         			<span style="color: red"> * </span>
 			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $mark_score;?></option>
+			         			<p class="form-control form-control-lg">
+											 <?php echo $mark_score;?>
 											  
 											  
-											</select> 
+											</p> 
 						                    
 						                </div>
 					              </div>
@@ -302,49 +308,139 @@
 			         		?>
 			         		
 			         		
-			         		
-			         		
-			         		
-			         		
-			         		
-					        <div class="col-sm-6">
-					     			<div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Date Of Examination
-						                    <span style="color: red"> * </span>
-						                  </div>
-										<input  class="form-control"  id="doe" >
+			         		<?php
+			         		if($exam_type_id!=null)
+			         		{
+			         			
+			         		?>
+			         		<div class='col-sm-6'>
+			         			<div class="form-group">
+			         			<div class="input-group">
+			         			<div class="input-group-addon">
+			         			  Date Of Examination
+			         			<span style="color: red"> * </span>
+			         			</div>
+			         			<select class="form-control form-control-lg">
+											  <option ><?php echo $doe;?></option>
+											  
+											  
+											</select> 
+						                    
 						                </div>
 					              </div>
-				     			</div>
+					        </div>
+			         		
+			         			
+			         			<?php 
+			         		}
+			         		else {
+			         		
+			         		?>
+			         			<div class='col-sm-6'>
+			         			<div class="form-group">
+			         			<div class="input-group">
+			         			<div class="input-group-addon">
+			         			 Date Of Examination
+			         			<span style="color: red"> * </span>
+			         			</div>
+						                 <input type="text" class="form-control" id="doe">  
+						                </div>
+					              </div>
+					        </div>
+			         		<?php }
+			         		?>
+
 					        
 			         	</div>
 			          </div>
 			            <div class='row'>
 			         	<div class='col-sm-12'>
+			         	
+			         	
+			         		<?php
+			         		if($exam_type_id!=null)
+			         		{
+			         			
+			         		?>
 			         		<div class='col-sm-6'>
-			         		 <div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Date Of Result 
-						                    <span style="color: red"> * </span>
-						                  </div>
-						           <input  class="form-control"  id="dor" >
+			         			<div class="form-group">
+			         			<div class="input-group">
+			         			<div class="input-group-addon">
+			         			  Date Of Result 
+			         			<span style="color: red"> * </span>
+			         			</div>
+			         			<select class="form-control form-control-lg">
+											  <option ><?php echo $dor;?></option>
+											  
+											  
+											</select> 
+						                    
 						                </div>
 					              </div>
-					         </div>
-					        <div class="col-sm-6">
-					     			<div class="form-group">
-						                <div class="input-group">
-						                  <div class="input-group-addon">
-						                    Date of Publish
-						                    <span style="color: red"> * </span>
-						                  </div>
-						                  <input  class="form-control"  id="dop" >						                </div>
+					        </div>
+			         		
+			         			
+			         			<?php 
+			         		}
+			         		else {
+			         		
+			         		?>
+			         			<div class='col-sm-6'>
+			         			<div class="form-group">
+			         			<div class="input-group">
+			         			<div class="input-group-addon">
+			         			 Date Of Result 
+			         			<span style="color: red"> * </span>
+			         			</div>
+						                 <input type="text" class="form-control" id="dor">  
+						                </div>
 					              </div>
-				     			</div>
-					        
+					        </div>
+			         		<?php }
+			         		?>
+			         		
+			         		<?php
+			         		if($exam_type_id!=null)
+			         		{
+			         			
+			         		?>
+			         		<div class='col-sm-6'>
+			         			<div class="form-group">
+			         			<div class="input-group">
+			         			<div class="input-group-addon">
+			         			 Date of Publish
+			         			<span style="color: red"> * </span>
+			         			</div>
+			         			<select class="form-control form-control-lg">
+											  <option ><?php echo $dop;?></option>
+											  
+											  
+											</select> 
+						                    
+						                </div>
+					              </div>
+					        </div>
+			         		
+			         			
+			         			<?php 
+			         		}
+			         		else {
+			         		
+			         		?>
+			         			<div class='col-sm-6'>
+			         			<div class="form-group">
+			         			<div class="input-group">
+			         			<div class="input-group-addon">
+			         			Date of Publish
+			         			<span style="color: red"> * </span>
+			         			</div>
+						                 <input type="text" class="form-control" id="dop">  
+						                </div>
+					              </div>
+					        </div>
+			         		<?php }
+			         		?>
+			            
 			         	</div>
 			          </div>
 			          
@@ -357,5 +453,22 @@
 			        <button type="submit" onclick='submit_data()' class="btn btn-primary">Save</button>
 			      </div>
 			    </div>
+			    </div>
 			  </div>
 			</div>
+		
+<script type="text/javascript">
+
+$( function() {
+    $( "#dor" ).datepicker({
+    	  dateFormat: "yyyy-mm-dd"
+    });
+  } );
+
+
+
+</script>
+
+
+			
+			
