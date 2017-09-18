@@ -526,7 +526,9 @@ class Data_controller extends CI_Controller {
 	    {
 	        $date=$_POST['dateAdmission'];
 	        $challan=$_POST['txtChallan'];
+	        
 	        $id=$_POST['postType'];
+	        if($id!=""){
 	            $sql ="UPDATE `admission_std_relation` SET
                                 `date_of_admission`='$date',
                                 `other`='$challan',
@@ -541,7 +543,19 @@ class Data_controller extends CI_Controller {
 	                $this->session->set_userdata('status', "Failed To Update!!!");
 	                $this->load->view('student/student_admission');
 	            }
-	        	        
+	        }else{
+	            $sql ="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`) 
+VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
+	            $query = $this->db->query($sql);
+	            if($query){
+	                $this->session->set_userdata('status', "Succesfully Updated!");
+	                redirect('student/admission');
+	            }
+	            else {
+	                $this->session->set_userdata('status', "Failed To Update!!!");
+	                $this->load->view('student/student_admission');
+	            }
+	        }  
 	      
 	    }
 	    
