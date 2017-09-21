@@ -1051,18 +1051,45 @@ class Data_controller extends CI_Controller {
 			$doe= date("Y-m-d", strtotime($doe));
 			$dop= date("Y-m-d", strtotime($dop));
 			
+			$sql= "SELECT `id`, `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`
+					 FROM `exam_details` WHERE USID='$usid'
+					 AND session_id='$session_id'  
+					 AND exam_type_id='$exam_type' 
+					 AND sem_id='$sem_id'";
+			$query=$this->db->query($sql);
+			$flag = $query->num_rows();
+			if($flag != null){
+				
+				$sql1 = "INSERT INTO `exam_details`( `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`)
+				VALUES ('$sem_id','$exam_type','$usid','$session_id','$status','$mark_score','$grand_total','$mark_sheet_number','$doe','$dor','$dop','1')
+				";
+				$query1 = $this->db->query ($sql1);
+				if($query1){
+					$this->session->set_userdata('status', "Succesfully saved!");
+				}
+				else {
+					$this->session->set_userdata('status', "Something went wrong !");
+				}
+				
+			}
 			
-		
-					$sql1 = "INSERT INTO `exam_details`( `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`)
-							 VALUES ('$sem_id','$exam_type','$usid','$session_id','$status','$mark_score','$grand_total','$mark_sheet_number','$doe','$dor','$dop','1')
-							";
-					$query1 = $this->db->query ($sql1);
-					if($query1){
-						$this->session->set_userdata('status', "Succesfully saved!");
-					}
-					else {
-						$this->session->set_userdata('status', "Something went wrong !");
-					}
+			else {
+				
+				$sql2 = "UPDATE `exam_details` SET `sem_id`='$sem_id',`exam_type_id`='$exam_type',`USID`='$usid',`session_id`='$session_id',`status`='$status',`mark_scored`='$mark_score',
+						`Grand_total`='$grand_total',`marksheet_no`='$mark_sheet_number',`DOE`='$doe',`DOR`='$dor',`DOP`='$dop' WHERE USID='$usid' 
+						AND session_id='$session_id' 
+						AND exam_type_id='$exam_type' AND  sem_id='$sem_id'
+				";
+				$query2 = $this->db->query ($sql2);
+				if($query1){
+					$this->session->set_userdata('status', "Succesfully Updated!");
+				}
+				else {
+					$this->session->set_userdata('status', "Unable to Update !");
+				}
+				
+			}
+				
 					
 					
 		

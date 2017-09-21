@@ -33,7 +33,7 @@ if($query){
 	while($result=mysql_fetch_array($query->result_id)){
 	
 	?>
-	  <tr style="cursor: pointer" onclick="loadDT_ExamModal('<?php echo $result['USID']; ?>')">
+	  <tr style="cursor: pointer" onclick="loadDT_ExamModal('<?php echo $result['USID']; ?>','<?php echo $result['Semester']; ?>','<?php $this->session->userdata('session')?>')">
                 <td ><?php echo $result['USID']; ?></td>
                 <td><?php echo $result['Name']?></td>
                 <td><?php echo $result['MU_Roll']?></td>
