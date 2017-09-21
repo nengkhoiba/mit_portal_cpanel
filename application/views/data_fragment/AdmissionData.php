@@ -3,11 +3,10 @@
 <tr>
 <th>Student Id</th>
 <th>Name</th>
-
 <th>Course</th>
 <th>Trade</th>
 <th>Previous Semester</th>
-<th>Admission Date</th>
+<th>Previous Admission Date</th>
 <th>Status</th>
 <th>Action</th>
 
@@ -21,7 +20,17 @@ $Semester=trim($_GET['k']);
 $name=trim($_GET['l']);
 $viewtype=trim($_GET['m']);
 $curSession=$this->session->userdata('session');
-$previous=$curSession-1;
+$sql2="SELECT `id` FROM `session` WHERE id<$curSession  order by id DESC LIMIT 1";
+$query2=$this->db->query($sql2);
+$flag=$query2->num_rows();
+                while($result=mysql_fetch_array($query2->result_id))
+                {
+                    $previous=$result['id'];
+                }
+                if($flag==0)
+                {
+                    $previous=$curSession;
+                }
 $sql="SELECT S.USID,
 A.date_of_admission,
 S.firstname,
@@ -31,7 +40,8 @@ A.other,
 D.abv as course_name,
 T.abv as trade_name,
 sem.name as sem_name,
-A.sem_id,A.isActive
+A.sem_id as semid,
+A.isActive
 FROM admission_std_relation A 
  LEFT JOIN student_details S on S.USID=A.USID
  LEFT JOIN std_col_relation SCR on SCR.USID=A.USID
@@ -41,45 +51,41 @@ FROM admission_std_relation A
 WHERE
  SCR.course_id=CASE WHEN $course=0 THEN SCR.course_id ELSE '$course' END AND
  SCR.trade_id=CASE WHEN $trade=0 THEN SCR.trade_id ELSE'$trade' END AND 
- A.session_id='$previous'  AND 
+ A.session_id=CASE WHEN $viewtype=1 THEN A.session_id ELSE $previous END  AND 
 (S.firstname like'%$name%' OR S.middlename like '%$name%' OR S.lastname like '%$name%')";
 $query = $this->db->query($sql);
 if($query){
     while($result=mysql_fetch_array($query->result_id)){
-        
+        $challan=$result['other'];
+        $sem=$result['semid'];
         ?>
 	  <tr>
                 <td><?php echo $result['USID']; ?></td>
-                <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>
-           
+                <td><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?></td>           
                 <td><?php echo $result['course_name']; ?></td>
                 <td><?php echo $result['trade_name']; ?></td>
                 <td><?php echo $result['sem_name']; ?></td>   
-                 <td><?php echo $result['date_of_admission']; ?></td>    
+                <td><?php echo $result['date_of_admission']; ?></td>    
                  
                  
                  <?php 
                  $usid=$result['USID'];
                  $sql1="SELECT `USID`
-
- FROM `admission_std_relation`
- WHERE USID='$usid' AND session_id='$curSession' AND isActive=1";
-                 
- $query1 = $this->db->query($sql1);
- $admission=$query1->num_rows();
+                 FROM `admission_std_relation`
+                 WHERE USID='$usid' AND session_id='$curSession' AND isActive=1";                 
+                 $query1 = $this->db->query($sql1);
+                 $admission=$query1->num_rows();
                  ?>          
                                <?php 
                                if($admission>0){
                 ?>
              
-                <td><label style="cursor: pointer" class="btn btn-success">Admitted</label></td>
-               	 <td><i style="cursor: pointer" onclick="edit('<?php echo $result['USID']; ?>','<?php echo $result['date_of_admission']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['other'];?>')" class="fa fa-edit"></i></td>
-               	
-               
-                <?php
+                <td><label style="cursor: pointer" class="btn btn-success" disabled>Admitted</label></td>
+               	<td><i style="cursor: pointer" onclick="edit('<?php echo $result['USID']; ?>','<?php echo $result['date_of_admission']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $challan;?>')" class="fa fa-edit"></i></td>
+               <?php
                 }else{
                  ?>
-                     <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $result['sem_id'];?>')" class="btn btn-danger">Admit Now</label></td>
+                     <td><label style="cursor: pointer" onclick="admit('<?php echo $result['USID']; ?>','<?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname']; ?>','<?php echo $sem;?>')" class="btn btn-danger">Admit Now</label></td>
                                 <td></td>
                  <?php
                  }

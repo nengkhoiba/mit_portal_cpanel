@@ -419,7 +419,7 @@ WHERE S.USID=$usid";
 		                    Reserve Category
 		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select id="OptRcategory" name="OptRcategory" class="form-control form-control-lg" value="<?php echo set_value('choiceRcategory');?>" >
+		                  <select id="OptRcategory" name="OptRcategory" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$rcat:set_value('OptRcategory');?>" >
   								<option value="" <?php echo set_select('OptRcategory','');?>>Select</option>
   								<option value=0 <?php echo set_select('OptRcategory',0);?>>No</option>
   								<option value=1 <?php echo set_select('OptRcategory',1);?>>Yes</option>
@@ -436,7 +436,7 @@ WHERE S.USID=$usid";
 		                    Physically Handicapped
 		                    <span style="color: red"> *</span>
 		                  </div>
-		                  	   <select id="OptPhyHandicap"  name="OptPhyHandicap" class="form-control form-control-lg" value="<?php echo set_value('PhyHandicap');?>" >
+		                  	   <select id="OptPhyHandicap"  name="OptPhyHandicap" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$phand:set_value('OptPhyHandicap');?>">
   								<option value="" <?php echo set_select('OptPhyHandicap','');?>>Select</option>
   								<option value=0 <?php echo set_select('OptPhyHandicap',0);?>>No</option>
   								<option value=1 <?php echo set_select('OptPhyHandicap',1);?>>Yes</option>
@@ -453,7 +453,7 @@ WHERE S.USID=$usid";
 		                    Economically Backward 
 		                    <span style="color: red"> *</span>
 		                  </div>
-		                  <select id="OptEcoBackward" name="OptEcoBackward" class="form-control form-control-lg" value="<?php echo set_value('EcoBackward');?>" >
+		                  <select id="OptEcoBackward" name="OptEcoBackward" class="form-control form-control-lg" value="<?php echo (isset($_GET['USID']))?$eco:set_value('OptEcoBackward');?>">
   								<option value="" <?php echo set_select('OptEcoBackward','');?>>Select</option>
   								<option value=0 <?php echo set_select('OptEcoBackward',0);?>>No</option>
   								<option value=1 <?php echo set_select('OptEcoBackward',1);?>>Yes</option>

@@ -77,9 +77,9 @@
 		                     View Type
 		                  </div>
 		                 <select id="OptView" name="Optview" class="form-control">
-			                  	<option value="2">All</option>
-			                  	<option value="1">Only Admitted</option>
 			                  	<option value="0">Not Admitted Only</option>
+			                  	<option value="1">All</option>
+			                  	
 			                  </select>
 		                </div>
 	             
@@ -118,7 +118,9 @@
 		                  <div class="input-group-addon">
 		                     Name
 		                  </div>
-		                  <input id="postType" type="hidden" name="postType">		                 
+		                  <input id="postType" type="hidden" name="postType">
+		                  <input id="semid" type="hidden" name="semid">
+		                  <input id="edit" type="hidden" name="edit">		                 
 		                  <input id="txtName" name="txtName" type="text" class="form-control">
 		                </div>
 	             
@@ -200,10 +202,10 @@
 	  	}
 	  	}
 		function admit(id,name,sem)
-		{
-			
+		{			
 			document.getElementById('postType').value=id;	
-			document.getElementById('txtName').value=name;	
+			document.getElementById('txtName').value=name;
+			document.getElementById('semid').value=++sem;	
 			$('#OptSemester').val(sem);
 		}
 		function edit(id,dateofadmission,name,challan)
@@ -211,6 +213,7 @@
 			document.getElementById('dateAdmission').value=dateofadmission;
 			document.getElementById('postType').value=id;	
 			document.getElementById('txtName').value=name;	
-			document.getElementById('txtChallan').value=challan;	
+			document.getElementById('txtChallan').value=challan;
+			document.getElementById('edit').value=id;
 		}
   </script>
