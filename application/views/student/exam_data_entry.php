@@ -181,11 +181,13 @@
   });
 
  
-  function loadDT_ExamModal(id,usid,session){
+  function loadDT_ExamModal(usid,sem,session){
 
-	  
+	  this.usid=usid;
+	  this.sem_id=sem;
+	  this.session_id=session;
 		
-	  var url = "<?php echo site_url('data_controller/loadDT_examDataModal?q=');?>"+id;
+	  var url = "<?php echo site_url('data_controller/loadDT_examDataModal?q=');?>"+usid;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {
@@ -194,6 +196,17 @@
 	  				if(xmlHttp.responseText != null){
 	  					document.getElementById('examModalData').innerHTML = xmlHttp.responseText;
 	  				  $('#examModal').modal('show');
+	  				  $( "#dor" ).datepicker({
+	  			    	  dateFormat: "yyyy-mm-dd"
+	  			    });
+	  			    $( "#dop" ).datepicker({
+	  			    	  dateFormat: "yyyy-mm-dd"
+	  			    });
+	  			    $( "#doe" ).datepicker({
+	  			    	  dateFormat: "yyyy-mm-dd"
+	  			    });
+	  			
+	  				$('#OptExamType').val(document.getElementById('txtExmType').value);
 	  		
 	  				}else{
 	  					alert("Error");
@@ -272,27 +285,9 @@
 	}
 
 
-	/*
-	DATE PICKER 
-	*/
-	
-	  $( function() {
-		    $( "#dor" ).datepicker({
-		    	  dateFormat: "yyyy-mm-dd"
-		    });
-		  } );
+		  
 
-	  $( function() {
-		    $( "#doe" ).datepicker({
-		    	  dateFormat: "yyyy-mm-dd"
-		    });
-		  } );
-
-	  $( function() {
-		    $( "#dop" ).datepicker({
-		    	  dateFormat: "yyyy-mm-dd"
-		    });
-		  } );
+	 
 		 
 
 	/*

@@ -25,11 +25,11 @@
 						";
 			      	$query=$this->db->query($sql);
 			      	$flag = $query->num_rows();
-			      	if($flag != null){
+			      	if($flag != 0){
 			      		while($result=mysql_fetch_array($query->result_id)){
 			      			$usid=$result['USID'];
 			      			$id=$result['id'];
-			      			$exam_type_id=$result['name'];
+			      			$exam_type_id=$result['exam_type_id'];
 			      			$session_id=$result['session_id'];
 			      			$status=$result['status'];
 			      			$mark_score=$result['mark_scored'];
@@ -78,34 +78,7 @@
 			         <label id="lblStdRegYear"><?php echo $reg_year;?></label>
 			           <div class='row '>
 			         	<div class='col-sm-12'>
-			         		<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
-			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			Exam Type
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $exam_type_id;?></option>
-											  
-											  
-											</select> 
-						                    
-						                </div>
-					              </div>
-					        </div>
 			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
 			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -113,18 +86,12 @@
 			         			Exam Type
 			         			<span style="color: red"> * </span>
 			         			</div>
+			         			<input type="hidden" id="txtExmType" value="<?php echo ($flag==0? 0 : $exam_type_id);?>">
 						                    <?php $this->load->view('global/drop_down_exam_type')?>
 						                </div>
 					              </div>
 					        </div>
-			         		<?php }
-			         		?>
-			         		
-			         		<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
+			         	
 			         		<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -132,9 +99,11 @@
 			         			Status 
 			         			<span style="color: red"> * </span>
 			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $status;?></option>
-											  
+			         			<select id="status"  value="<?php echo ($flag==0? '' : $status);?>"  class="form-control form-control-lg">
+											 
+											  <option value='1'>Pass</option>
+											  <option value='2'>Fail</option>
+											  <option value='3'>Back</option>
 											  
 											</select> 
 						                    
@@ -143,33 +112,7 @@
 					        </div>
 			         		
 			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
-			         			<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			Status 
-			         			<span style="color: red"> * </span>
-			         			</div>
-						                   <select  id="status" class="form-control form-control-lg">
-											  <option value='0'>-Select-</option>
-											  <option value='pass'>Pass</option>
-											  <option value='fail'>Fail</option>
-											  
-											</select> 
-						                </div>
-					              </div>
-					        </div>
-			         		<?php }
-			         		?>
-			         		
-			         		
-			
-				
+			         	
 					        
 			         	</div>
 			          </div>
@@ -177,34 +120,7 @@
 			           <div class='row'>
 			         	<div class='col-sm-12'>
 			         		
-							<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
-			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			Mark Score 
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<p class="form-control form-control-lg">
-											 <?php echo $mark_score;?>
-											  
-											  
-											</p> 
-						                    
-						                </div>
-					              </div>
-					        </div>
-			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
+						
 			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -212,41 +128,12 @@
 			         			Mark Score  
 			         			<span style="color: red"> * </span>
 			         			</div>
-						                 <input type="text" class="form-control" id="mark_score">  
-						                </div>
-					              </div>
-					        </div>
-			         		<?php }
-			         		?>
-					      
-					      <?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
-			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			Grand Total
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $grand_total;?></option>
-											  
-											  
-											</select> 
-						                    
+						                 <input type="text" class="form-control" id="mark_score" value="<?php echo ($flag==0? '' : $mark_score);?>">  
 						                </div>
 					              </div>
 					        </div>
 			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
+					     
 			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -254,45 +141,17 @@
 			         			Grand Total  
 			         			<span style="color: red"> * </span>
 			         			</div>
-						                 <input type="text" class="form-control" id="grand_total">  
+						                 <input type="text" class="form-control" id="grand_total"  value="<?php echo ($flag==0? '' : $grand_total);?>">  
 						                </div>
 					              </div>
 					        </div>
-			         		<?php }
-			         		?>
+			         
 					        
 			         	</div>
 			          </div>
 			            <div class='row'>
 			         	<div class='col-sm-12'>
-			         		<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
-			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			  Mark Sheet Number
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $marksheet_no;?></option>
-											  
-											  
-											</select> 
-						                    
-						                </div>
-					              </div>
-					        </div>
-			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
+			         	
 			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -300,42 +159,12 @@
 			         			  Mark Sheet Number
 			         			<span style="color: red"> * </span>
 			         			</div>
-						                 <input type="text" class="form-control" id="mark_sheet_number">  
+						                 <input type="text" class="form-control" id="mark_sheet_number" value="<?php echo ($flag==0? '' : $marksheet_no);?>">  
 						                </div>
 					              </div>
 					        </div>
-			         		<?php }
-			         		?>
+			         
 			         		
-			         		
-			         		<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
-			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			  Date Of Examination
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $doe;?></option>
-											  
-											  
-											</select> 
-						                    
-						                </div>
-					              </div>
-					        </div>
-			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
 			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -343,12 +172,11 @@
 			         			 Date Of Examination
 			         			<span style="color: red"> * </span>
 			         			</div>
-						                 <input type="text" class="form-control" id="doe">  
+						                 <input type="text" class="form-control" id="doe" value="<?php echo ($flag==0? '' : $doe);?>">  
 						                </div>
 					              </div>
 					        </div>
-			         		<?php }
-			         		?>
+			         	
 
 					        
 			         	</div>
@@ -357,76 +185,18 @@
 			         	<div class='col-sm-12'>
 			         	
 			         	
-			         		<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
 			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			  Date Of Result 
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $dor;?></option>
-											  
-											  
-											</select> 
-						                    
-						                </div>
-					              </div>
-					        </div>
-			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
-			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
 			         			<div class="input-group-addon">
 			         			 Date Of Result 
 			         			<span style="color: red"> * </span>
 			         			</div>
-						                 <input type="text" class="form-control" id="dor">  
+						                 <input type="text" class="form-control" id="dor" value="<?php echo ($flag==0? '' : $dor);?>">  
 						                </div>
 					              </div>
 					        </div>
-			         		<?php }
-			         		?>
-			         		
-			         		<?php
-			         		if($exam_type_id!=null)
-			         		{
-			         			
-			         		?>
-			         		<div class='col-sm-6'>
-			         			<div class="form-group">
-			         			<div class="input-group">
-			         			<div class="input-group-addon">
-			         			 Date of Publish
-			         			<span style="color: red"> * </span>
-			         			</div>
-			         			<select class="form-control form-control-lg">
-											  <option ><?php echo $dop;?></option>
-											  
-											  
-											</select> 
-						                    
-						                </div>
-					              </div>
-					        </div>
-			         		
-			         			
-			         			<?php 
-			         		}
-			         		else {
-			         		
-			         		?>
+			         	
 			         			<div class='col-sm-6'>
 			         			<div class="form-group">
 			         			<div class="input-group">
@@ -434,12 +204,11 @@
 			         			Date of Publish
 			         			<span style="color: red"> * </span>
 			         			</div>
-						                 <input type="text" class="form-control" id="dop">  
+						                 <input type="text" class="form-control" id="dop" value="<?php echo ($flag==0? '' : $dop);?>">  
 						                </div>
 					              </div>
 					        </div>
-			         		<?php }
-			         		?>
+			         	
 			            
 			         	</div>
 			          </div>

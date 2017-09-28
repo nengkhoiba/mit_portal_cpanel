@@ -671,8 +671,8 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 					
 				}
 				
-				$sql2=" INSERT INTO emp_login (`UEID`, `user`, `password`, `isFirst`) VALUES ($ueid,'$loginName','','1')";
-				$query2 = $this->db->query($sql2);
+				//$sql2=" INSERT INTO emp_login (`UEID`, `user`, `password`, `isFirst`) VALUES ($ueid,'$loginName','','1')";
+				//$query2 = $this->db->query($sql2);
 				
 				$this->session->set_userdata('status', "Success");
 				redirect('nav_controller/emp_reg');
@@ -705,10 +705,10 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 		}
 		else
 		{
-			$flag=$_POST['postType'];
+			$flag=mysql_real_escape_string(trim($_POST['postType']));
 			
-			$examType=$_POST['txtExamtypeName'];
-			$isActive=$_POST['ddlActive'];
+			$examType=mysql_real_escape_string(trim($_POST['txtExamtypeName']));
+			$isActive=mysql_real_escape_string(trim($_POST['ddlActive']));
 			if($flag!=""){
 				$sql = "UPDATE exam_type SET
 				name='$examType',
@@ -757,9 +757,9 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 		}
 		else
 		{
-			$flag=$_POST['postType'];
-			$role=$_POST['txtRoleName'];
-			$isActive=$_POST['ddlActive'];
+			$flag=mysql_real_escape_string(trim($_POST['postType']));
+			$role=mysql_real_escape_string(trim($_POST['txtRoleName']));
+			$isActive=mysql_real_escape_string(trim($_POST['ddlActive']));
 			if($flag!=""){
 				$sql = "UPDATE role SET
 				name='$role',
@@ -815,9 +815,9 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 		}
 		else
 		{
-			$flag=$_POST['postType'];
-			$dept=$_POST['txtDepartmentName'];
-			$isActive=$_POST['ddlActive'];
+			$flag=mysql_real_escape_string(trim($_POST['postType']));
+			$dept=mysql_real_escape_string(trim($_POST['txtDepartmentName']));
+			$isActive=mysql_real_escape_string(trim($_POST['ddlActive']));
 			if($flag!=""){
 				$sql = "UPDATE department SET
 				name='$dept',
@@ -871,9 +871,9 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 		}
 		else
 		{
-			$flag=$_POST['postType'];
-			$desig=$_POST['txtDesignationName'];
-			$isActive=$_POST['ddlActive'];
+			$flag=mysql_real_escape_string(trim($_POST['postType']));
+			$desig=mysql_real_escape_string(trim($_POST['txtDesignationName']));
+			$isActive=mysql_real_escape_string(trim($_POST['ddlActive']));
 			if($flag!=""){
 				$sql = "UPDATE designation SET
 				name='$desig',
@@ -925,19 +925,19 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 		
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('nav_controller/master_user');
+			redirect('nav_controller/master_user');
 		}
 		else
 		{
-			$flag=$_POST['postType'];
-			$UEID=$_POST['ddlEmployee'];
-			$user=$_POST['txtUsername'];
-			$pass=$_POST['txtPassword'];
-			$cpass=$_POST['txtConfirmPassword'];
-			$dept_id=trim($_POST['optDept']);
-			$deg_id=trim($_POST['optDesig']);
-			$role_id=trim($_POST['optRole']);
-			if($pass == $cpass){
+			$flag=mysql_real_escape_string(trim($_POST['postType']));
+			$UEID=mysql_real_escape_string(trim($_POST['ddlEmployee']));
+			$user=mysql_real_escape_string(trim($_POST['txtUsername']));
+			$pass=mysql_real_escape_string(trim($_POST['txtPassword']));
+			$cpass=mysql_real_escape_string(trim($_POST['txtConfirmPassword']));
+			$dept_id=mysql_real_escape_string(trim($_POST['optDept']));
+			$deg_id=mysql_real_escape_string(trim($_POST['optDesig']));
+			$role_id=mysql_real_escape_string(trim($_POST['optRole']));
+			
 				
 				
 				if($flag!=""){
@@ -971,24 +971,22 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 					$sql = "INSERT INTO `emp_login`(`UEID`,`user`,`password`, `isFirst`) VALUES
 					('$UEID','$user','$pass','1')
 					";
+					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($UEID,$dept_id,$deg_id,$role_id)";
 					$query = $this->db->query ($sql);
+					$query3 =$this->db->query($sql3);
 					if($query){
 						$this->session->set_userdata('status', "Succesfully saved!");
 					}
 					
-					$sql3="INSERT INTO `emp_col_relation`(`UEID`, `dept_id`, `deg_id`, `role_id`) VALUES ($UEID,$dept_id,$deg_id,$role_id)";
-					$query3 =$this->db->query($sql3);
+					
 					}else{
 						$this->session->set_userdata('status', "User already created!");
 					}
 				}
 				
 				redirect('nav_controller/master_user');
-			}
-			else{
-				$this->load->view('utility/user_master');
-				//redirect('nav_controller/master_user');
-			}
+			
+			
 		}
 		
 	}
@@ -1071,14 +1069,45 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 			$doe= date("Y-m-d", strtotime($doe));
 			$dop= date("Y-m-d", strtotime($dop));
 			
-			$sql= "SELECT `id`, `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`
-					 FROM `exam_details` WHERE USID='$usid'
+			$sql= "SELECT id
+					 FROM `exam_details` WHERE 
+					 USID='$usid'
 					 AND session_id='$session_id'  
 					 AND exam_type_id='$exam_type' 
-					 AND sem_id='$sem_id'";
+					 AND sem_id='$sem_id'
+					AND isActive=1";
 			$query=$this->db->query($sql);
 			$flag = $query->num_rows();
-			if($flag != null){
+			if($flag>0){
+				
+				$sql2 = "UPDATE `exam_details` SET
+				`exam_type_id`='$exam_type',
+				`status`='$status',
+				`mark_scored`='$mark_score',
+				`Grand_total`='$grand_total',
+				`marksheet_no`='$mark_sheet_number',
+				`DOE`='$doe',
+				`DOR`='$dor',
+				`DOP`='$dop'
+				WHERE
+				USID='$usid'
+				AND session_id='$session_id'
+				AND exam_type_id='$exam_type'
+				AND  sem_id='$sem_id'
+				";
+				$query2 = $this->db->query ($sql2);
+				if($query2){
+					$this->session->set_userdata('status', "Succesfully Updated!");
+				}
+				else {
+					$this->session->set_userdata('status', "Unable to Update !");
+				}
+				
+			
+				
+			}
+			
+			else {
 				
 				$sql1 = "INSERT INTO `exam_details`( `sem_id`, `exam_type_id`, `USID`, `session_id`, `status`, `mark_scored`, `Grand_total`, `marksheet_no`, `DOE`, `DOR`, `DOP`, `isActive`)
 				VALUES ('$sem_id','$exam_type','$usid','$session_id','$status','$mark_score','$grand_total','$mark_sheet_number','$doe','$dor','$dop','1')
@@ -1089,23 +1118,6 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 				}
 				else {
 					$this->session->set_userdata('status', "Something went wrong !");
-				}
-				
-			}
-			
-			else {
-				
-				$sql2 = "UPDATE `exam_details` SET `sem_id`='$sem_id',`exam_type_id`='$exam_type',`USID`='$usid',`session_id`='$session_id',`status`='$status',`mark_scored`='$mark_score',
-						`Grand_total`='$grand_total',`marksheet_no`='$mark_sheet_number',`DOE`='$doe',`DOR`='$dor',`DOP`='$dop' WHERE USID='$usid' 
-						AND session_id='$session_id' 
-						AND exam_type_id='$exam_type' AND  sem_id='$sem_id'
-				";
-				$query2 = $this->db->query ($sql2);
-				if($query1){
-					$this->session->set_userdata('status', "Succesfully Updated!");
-				}
-				else {
-					$this->session->set_userdata('status', "Unable to Update !");
 				}
 				
 			}
