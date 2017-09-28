@@ -19,7 +19,7 @@
 $user=$_GET['q'];
 $pass=$_GET['j'];
 $isFirst=$_GET['k'];
-$sql="SELECT el.UEID AS UEID,el.user AS Username,el.password as Password ,el.isFirst, 
+$sql="SELECT el.UEID AS UEID,el.user AS Username,el.password as Password ,el.isFirst,r.id as r_id,d.id as dept_id,dg.id as deg_id, 
 r.name AS Role_Id,d.name AS Department, dg.name AS Designation 
 FROM emp_login el 
 LEFT JOIN emp_col_relation ecr ON ecr.UEID=el.UEID 
@@ -46,7 +46,7 @@ if($query){
                 }else{
                 	echo 'NO';
                 }?></td>
-                <td><i style="cursor: pointer" onclick="edit('<?php echo $result['UEID']; ?>','<?php echo $result['Username']; ?>','<?php echo $result['Password']; ?>')" class="fa fa-edit"></i></td>
+                <td><i style="cursor: pointer" onclick="edit('<?php echo $result['UEID']; ?>','<?php echo $result['Username']; ?>','<?php echo $result['Password']; ?>','<?php echo $result['r_id']; ?>','<?php echo $result['deg_id']; ?>','<?php echo $result['dept_id']; ?>')" class="fa fa-edit"></i></td>
                 <td><i style="cursor: pointer" onclick="remove('<?php echo $result['UEID']; ?>')" class="fa fa-remove"></i></td>
                
             </tr>

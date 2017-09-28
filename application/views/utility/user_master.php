@@ -211,14 +211,14 @@
   	catch(error) {}
   	}
   	}
-	function edit(id,name,pass)
+	function edit(id,name,pass,r_id,deg_id,dept_id)
 	{
 		document.getElementById('postType').value=id;
 		document.getElementById('txtUsername').value=name;
 		document.getElementById('ddlEmployee').value=id;
-		document.getElementById('optDesig').value=id;
-		document.getElementById('optDept').value=id;
-		document.getElementById('ddlRole').value=id;
+		document.getElementById('optDesig').value=deg_id;
+		document.getElementById('optDept').value=dept_id;
+		document.getElementById('optRole').value=r_id;
 		document.getElementById('txtPassword').value=pass;
 		document.getElementById('txtConfirmPassword').value=pass;
 	}
