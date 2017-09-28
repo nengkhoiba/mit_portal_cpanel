@@ -15,7 +15,6 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('OptCourse', 'Course', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
 		$this->form_validation->set_rules('OptTrade', 'Trade', 'is_natural_no_zero|required',array("required"=>"please choose a Trade"));
 		$this->form_validation->set_rules('OptStudentType', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a Semester"));	
-		$this->form_validation->set_rules('OptSemester', 'Semester', 'is_natural_no_zero|required',array("required"=>"please choose a course"));
 		$this->form_validation->set_rules('txtlastName', 'Last Name', 'alpha|required');
 		$this->form_validation->set_rules('txtChallan', 'Transcation Details', 'required');
 		$this->form_validation->set_rules('dateDOB', 'Date of birth', 'required');
@@ -42,57 +41,35 @@ class Data_controller extends CI_Controller {
 		}
 		else
 		{
-		    $course=trim($_POST['OptCourse']);
-		    $trade=trim($_POST['OptTrade']);
-		    $challan=trim($_POST['txtChallan']);
-		    addslashes($stutype=trim($_POST['OptStudentType']));
-		    $mu_roll=trim($_POST['txtMuRoll']);
-		    $reg_no=trim($_POST['txtMuRegNo']);
-		    $reg_year=trim($_POST['txtRegYear']);
-		    $title=trim($_POST['txtTitle']);
-		    $fname=trim($_POST['txtFirstName']);
-		    $lname=trim($_POST['txtlastName']);
-		    $mname=trim($_POST['txtMiddleName']);
-		    $dob=trim($_POST['dateDOB']);
-		    $padress=trim($_POST['txtPermanentAddress']);
-		    $cadress=trim($_POST['txtCAdress']);
-		    $phone=trim($_POST['txtPhone']);
-		    $fathername=trim($_POST['txtFather']);
-		    $mothername=trim($_POST['txtMother']);
-		    $mobile=trim($_POST['txtMobile']);
-		    $gender=trim($_POST['OptGender']);
-		    $religion=trim($_POST['txtReligion']);
-		    $nationality=trim($_POST['txtNationality']);
-		    $category=trim($_POST['txtCategory']);
-		    $rcategory=trim($_POST['OptRcategory']);
-		    $phyhandicap=trim($_POST['OptPhyHandicap']);
-		    $ecoback=trim($_POST['OptEcoBackward']);
-		    $semester=trim($_POST['OptSemester']);
-		    
-		    $title=mysql_real_escape_string($title);
-		    $fname=mysql_real_escape_string($fname);
-		    $lname=mysql_real_escape_string($lname);
-		    $dob=mysql_real_escape_string($dob);
-		    $mname=mysql_real_escape_string($mname);
-		    $gender=mysql_real_escape_string($gender);
-		    $padress=mysql_real_escape_string($padress);
-		    $cadress=mysql_real_escape_string($cadress);
-		    $fathername=mysql_real_escape_string($fathername);
-		    $mothername=mysql_real_escape_string($mothername);
-		    $mobile=mysql_real_escape_string($mobile);
-		    $religion=mysql_real_escape_string($religion);
-		    $nationality=mysql_real_escape_string($nationality);
-		    $category=mysql_real_escape_string($category);
-		    $rcategory=mysql_real_escape_string($rcategory);
-		    $phyhandicap=mysql_real_escape_string($phyhandicap);
-		    $ecoback=mysql_real_escape_string($ecoback);
-		    $rcategory=mysql_real_escape_string($ecoback);		 
-		    $phyhandicap=mysql_real_escape_string($phyhandicap);		   
-		    $ecoback=mysql_real_escape_string($ecoback);
-		 
+		    $course=mysql_real_escape_string(trim($_POST['OptCourse']));
+		    $trade=mysql_real_escape_string(trim($_POST['OptTrade']));
+		    $challan=mysql_real_escape_string(trim($_POST['txtChallan']));
+		    $stutype=mysql_real_escape_string(trim($_POST['OptStudentType']));
+		    $mu_roll=mysql_real_escape_string(trim($_POST['txtMuRoll']));
+		    $reg_no=mysql_real_escape_string(trim($_POST['txtMuRegNo']));
+		    $reg_year=mysql_real_escape_string(trim($_POST['txtRegYear']));
+		    $title=mysql_real_escape_string(trim($_POST['txtTitle']));
+		    $fname=mysql_real_escape_string(trim($_POST['txtFirstName']));
+		    $lname=mysql_real_escape_string(trim($_POST['txtlastName']));
+		    $mname=mysql_real_escape_string(trim($_POST['txtMiddleName']));
+		    $dob=mysql_real_escape_string(trim($_POST['dateDOB']));
+		    $padress=mysql_real_escape_string(trim($_POST['txtPermanentAddress']));
+		    $cadress=mysql_real_escape_string(trim($_POST['txtCAdress']));
+		    $phone=mysql_real_escape_string(trim($_POST['txtPhone']));
+		    $fathername=mysql_real_escape_string(trim($_POST['txtFather']));
+		    $mothername=mysql_real_escape_string(trim($_POST['txtMother']));
+		    $mobile=mysql_real_escape_string(trim($_POST['txtMobile']));
+		    $gender=mysql_real_escape_string(trim($_POST['OptGender']));
+		    $religion=mysql_real_escape_string(trim($_POST['txtReligion']));
+		    $nationality=mysql_real_escape_string(trim($_POST['txtNationality']));
+		    $category=mysql_real_escape_string(trim($_POST['txtCategory']));
+		    $rcategory=mysql_real_escape_string(trim($_POST['OptRcategory']));
+		    $phyhandicap=mysql_real_escape_string(trim($_POST['OptPhyHandicap']));
+		    $ecoback=mysql_real_escape_string(trim($_POST['OptEcoBackward']));
 		    if($stutype=4)
 		    {
-		        $stutype=$semester;
+		        $stutype=mysql_real_escape_string(trim($_POST['OptSemester']));
+		        
 		    }
 		    $flag=trim($_POST['postType']);
 		    if($flag!=null){
@@ -127,7 +104,8 @@ class Data_controller extends CI_Controller {
                             		            $query1=$this->db->query($sql1);
                             		            if($query1)
                             		            {
-                            		                $sql2="UPDATE `admission_std_relation` SET `sem_id`='$stutype' WHERE USID='$flag'";
+                            		                $session=$this->session->userdata('session');
+                            		                $sql2="UPDATE `admission_std_relation` SET `sem_id`='$stutype' WHERE USID='$flag' AND session_id='$session'";
                             		                $query2=$this->db->query($sql2);
                             		                if($query2)
                             		                {
@@ -524,11 +502,12 @@ class Data_controller extends CI_Controller {
 	    }
 	    else
 	    {
-	        $date=$_POST['dateAdmission'];
-	        $challan=$_POST['txtChallan'];
-	        
-	        $id=$_POST['postType'];
-	        if($id!=""){
+	        $date=mysql_real_escape_string(trim($_POST['dateAdmission']));
+	        $challan=mysql_real_escape_string(trim($_POST['txtChallan']));	        
+	        $id=mysql_real_escape_string(trim($_POST['postType']));
+	        $sem=mysql_real_escape_string(trim($_POST['semid']));
+	        $edit=mysql_real_escape_string(trim($_POST['edit']));
+	        if($edit!=""){
 	            $sql ="UPDATE `admission_std_relation` SET
                                 `date_of_admission`='$date',
                                 `other`='$challan',
@@ -544,11 +523,12 @@ class Data_controller extends CI_Controller {
 	                $this->load->view('student/student_admission');
 	            }
 	        }else{
+	            
 	            $sql ="INSERT INTO `admission_std_relation`(`USID`, `session_id`, `sem_id`, `date_of_admission`, `other`, `isActive`) 
-VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
+                                                    VALUES ('$id','$session','$sem','$date',$challan,'1')";
 	            $query = $this->db->query($sql);
 	            if($query){
-	                $this->session->set_userdata('status', "Succesfully Updated!");
+	                $this->session->set_userdata('status', "Sucessfully Admitted to ".'Semester '.$sem.' on '.$date);
 	                redirect('student/admission');
 	            }
 	            else {
@@ -565,7 +545,7 @@ VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6])";
 	}
 	
 	public function deleteDT_student(){
-	    $id=$_GET['id'];
+	    $id=trim($_GET['id']);
 	    $sql="UPDATE `student_details` SET `isActive`=0 WHERE USID='$id'";
 	    $query = $this->db->query($sql);
 	    if($query)
