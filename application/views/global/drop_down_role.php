@@ -1,4 +1,4 @@
- <select  class="form-control form-control-lg " id="ddlRole" name="optRole">
+ <select  class="form-control form-control-lg " id="optRole" name="optRole">
  <option value='0'>- Select - </option>
  
  <?php $sql="SELECT `id`, `name`  FROM `role` WHERE `isActive`=1";
