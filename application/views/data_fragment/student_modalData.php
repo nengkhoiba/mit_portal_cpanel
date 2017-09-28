@@ -1,28 +1,23 @@
-      <?php $this->load->view('global/header.php');?>
-      <?php $this->load->view('global/side_menu.php');?>
-       <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-     <section class="content">
-     	<div class="row">    
-     		<div class="col-sm-12">
-     		<?php 
-     		if($this->session->userdata('status')!=null){
-     		
-     			$msg=$this->session->userdata('status');
-     			?>
-     			<div id="success-alert" class="alert alert-success alert-dismissible" role="alert">
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				  <strong><?php echo $msg;?></strong> 
-				</div>
-     			<?php 
-     			$this->session->set_userdata('removedt_student_status', null);
-     		}
-     		?>
+<html>
+<head>
+<link href="<?php echo base_url();?>css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+.content-wrapper{
+    margin-left: 20%;
+    margin-right: 20%;
+    border: 1px solid #d8d5d5;
+    padding: 50px;
+    font-size: 18px;
+}
+span{font-weight: 300;}
 
-     		
-     		</div>
-    			   			
-     		</div>
+</style>
+</head>
+<body>
+       <div class="content-wrapper">
+  
+     <section class="content">
+     	
      		<?php if (isset($_GET['usid']))
      		{
      		    $session=$this->session->userdata('session');
@@ -41,40 +36,40 @@
      		            $cid=$result['course_id'];
      		            ?>
          <h3 style="text-align:center;color:red;"></h3>
-         <h4 style="text-align:center;">Student Bio-data</h4>
-		 <h4 >MU.ROLL NO. : <?php echo $result['MU_roll'];?></h4>
-		 <h4 >REDG. NO. :<?php echo $result['reg_no'].' of '.$result['reg_year']?></h4>
-		 <h4 >COURSE : <?php echo $result['course_name'];?></h4>
-		 <h4 >TRADE : <?php echo $result['trade_name'];?></h4>
+         <h2 style="text-align:center;">Student Bio-data</h2>
+		 <h5 >MU.ROLL NO. : <span><?php echo $result['MU_roll'];?></span></h5>
+		 <h5 >REDG. NO. :<span><?php echo $result['reg_no'].' of '.$result['reg_year']?></span></h5>
+		 <h5 >COURSE : <span><?php echo $result['course_name'];?></span></h5>
+		 <h5 >TRADE : <span><?php echo $result['trade_name'];?></span></h5>
 		 <br>
 		 <br>
-		 <h4 > NAME : <?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname'];?></h4>
-		 <h4 > FATHER'S NAME : <?php echo $result['fName'];?></h4>
-		 <h4 > ADDRESS : <?php echo $result['pAddress'];?></h4>
-		 <h4 > CATEGORY : <?php echo $result['gender'].' - '.$result['category'];?></h4>
-		 <h4 > ADMISSION(1ST SEM) : <?php echo $result['date'];?></h4>
-		 <h4 ><?php if($cid==1)
+		 <h5 > NAME : <span><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname'];?></span></h5>
+		 <h5 > FATHER'S NAME : <span><?php echo $result['fName'];?></span></h5>
+		 <h5 > ADDRESS : <span><?php echo $result['pAddress'];?></span></h5>
+		 <h5 > CATEGORY : <span><?php echo $result['gender'].' - '.$result['category'];?></span></h5>
+		 <h5 > ADMISSION(1ST SEM) : <span><?php echo $result['date'];?></span></h5>
+		 <h5 ><?php if($cid==1)
 		 {
 		     echo "4 YEARS COMPLETE";
 		 }
 		 else 
 		 {
 		     echo "2 YEARS COMPLETE";
-     		        }?></h4>
-		 <h4 ><?php if($cid==1)
+     		        }?></h5>
+		 <h5 ><?php if($cid==1)
 		 {
 		     echo "8 YEARS COMPLETE";
 		 }
 		 else 
 		 {
 		     echo "4 YEARS COMPLETE";
-     		        }?></h4>
+     		        }?></h5>
 		 <br>
-		 <br>
+		
 		     </section>
   <?php }
      		        }?>
- <h2 style="text-align:center;color:blue;">YEAR OF EXAMINATION HELD</h2>	 
+ <h4 style="text-align:center;">YEAR OF EXAMINATION HELD</h4>	 
 <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
 <thead>
 <tr>
@@ -211,4 +206,5 @@ if($query2){
 }
 ?>
   </div>
-   <?php $this->load->view('global/footer.php');?>
+</body>
+</html>
