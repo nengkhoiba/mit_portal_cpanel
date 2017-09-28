@@ -591,7 +591,8 @@ class Data_controller extends CI_Controller {
 	
 	
 
-	
+
+	// Start Employee Registration
 	public  function emp_reg(){
 		
 		
@@ -668,6 +669,11 @@ class Data_controller extends CI_Controller {
 		
 		
 	}
+	
+	public function loadDT_empData(){
+		$this->load->view('data_fragment/emp_list.php');
+	}
+	//End Employee Reistration
 	
 	// START  master exam type
 	

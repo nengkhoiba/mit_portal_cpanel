@@ -43,7 +43,7 @@
 		                  <div class="input-group-addon">
 		                    Name
 		                  </div>
-		                  <input required name="txtName" type="text" class="form-control" >
+		                  <input required name="txtName" id='txtName' type="text" class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -55,7 +55,7 @@
 		                  <div class="input-group-addon">
 		                    Address
 		                  </div>
-		                  <input name="txtAddress"  type="text" class="form-control" >
+		                  <input name="txtAddress" id='txtAddress'  type="text" class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -67,7 +67,7 @@
 		                  <div class="input-group-addon">
 		                    Mobile
 		                  </div>
-		                  <input type="text" name="txtMobile"  class="form-control">
+		                  <input type="text" name="txtMobile" id='txtMobile'  class="form-control">
 		                </div>
 	              
 	              </div>
@@ -81,7 +81,7 @@
 		                  <div class="input-group-addon">
 		                    Qualification
 		                  </div>
-		                  <input  name="txtQualification" type="text" class="form-control" >
+		                  <input  name="txtQualification" id='txtQualification' type="text" class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -93,7 +93,7 @@
 		                  <div class="input-group-addon">
 		                    Email
 		                  </div>
-		                  <input name="txteMail" type="email"  class="form-control" >
+		                  <input name="txteMail" id='txteMail' type="email"  class="form-control" >
 		                </div>
 	              
 	              </div>
@@ -106,7 +106,7 @@
 		                    Gender
 		                  </div>
 		                  
-						    <select  class="form-control form-control-lg " name="optGender">
+						    <select  id ='optGender' class="form-control form-control-lg " name="optGender">
 						      <option value=null >-Select-</option>
 						      <option value="Male" >Male</option>
 						      <option value="Female">Female</option>
@@ -119,29 +119,8 @@
      			</div>
      			</div>
      			
-     				<div class="row">
      			
-     			
-     		<!--  	<div class="col-sm-4 ">
-	     			<div class="form-group">
-	            	
-		                <div class="input-group">
-		                  <div class="input-group-addon">
-		                     Role
-		                  </div>
-		                  
-						   <?php //$this->load->view('global/drop_down_role') ?>
-		                 
-		               </div>
-	              
-	              </div>
-     			</div>
-     			</div>
-     			-->
-     			
-     			
-     			
-     			
+     		<div class="row">
      			<div class="row container-fluid ">
 	     			<div class="col-sm-9">
 	     			</div>
@@ -150,12 +129,21 @@
 		                <div class="btn-group" role="group">
 						   <input class="btn btn-default" type="submit" value="Save">
 						  </div>
+						   <div class="btn-group" role="group">
+						 <label class="btn btn-default" onclick="search()">Search</label>
+						   </div>
 						    <div class="btn-group" role="group">
 						   <input class="btn btn-default" type="reset" value="Reset">
 						  </div>
 	              
 	              </div>
      			</div>
+     			</div>
+     			
+     			<div class="row container-fluid">
+	     			<div id="data_container">
+	     			
+	     			</div>
      			</div>
               <?php echo form_close();?>
      		</div>
@@ -166,3 +154,75 @@
 
  
   <?php $this->load->view('global/footer.php');?>
+   <script >
+
+  $(document).ready (function(){
+	  search();
+  });
+  
+  
+  function search()
+  {
+
+  	var url = "<?php echo site_url('data_controller/loadDT_empData?q=');?>"+document.getElementById('txtName').value+"&j="+document.getElementById('txtAddress').value+"&k="+document.getElementById('txtMobile').value+"&l="+document.getElementById('txtQualification').value+"&n="+document.getElementById('txteMail').value+"&o="+document.getElementById('optGender').value;
+  	var xmlHttp = GetXmlHttpObject();
+  	if (xmlHttp != null) {
+  		try {
+  			xmlHttp.onreadystatechange=function() {
+  			if(xmlHttp.readyState == 4) {
+  				if(xmlHttp.responseText != null){
+  					document.getElementById('data_container').innerHTML = xmlHttp.responseText;
+  					$('#table').DataTable({
+  				        dom: 'Bfrtip',
+  				        buttons: [
+  				            'csv', 'pdf', 'print'
+  				        ]
+  				    });
+  				}else{
+  					alert("Error");
+  				}
+  			}
+  		}
+  		xmlHttp.open("GET", url, true);
+  		xmlHttp.send(null);
+  	}
+  	catch(error) {}
+  	}
+  	}
+	function edit(id,name,pass,r_id,deg_id,dept_id)
+	{
+		document.getElementById('postType').value=id;
+		document.getElementById('txtUsername').value=name;
+		document.getElementById('ddlEmployee').value=id;
+		document.getElementById('optDesig').value=deg_id;
+		document.getElementById('optDept').value=dept_id;
+		document.getElementById('optRole').value=r_id;
+		document.getElementById('txtPassword').value=pass;
+		document.getElementById('txtConfirmPassword').value=pass;
+	}
+	function remove(id){
+
+		if(confirm("Confirm Delete?")){
+	  	var url = "<?php echo site_url('data_controller/deleteDT_user?id=');?>"+id;
+	  	var xmlHttp = GetXmlHttpObject();
+	  	if (xmlHttp != null) {
+	  		try {
+	  			xmlHttp.onreadystatechange=function() {
+	  			if(xmlHttp.readyState == 4) {
+	  				if(xmlHttp.responseText != null){
+
+	  					search();
+	  					
+	  				}else{
+	  					alert("Error");
+	  				}
+	  			}
+	  		}
+	  		xmlHttp.open("GET", url, true);
+	  		xmlHttp.send(null);
+	  	}
+	  	catch(error) {}
+	  	}
+		}
+	}
+  </script>
