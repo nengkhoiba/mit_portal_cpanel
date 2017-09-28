@@ -5,7 +5,6 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
    <section class="content-header">
       	<h6>
           <ol class="breadcrumb">
@@ -70,10 +69,8 @@
 			                   Password
 			                  </div>
 			                  <input id="txtPassword" name="txtPassword" value="<?php echo set_value('txtPassword');?>" type="password" class="form-control" >
-			                  <?php echo form_error('txtPassword'); ?>
-			                  
-			                </div>
-		              
+			                  <?php echo form_error('txtPassword'); ?>			                  
+			                </div>		              
 		              </div>
 		              </div>
 		              
@@ -99,8 +96,7 @@
 			                    Role
 			                  </div>
 			                   <?php $this->load->view('global/drop_down_role')?>
-			                </div>
-		              
+			                </div>		              
 		              </div>
 	     			</div>
 		              
@@ -111,8 +107,7 @@
 		                <div class="input-group">
 		                  <div class="input-group-addon">
 		                    Designation
-		                  </div>
-		                  
+		                  </div>		                  
 						   <?php $this->load->view('global/drop_down_designation')?>
 		               </div>
 	              </div>
