@@ -218,6 +218,7 @@
 		document.getElementById('ddlEmployee').value=id;
 		document.getElementById('optDesig').value=id;
 		document.getElementById('optDept').value=id;
+		document.getElementById('ddlRole').value=id;
 		document.getElementById('txtPassword').value=pass;
 		document.getElementById('txtConfirmPassword').value=pass;
 	}
