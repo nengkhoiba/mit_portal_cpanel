@@ -244,7 +244,7 @@ class Data_controller extends CI_Controller {
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
-	        $this->session->set_userdata('status', "Succesfully Deleted!");
+	        $this->session->set_userdata('status',null);
 	    }
 	    else {
 	        $this->session->set_userdata('status', "Failed!");
@@ -259,7 +259,7 @@ class Data_controller extends CI_Controller {
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
-	        $this->session->set_userdata('status', "Succesfully Deleted!");
+	        $this->session->set_userdata('status',null);
 	    }
 	    else {
 	        $this->session->set_userdata('status', "Failed!");
@@ -274,7 +274,7 @@ class Data_controller extends CI_Controller {
 	    {  
 	        $sql2="UPDATE `std_col_relation` SET isActive='0' WHERE USID='$id'";
 	            $query2=$this->db->query($sql2);
-	            $this->session->set_userdata('removedt_student_status', "Succesfully Deleted!");
+	            $this->session->set_userdata('removedt_student_status',null);
 	        
 	    }
 	}
@@ -288,7 +288,7 @@ class Data_controller extends CI_Controller {
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
-	        $this->session->set_userdata('status', "Succesfully Deleted!");
+	        $this->session->set_userdata('status',null);
 	    }
 	    else {
 	        $this->session->set_userdata('status', "Failed!");
@@ -304,7 +304,7 @@ class Data_controller extends CI_Controller {
 	    $query=$this->db->query($sql);
 	    if($query)
 	    {
-	        $this->session->set_userdata('status', "Succesfully Deleted!");
+	        $this->session->set_userdata('status',null);
 	    }
 	    else {
 	        $this->session->set_userdata('status', "Failed!");

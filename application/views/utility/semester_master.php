@@ -28,7 +28,7 @@
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
      			<?php 
-     			$this->session->set_userdata('status', null);
+     			$this->session->set_userdata('status',null);
      		}
      		?>
 			<?php echo form_open('data_controller/update_master_semester');?>
