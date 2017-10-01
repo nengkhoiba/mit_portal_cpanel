@@ -95,7 +95,7 @@
 
  
   <?php $this->load->view('global/footer.php');?>
-  <script >
+  <script type="text/javascript" >
 
   $(document).ready (function(){
 	  search();
@@ -105,7 +105,7 @@
   function search()
   {
 
-  	var url = "<?php echo site_url('data_controller/loadDT_page?q=');?>"+document.getElementById('ddlRole').value+"&j="+document.getElementById('ddlpage').value;
+  	var url = "<?php echo site_url('data_controller/loadDT_page?q=');?>"+document.getElementById('optRole').value+"&j="+document.getElementById('ddlpage').value;
   	var xmlHttp = GetXmlHttpObject();
   	if (xmlHttp != null) {
   		try {

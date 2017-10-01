@@ -41,6 +41,7 @@ class Login_controller extends CI_Controller {
 				$this->session->set_userdata('User', $empName);
 				$this->session->set_userdata('Role', $role);
 				$this->session->set_userdata('RoleID', $role_id);
+				$this->session->set_userdata('Login', true);
 				redirect('landing');
 			}else{
 				$this->session->set_userdata('status', "Incorrect username or password!");
@@ -57,12 +58,17 @@ class Login_controller extends CI_Controller {
 		$this->session->set_userdata('User', null);
 		$this->session->set_userdata('Role', null);
 		$this->session->set_userdata('RoleID', null);
+		$this->session->set_userdata('Login', false);
 		redirect('home');
 	}
 
 public function change_password(){
+	if($this->session->userdata('Login')){
+		echo "change password";
+	}else{
+		redirect('home');
+	}
 	
-	echo "change password";
 }
 
 
