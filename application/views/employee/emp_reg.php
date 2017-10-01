@@ -23,7 +23,7 @@
      		
      			$msg=$this->session->userdata('status');
      			?>
-     			<div class="alert alert-success alert-dismissible" role="alert">
+     			<div  id="success-alert" class="alert alert-success alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				  <strong>Message: </strong> <?php echo $msg;?>
 				</div>
@@ -31,6 +31,8 @@
      			$this->session->set_userdata('status', null);
      		}
      		?>
+     		
+     	
      	
      		<form action="<?php echo base_url(); ?>data_controller/emp_reg"   method="post" accept-charset="utf-8">  
      			 
@@ -43,6 +45,7 @@
 		                  <div class="input-group-addon">
 		                    Name
 		                  </div>
+		                  <input id="postType" type="hidden" name="postType">
 		                  <input required name="txtName" id='txtName' type="text" class="form-control" >
 		                </div>
 	              
@@ -121,9 +124,17 @@
      			
      			
      		<div class="row">
-     			<div class="row container-fluid ">
-	     			<div class="col-sm-9">
-	     			</div>
+     			<div class="col-sm-9">
+	     			<div class="form-group">
+	            	
+		                <div class="input-group">
+		                 	
+		                </div>
+	              
+	              </div>
+     			</div>
+     			
+	     			
      				<div class="col-sm-3">
 	     			<div class="btn-group btn-group-justified" role="group">
 		                <div class="btn-group" role="group">
@@ -138,26 +149,30 @@
 	              
 	              </div>
      			</div>
-     			</div>
      			
+     		</div>	
+     		</br>
      			<div class="row container-fluid">
 	     			<div id="data_container">
 	     			
 	     			</div>
      			</div>
               <?php echo form_close();?>
-     		</div>
+     		
      	</div>
-    </section>
+  
   
   </div>
-
+  </section>
  
   <?php $this->load->view('global/footer.php');?>
    <script >
 
   $(document).ready (function(){
+	  
 	  search();
+	  $("#success-alert").fadeTo(1500, 500).slideUp(500, function(){("#success-alert").slideUp(500);
+		});
   });
   
   
@@ -189,21 +204,21 @@
   	catch(error) {}
   	}
   	}
-	function edit(id,name,pass,r_id,deg_id,dept_id)
+	function edit(id,name,add,mob,qulf,email,gender)
 	{
+		     
 		document.getElementById('postType').value=id;
-		document.getElementById('txtUsername').value=name;
-		document.getElementById('ddlEmployee').value=id;
-		document.getElementById('optDesig').value=deg_id;
-		document.getElementById('optDept').value=dept_id;
-		document.getElementById('optRole').value=r_id;
-		document.getElementById('txtPassword').value=pass;
-		document.getElementById('txtConfirmPassword').value=pass;
+		document.getElementById('txtName').value=name;
+		document.getElementById('txtAddress').value=add;
+		document.getElementById('txtMobile').value=mob;
+		document.getElementById('txtQualification').value=qulf;
+		document.getElementById('txteMail').value=email;
+		document.getElementById('optGender').value=gender;
 	}
 	function remove(id){
 
 		if(confirm("Confirm Delete?")){
-	  	var url = "<?php echo site_url('data_controller/deleteDT_user?id=');?>"+id;
+	  	var url = "<?php echo site_url('data_controller/?id=');?>"+id;
 	  	var xmlHttp = GetXmlHttpObject();
 	  	if (xmlHttp != null) {
 	  		try {

@@ -626,7 +626,8 @@ class Data_controller extends CI_Controller {
 			$gender = trim($_POST['optGender']);
 			
 			
-			
+			$flag=mysql_real_escape_string(trim($_POST['postType']));
+			//$ueid=mysql_real_escape_string(trim($_GET['']));
 			$name = mysql_real_escape_string($name);
 			$add = mysql_real_escape_string($add);
 			$mobile =mysql_real_escape_string($mobile);
@@ -635,33 +636,72 @@ class Data_controller extends CI_Controller {
 			$gender = mysql_real_escape_string($gender);
 			
 			
-			$sql = "INSERT INTO emp_details(name,address,mobile,qualification,email,gender,isActive)
-			VALUE ('$name','$add','$mobile','$qulf','$email','$gender','1')  ";
-			$query = $this->db->query($sql);
-			if($query){
+			if($flag!=""){
+				$sql="UPDATE `emp_details` SET 
+					  `name`='$name',
+    				  `address`='$add',
+					  `mobile`='$mobile',
+					  `qualification`='$qulf',
+					  `email`='$email', 
+					  `gender`='$gender'
+					   WHERE UEID = '$flag'
+						";
 				
-				$str = $name;
-				$string= (explode(" ",$str));
-				$loginName = $string[0];
+				$query = $this->db->query ($sql);
 				
-				$sql1= "SELECT UEID FROM emp_details ORDER BY emp_details.UEID DESC LIMIT 1";
-				$query1 = $this->db->query($sql1);
-				
-				while($result=mysql_fetch_array($query1->result_id)){
-					$ueid=$result['UEID'];
-					
+				if($query){
+					$this->session->set_userdata('status', "Succesfully Updated!");
+					redirect('nav_controller/emp_reg');
 				}
-				
-				//$sql2=" INSERT INTO emp_login (`UEID`, `user`, `password`, `isFirst`) VALUES ($ueid,'$loginName','','1')";
-				//$query2 = $this->db->query($sql2);
-				
-				$this->session->set_userdata('status', "Success");
-				redirect('nav_controller/emp_reg');
+			}else{
+				$sql1 = "SELECT * from emp_login
+				WHERE UEID='$UEID'
+				";
+				$query1 = $this->db->query ($sql1);
+				$duplicate=$query1->num_rows();
+				if($duplicate==0)
+				{
+					$sql = "INSERT INTO emp_details(name,address,mobile,qualification,email,gender,isActive)
+					VALUE ('$name','$add','$mobile','$qulf','$email','$gender','1')  ";
+					$query = $this->db->query($sql);
+					if($query){
+						
+						$str = $name;
+						$string= (explode(" ",$str));
+						$loginName = $string[0];
+						
+						$sql1= "SELECT UEID FROM emp_details ORDER BY emp_details.UEID DESC LIMIT 1";
+						$query1 = $this->db->query($sql1);
+						
+						while($result=mysql_fetch_array($query1->result_id)){
+							$ueid=$result['UEID'];
+							
+						}
+						
+						$this->session->set_userdata('status', "Success");
+						redirect('nav_controller/emp_reg');
+					}else{
+						
+						$this->session->set_userdata('lanba', "Unsuccessful");
+						redirect('nav_controller/emp_reg');
+					}
+				}
+				else{
+					$this->session->set_userdata('lanba', "Unsuccessful");
+					redirect('nav_controller/emp_reg');
+				}
 			}
-			else{
-				$this->session->set_userdata('lanba', "Unsuccessful");
-				redirect('nav_controller/emp_reg');
-			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+			
 			
 			
 			
