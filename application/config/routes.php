@@ -43,6 +43,7 @@ $route['404_override'] = '';
 //rohitkanta
 $route['landing'] = 'nav_controller';
 $route['logout'] = 'login_controller/logout';
+$route['change-password'] ='nav_controller/change_password';
 //rohitkanta
 //thoisana
 $route['employee/registration'] = 'nav_controller/emp_reg';

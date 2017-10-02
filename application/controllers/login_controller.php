@@ -72,7 +72,8 @@ public function change_password(){
 		$this->form_validation->set_rules('newPassword', 'New_Password ', 'required|matches[confirmedPassword]'); 
 		$this->form_validation->set_rules('confirmedPassword', 'Password', 'required');
 		if($this->form_validation->run() == FALSE){
-			
+			$this->session->set_userdata('status', "Fail");
+			redirect('change-password');
 		}else{
 			$oldPass=$_POST['oldPassword'];
 			$newPass=$_POST['newPassword'];
@@ -87,16 +88,17 @@ public function change_password(){
 			$query=$this->db->query($sql);
 			if($query)
 			{
-				
-				$this->load->view('main/login.php');
+				$this->session->set_userdata('status', "Succesfully Updated!");
+				redirect('change-password');
 			}
 			else{
-				
+				$this->session->set_userdata('status', "Fail");
+				redirect('change-password');
 			}
 		}
-		//$this->load->view('main/change_password');
+		
 	}else{
-		redirect('home');
+		redirect('change-password');
 	}
 	
 }
