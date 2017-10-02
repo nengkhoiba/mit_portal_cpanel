@@ -1147,13 +1147,6 @@ class Data_controller extends CI_Controller {
 				}
 				
 			}
-				
-					
-					
-		
-		
-	
-		
 	}
 	
 	
@@ -1166,7 +1159,29 @@ class Data_controller extends CI_Controller {
 	
 	
 	//END EXAM DATA ENTRY 
-	
+	public function photo()
+	{
+	    if(isset($_FILES["image_file"]["name"]))
+	    {
+	        $config['upload_path'] =base_url().'images/';
+	        $config['allowed_types'] = 'jpg|jpeg|png|gif';
+	        $this->load->library('upload', $config);
+	        if(!$this->upload->do_upload('image_file'))
+	        {
+	            echo $this->upload->display_errors();
+	        }
+	        else
+	        {
+	            $data = $this->upload->data();
+	            echo '<img src="'.base_url().'images/'.$data["file_name"].'" width="300" height="225" class="img-thumbnail" />';
+	        }
+	    }
+	}
+	function image_upload()
+	{
+	    $data['title'] = "Upload Image using Ajax JQuery in CodeIgniter";
+	    $this->load->view('image_upload', $data);
+	}
 	
 	
 	}

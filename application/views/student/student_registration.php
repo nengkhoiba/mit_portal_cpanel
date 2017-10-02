@@ -84,7 +84,7 @@ WHERE S.USID=$usid";
      		}
      		?>
 
-     		<?php echo form_open('data_controller/student_reg');?>
+     		<form action="http://localhost/mit_portal/data_controller/student_reg" id="upload_form" method="post" accept-charset="utf-8">
      		<div class="row">
      		<div class="col-sm-4">
 	     			<div class="form-group">
@@ -358,7 +358,7 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		           
-		                  <input  class="form-control" type="date" name="dateDOB" value="<?php echo (isset($_GET['USID']))?$dob:set_value('dateDOB');?>">
+		                  <input  class="form-control" id="dateDOB" type="date" name="dateDOB" value="<?php echo (isset($_GET['USID']))?$dob:set_value('dateDOB');?>">
 		                        
 		                </div>
 	              			 <?php echo form_error('dateDOB');?>
@@ -471,8 +471,8 @@ WHERE S.USID=$usid";
 		                    Photo Url
 		                  </div>
 		                  	<label class="custom-file">
- 					 <input type="file" id="file" class="form-control">
- 					 <span class="custom-file-control"></span>
+ 					 <input type="file" name="image_file" id="image_file" class="form-control">
+ 					 <span class="custom-file-control" id="photo"></span>
 					</label>
 		                </div>
 	              
@@ -498,6 +498,7 @@ WHERE S.USID=$usid";
 	              
 	              </div>
      			</div>
+     			<div id="uploaded_image"></div>
      			</div>    			
      	<?php echo form_close();?>   			   			
      		</div>
@@ -517,6 +518,7 @@ WHERE S.USID=$usid";
             'disabled': 'disabled'
         });
         oldnewcheck();
+       
         });
   function set()
   {
@@ -549,5 +551,32 @@ WHERE S.USID=$usid";
         });
     }
   }
+  $('#upload_form').on('submit', function(e){  
+      e.preventDefault();  
+      if($('#image_file').val() == '')  
+      {  
+           alert("Please Select the File");  
+      }  
+      else  
+      {  
+           $.ajax({  
+                url:"<?php echo base_url();?>datacontroller/photo",  
+                method:"POST",  
+                data:new FormData(this),  
+                contentType: false,  
+                cache: false,  
+                processData:false,  
+                success:function(data)  
+                {  
+                     $('#uploaded_image').html(data);  
+                }  
+           });  
+      }  
+ });
+  $( function() {
+	    $( "#dateDOB" ).datepicker({
+	    	  dateFormat: "yyyy-mm-dd"
+	    });
+	  } );
 	  
   </script>
