@@ -66,7 +66,7 @@ class Data_controller extends CI_Controller {
 		    $rcategory=mysql_real_escape_string(trim($_POST['OptRcategory']));
 		    $phyhandicap=mysql_real_escape_string(trim($_POST['OptPhyHandicap']));
 		    $ecoback=mysql_real_escape_string(trim($_POST['OptEcoBackward']));
-		    if($stutype=4)
+		    if($stutype==4)
 		    {
 		        $stutype=mysql_real_escape_string(trim($_POST['OptSemester']));
 		        
