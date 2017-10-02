@@ -112,7 +112,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left"> 
-                  <a href="<?php echo base_url();?>nav_controller/change_password" class="btn btn-default btn-flat">Change Password</a>
+                  <a href="<?php echo base_url();?>change-password" class="btn btn-default btn-flat">Change Password</a>
                 </div>
                 
                 <div class="pull-right">
