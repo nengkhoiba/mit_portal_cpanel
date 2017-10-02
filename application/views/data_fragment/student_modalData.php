@@ -23,7 +23,7 @@ span{font-weight: 300;}
      		    $session=$this->session->userdata('session');
      		$id=mysql_real_escape_string(trim($_GET['usid']));
      		    $sql="SELECT R.MU_roll,R.reg_no,R.reg_year,R.course_id,S.firstname,S.middlename,S.lastname,S.fName,S.pAddress,
-                        S.gender,S.category,date(S.added_on) AS date,C.name as course_name,T.name as trade_name
+                        S.gender,S.category,S.photo,date(S.added_on) AS date,C.name as course_name,T.name as trade_name
                          FROM admission_std_relation A LEFT JOIN  `student_details` S on S.USID=A.USID
                          LEFT JOIN std_col_relation R on R.USID=A.USID
                          LEFT JOIN course C on C.id=R.course_id
@@ -37,10 +37,18 @@ span{font-weight: 300;}
      		            ?>
          <h3 style="text-align:center;color:red;"></h3>
          <h2 style="text-align:center;">Student Bio-data</h2>
+         <div>
 		 <h5 >MU.ROLL NO. : <span><?php echo $result['MU_roll'];?></span></h5>
 		 <h5 >REDG. NO. :<span><?php echo $result['reg_no'].' of '.$result['reg_year']?></span></h5>
 		 <h5 >COURSE : <span><?php echo $result['course_name'];?></span></h5>
 		 <h5 >TRADE : <span><?php echo $result['trade_name'];?></span></h5>
+		 <img src="<?php echo $result['photo'];?>" style="
+    width: 120px;
+    float: right;
+    margin-top: -100px;
+    margin-right: 10px;
+">
+		 </div>
 		 <br>
 		 <br>
 		 <h5 > NAME : <span><?php echo $result['firstname'].' '.$result['middlename'].' '.$result['lastname'];?></span></h5>

@@ -10,7 +10,7 @@ if(isset($_GET['USID']))
     $id=$usid;
     $sql=$sql="SELECT S.USID, S.title, S.firstname, S.middlename,S.lastname,S.mName, S.fName, S.pAddress, 
 S.cAddress,S.phone, S.mobile, S.gender, S.dob, S.religion, S.nationality, S.category, R.other,
-S.reserve_cat, S.phy_han, S.eco_back,A.MU_roll,A.reg_no,A.reg_year,A.course_id,A.trade_id,R.sem_id
+S.reserve_cat, S.phy_han, S.eco_back,S.photo,A.MU_roll,A.reg_no,A.reg_year,A.course_id,A.trade_id,R.sem_id
  FROM student_details S LEFT JOIN std_col_relation A on S.USID=A.USID LEFT JOIN admission_std_relation R on S.USID=R.USID
 WHERE S.USID=$usid";
     $query=$this->db->query($sql);
@@ -40,6 +40,7 @@ WHERE S.USID=$usid";
             $mu_roll=$result['MU_roll'];
             $reg_no=$result['reg_no'];
             $sem=$result['sem_id'];
+            $photo=$result['photo'];
             $semold=0;
             if($sem>3)
             {
@@ -358,7 +359,7 @@ WHERE S.USID=$usid";
 		                    <span style="color: red"> *</span>
 		                  </div>
 		           
-		                  <input  class="form-control" id="dateDOB" type="date" name="dateDOB" value="<?php echo (isset($_GET['USID']))?$dob:set_value('dateDOB');?>">
+		                  <input  class="form-control" id="dateDOB" type="text" name="dateDOB" value="<?php echo (isset($_GET['USID']))?$dob:set_value('dateDOB');?>">
 		                        
 		                </div>
 	              			 <?php echo form_error('dateDOB');?>
@@ -468,14 +469,15 @@ WHERE S.USID=$usid";
 	            	
 		                <div class="input-group">
 		                  <div class="input-group-addon">
-		                    Photo Url
+		                    Photo
 		                  </div>
 		                  	<label class="custom-file">
- 					 <input type="file" name="image_file" id="image_file" class="form-control">
+ 					 <input type="file" name="image_file" id="image_file" onchange="encodeImagetoBase64(this)" class="form-control">
+ 					 <input type="hidden" name="studentPhoto" id="photoFile" value="<?php echo (isset($_GET['USID']))?$photo:set_value('studentPhoto');?>">
  					 <span class="custom-file-control" id="photo"></span>
 					</label>
 		                </div>
-	              
+	              <?php echo form_error('studentPhoto');?>
 	              </div>
      			</div>
      			</div>
@@ -499,7 +501,8 @@ WHERE S.USID=$usid";
 	              </div>
      			</div>
      			<div id="uploaded_image"></div>
-     			</div>    			
+     			</div>    
+     			<img style="width:100px" alt="" src="<?php echo (isset($_GET['USID']))?$photo:set_value('studentPhoto');?>" id="prifileImg">			
      	<?php echo form_close();?>   			   			
      		</div>
      	</div>
@@ -551,28 +554,23 @@ WHERE S.USID=$usid";
         });
     }
   }
-  $('#upload_form').on('submit', function(e){  
-      e.preventDefault();  
-      if($('#image_file').val() == '')  
-      {  
-           alert("Please Select the File");  
-      }  
-      else  
-      {  
-           $.ajax({  
-                url:"<?php echo base_url();?>datacontroller/photo",  
-                method:"POST",  
-                data:new FormData(this),  
-                contentType: false,  
-                cache: false,  
-                processData:false,  
-                success:function(data)  
-                {  
-                     $('#uploaded_image').html(data);  
-                }  
-           });  
-      }  
- });
+  function encodeImagetoBase64(element) {
+
+	  var file = element.files[0];
+
+	  var reader = new FileReader();
+
+	  reader.onloadend = function() {
+
+	    $("#prifileImg").attr("src",reader.result);
+
+	    $("#photoFile").val(reader.result);
+
+	  }
+
+	  reader.readAsDataURL(file);
+
+	}
   $( function() {
 	    $( "#dateDOB" ).datepicker({
 	    	  dateFormat: "yyyy-mm-dd"

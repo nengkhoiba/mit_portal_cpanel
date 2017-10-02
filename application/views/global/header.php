@@ -7,10 +7,10 @@
  	<link href="<?php echo base_url();?>css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
  	<link href="<?php echo base_url();?>css/dataTables.bootstrap.min.css" rel="stylesheet">
  <link href="<?php echo base_url();?>css/buttons.dataTables.min.css" rel="stylesheet">
- <link href="<?php echo base_url();?>css/bootstrap-datepicker.standalone.css"  rel="stylesheet">
-<link href="<?php echo base_url();?>css/bootstrap-datepicker.css" rel="stylesheet">
-<link href="<?php echo base_url();?>css/bootstrap-datepicker3.css" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo base_url();?>css/jquery-ui.css">
+ <link href="<?php echo base_url();?>css/bootstrap-datepicker.standalone.min.css"  rel="stylesheet">
+<link href="<?php echo base_url();?>css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="<?php echo base_url();?>css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -21,9 +21,9 @@
     <!-- Logo -->
     <a href="<?php echo base_url();?>landing" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>M</b>IT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>MIT</b>Portal</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -34,7 +34,7 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-   
+   <!--  
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -43,7 +43,7 @@
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- inner menu: contains the actual data -->
+              
                 <ul class="menu">
                   <li>
                     <a href="#">
@@ -75,7 +75,7 @@
               </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li>-->
           <!-- Tasks: style can be found in dropdown.less -->
           
           <!-- User Account: style can be found in dropdown.less -->
@@ -87,28 +87,15 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+             
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <?php echo $this->session->userdata('User');?>
+                  <small><?php echo $this->session->userdata('Role');?></small>
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+       
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left"> 

@@ -31,7 +31,8 @@ class Data_controller extends CI_Controller {
 		$this->form_validation->set_rules('OptRcategory', ' ', 'required',array("required"=>"please choose an option"));
 		$this->form_validation->set_rules('OptPhyHandicap', ' ', 'required',array("required"=>"please choose an option"));
 		$this->form_validation->set_rules('OptEcoBackward', ' ', 'required',array("required"=>"please choose an option"));
-
+		$this->form_validation->set_rules('studentPhoto', 'Photo', 'required');
+	
 		
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -66,6 +67,7 @@ class Data_controller extends CI_Controller {
 		    $rcategory=mysql_real_escape_string(trim($_POST['OptRcategory']));
 		    $phyhandicap=mysql_real_escape_string(trim($_POST['OptPhyHandicap']));
 		    $ecoback=mysql_real_escape_string(trim($_POST['OptEcoBackward']));
+		    $photo=mysql_real_escape_string(trim($_POST['studentPhoto']));
 		    if($stutype=4)
 		    {
 		        $stutype=mysql_real_escape_string(trim($_POST['OptSemester']));
@@ -90,7 +92,8 @@ class Data_controller extends CI_Controller {
                                                         `category`='$category',
                                                         `reserve_cat`='$rcategory',
                                                         `phy_han`='$phyhandicap',
-                                                        `eco_back`='$ecoback'
+                                                        `eco_back`='$ecoback',
+                                                        `photo`='$photo'
                                                         WHERE USID='$flag' ";
                             		        $query = $this->db->query($sql);
                             		        if($query){
@@ -137,8 +140,8 @@ class Data_controller extends CI_Controller {
 		    else{
 		        
 		        
-		        $sql="INSERT INTO `student_details`( `title`,`firstname`, `middlename`,`dob`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `religion`, `nationality`,`category`,`isActive`,`reserve_cat`, `phy_han`, `eco_back`,`added_on`)
-		                                VALUES ('$title','$fname','$mname','$dob','$lname','$mothername','$fathername','$padress','$cadress','$phone','$mobile','$gender','$religion','$nationality','$category','1','$rcategory','$phyhandicap','$ecoback',NOW())";
+		        $sql="INSERT INTO `student_details`( `title`,`firstname`, `middlename`,`dob`, `lastname`, `mName`, `fName`, `pAddress`, `cAddress`, `phone`, `mobile`, `gender`, `religion`, `nationality`,`category`,`isActive`,`reserve_cat`, `phy_han`, `eco_back`,`photo`,`added_on`)
+		                                VALUES ('$title','$fname','$mname','$dob','$lname','$mothername','$fathername','$padress','$cadress','$phone','$mobile','$gender','$religion','$nationality','$category','1','$rcategory','$phyhandicap','$ecoback','$photo',NOW())";
 		        
 		        $query=$this->db->query($sql);
 		        if($query)
@@ -1158,30 +1161,7 @@ class Data_controller extends CI_Controller {
 	}
 	
 	
-	//END EXAM DATA ENTRY 
-	public function photo()
-	{
-	    if(isset($_FILES["image_file"]["name"]))
-	    {
-	        $config['upload_path'] =base_url().'images/';
-	        $config['allowed_types'] = 'jpg|jpeg|png|gif';
-	        $this->load->library('upload', $config);
-	        if(!$this->upload->do_upload('image_file'))
-	        {
-	            echo $this->upload->display_errors();
-	        }
-	        else
-	        {
-	            $data = $this->upload->data();
-	            echo '<img src="'.base_url().'images/'.$data["file_name"].'" width="300" height="225" class="img-thumbnail" />';
-	        }
-	    }
-	}
-	function image_upload()
-	{
-	    $data['title'] = "Upload Image using Ajax JQuery in CodeIgniter";
-	    $this->load->view('image_upload', $data);
-	}
+
 	
 	
 	}
