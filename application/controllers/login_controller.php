@@ -64,7 +64,37 @@ class Login_controller extends CI_Controller {
 
 public function change_password(){
 	if($this->session->userdata('Login')){
-		echo "change password";
+		$this->load->helper(array('form', 'url'));
+		
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('oldPassword', 'Old_Password', 'required');
+		$this->form_validation->set_rules('newPassword', 'New_Password ', 'required|matches[confirmedPassword]'); 
+		$this->form_validation->set_rules('confirmedPassword', 'Password', 'required');
+		if($this->form_validation->run() == FALSE){
+			
+		}else{
+			$oldPass=$_POST['oldPassword'];
+			$newPass=$_POST['newPassword'];
+			$confPass=$_POST['confirmedPassword'];
+			$ueid=$this->session->userdata('UEID');
+			
+			$sql="UPDATE `emp_login` SET 
+				 `password`='$newPass'	
+				 WHERE UEID='$ueid'
+				 AND password='$oldPass'
+					";
+			$query=$this->db->query($sql);
+			if($query)
+			{
+				
+				$this->load->view('main/login.php');
+			}
+			else{
+				
+			}
+		}
+		//$this->load->view('main/change_password');
 	}else{
 		redirect('home');
 	}
