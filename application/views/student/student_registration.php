@@ -554,10 +554,12 @@ WHERE S.USID=$usid";
         });
     }
   }
+  //
   function encodeImagetoBase64(element) {
 
 	  var file = element.files[0];
-
+	 // alert(element.files[0].size);
+	 // alert(element.files[0].name);
 	  var reader = new FileReader();
 
 	  reader.onloadend = function() {
@@ -571,6 +573,7 @@ WHERE S.USID=$usid";
 	  reader.readAsDataURL(file);
 
 	}
+	//
   $( function() {
 	    $( "#dateDOB" ).datepicker({
 	    	  dateFormat: "yyyy-mm-dd"
