@@ -250,16 +250,7 @@
   	catch(error) {}
   	}
   	}
-	function edit(id,name,pass)
-	{
-		document.getElementById('postType').value=id;
-		document.getElementById('txtUsername').value=name;
-		document.getElementById('ddlEmployee').value=id;
-		document.getElementById('optDesig').value=id;
-		document.getElementById('optDept').value=id;
-		document.getElementById('txtPassword').value=pass;
-		document.getElementById('txtConfirmPassword').value=pass;
-	}
+	
 	function remove(id){
 
 		if(confirm("Confirm Delete?")){
@@ -287,14 +278,7 @@
 	}
 
 
-		  
-
-	 
-		 
-
-	/*
-	DATE PICKER 
-	*/
+	
   </script>
   
   

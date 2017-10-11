@@ -16,8 +16,11 @@
      	<div class="row">
      	 <div class="col-sm-12">
      		<?php 
-     		if($this->session->userdata('status')=="Fail") {
-     			$msg="Update Fail";
+     		if ($this->session->userdata('status')=="Confirmation Password cannot be empty" || $this->session->userdata('status')=="Old Password cannot be empty" ||
+     				$this->session->userdata('status')=="New Password cannot be empty"||$this->session->userdata('status')=="Old Password  and New Password cannot be same"||
+     				$this->session->userdata('status')=="Old Password incorrect" ||$this->session->userdata('status')=="Something went wrong!"){
+     			
+     					$msg=$this->session->userdata('status');
      			?>
      			<div id="success-alert" class="alert alert-warning alert-dismissible" role="alert">
 				  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -26,7 +29,7 @@
      			<?php 
      			$this->session->set_userdata('status', null);
      		}
-     		if($this->session->userdata('status')!=null && $this->session->userdata('status')!="Fail"){
+     		else if($this->session->userdata('status')=="Succesfully Updated!"){
      		
      			$msg=$this->session->userdata('status');
      			?>
@@ -37,6 +40,10 @@
      			<?php 
      			$this->session->set_userdata('status', null);
      		}
+     		else {
+     			
+     		}
+     		
      		
      		?>
 			

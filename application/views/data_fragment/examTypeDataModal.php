@@ -39,6 +39,10 @@
 			      			$dop=$result['DOP'];
 			      			$dor=$result['DOR'];
 			      			
+			      			$doe=date("m-d-Y", strtotime($doe));
+			      			$dop=date("m-d-Y", strtotime($dop));
+			      			$dor=date("m-d-Y", strtotime($dor));
+			      			
 			      	}
 			      	}
 			      	else {
@@ -228,11 +232,11 @@
 		
 <script type="text/javascript">
 
-$( function() {
+/*$( function() {
     $( "#dor" ).datepicker({
     	  dateFormat: "yyyy-mm-dd"
     });
-  } );
+  } );*/
 
 
 

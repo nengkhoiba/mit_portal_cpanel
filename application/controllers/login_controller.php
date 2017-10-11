@@ -72,31 +72,72 @@ public function change_password(){
 		$this->form_validation->set_rules('newPassword', 'New_Password ', 'required|matches[confirmedPassword]'); 
 		$this->form_validation->set_rules('confirmedPassword', 'Password', 'required');
 		if($this->form_validation->run() == FALSE){
-			$this->session->set_userdata('status', "Fail");
-			redirect('change-password');
-		}else{
+			
+			$oldp =$this->input->post('oldPassword');
+			$newp =$this->input->post('newPassword');
+			$confp =$this->input->post('confirmedPassword');
+			
+			if($oldp== null){
+				$this->session->set_userdata('status', "Old Password cannot be empty"); //9= old password cannot be empty
+				redirect('change-password');
+			}
+			else if($newp==null){
+				$this->session->set_userdata('status', "New Password cannot be empty"); //1= new password cannot be empty
+				redirect('change-password');
+			}
+			else if($confp== null){
+				$this->session->set_userdata('status', "Confirmation Password cannot be empty"); //2= confirmation password cannot be empty
+				redirect('change-password');
+			}
+			
+		}
+		else{
 			$oldPass=$_POST['oldPassword'];
 			$newPass=$_POST['newPassword'];
 			$confPass=$_POST['confirmedPassword'];
 			$ueid=$this->session->userdata('UEID');
 			
-			$sql="UPDATE `emp_login` SET 
-				 `password`='$newPass'	
-				 WHERE UEID='$ueid'
-				 AND password='$oldPass'
-					";
+			$sql="SELECT password FROM emp_login
+			WHERE UEID='$ueid'
+			";
 			$query=$this->db->query($sql);
-			if($query)
-			{
-				$this->session->set_userdata('status', "Succesfully Updated!");
-				redirect('change-password');
+			while ($result=mysql_fetch_array($query->result_id)){
+				$pass=$result['password'];
+			}
+			if($pass == $oldPass ){
+				
+				if($pass == $newPass){
+					$this->session->set_userdata('status', "Old Password  and New Password cannot be same"); //3= old password  and new password cannot be same
+					redirect('change-password');
+				}
+				else{
+					
+					$sql="UPDATE `emp_login` SET
+					`password`='$newPass'
+					WHERE UEID='$ueid'
+					AND password='$oldPass'
+					";
+					$query=$this->db->query($sql);
+					if($query)
+					{
+						$this->session->set_userdata('status', "Succesfully Updated!");
+						redirect('change-password');
+					}
+					else{
+						$this->session->set_userdata('status', "Something went wrong!");
+						redirect('change-password');
+					}
+					
+				}
+				
 			}
 			else{
-				$this->session->set_userdata('status', "Fail");
+				$this->session->set_userdata('status', "Old Password incorrect"); //4= old password incorrect
 				redirect('change-password');
 			}
-		}
-		
+			
+			
+	  }	
 	}else{
 		redirect('change-password');
 	}
